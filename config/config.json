@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "NugPup28@",
-    "database": "health-tracker",
+    "password": "Booyah5%",
+    "database": "health_tracker_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
