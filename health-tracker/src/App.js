@@ -1,12 +1,17 @@
 import React from "react";
-import "./App.css";
-import UserForm from "./components/UserForm";
+import "./App.css"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Main from "./pages/Main";
 
 function App() {
   return (
-    <div className="App">
-      <UserForm />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
