@@ -8,6 +8,14 @@ router.get("/users/all", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+router.get("/users/:id", (req, res) => {
+  db.User.findOne({
+    where: { id: req.params.id },
+  })
+    .then((user) => res.send(user))
+    .catch((err) => res.send(err));
+});
+
 router.post("/users/new", (req, res) => {
   db.User.create({
     userName: req.body.userName,
