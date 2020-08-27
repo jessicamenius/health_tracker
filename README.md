@@ -2,8 +2,8 @@
 
 ```
 As someone interested in nutrition and health
-I want to be able to add meals and snacks todaily tracker
-So that I can count calories and lose/gain weight
+I want to be able to add meals and snacks to a daily tracker
+So that I can count calories and lose/gain/maintain weight
 ```
 
 ## Instructions
