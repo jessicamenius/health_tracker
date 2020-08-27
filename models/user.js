@@ -15,18 +15,9 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
       },
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    firstName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    password: { type: DataTypes.STRING, allowNull: false },
+    firstName: { type: DataTypes.STRING, allowNull: false },
+    lastName: { type: DataTypes.STRING, allowNull: false },
   });
 
   User.prototype.validPassword = function (password) {
@@ -40,6 +31,12 @@ module.exports = (sequelize, DataTypes) => {
       null
     );
   });
+
+  User.associate = (models) => {
+    User.hasOne(models.Stats, {
+      onDelete: "cascade",
+    });
+  };
 
   return User;
 };
