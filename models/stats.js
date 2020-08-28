@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     gender: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },
     bmi: { type: DataTypes.INTEGER, allowNull: false },
+    bmr: { type: DataTypes.INTEGER, allowNull: false },
     UserId: { type: DataTypes.INTEGER, allowNull: false },
   });
 
