@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginCom from '../components/Pages/LoginCom'
+import LoginCom from '../components/LoginCom'
 
 
 
