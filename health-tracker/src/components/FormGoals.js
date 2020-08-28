@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 
 const FormGoals = () => {
 
+    const objUserStats = {};
     const useStyles = makeStyles((theme) => ({
         root: {
             '& > *': {
@@ -18,8 +19,27 @@ const FormGoals = () => {
     const [age, setAge] = useState(0);
     const [gender, setGender] = useState(0);
 
-    const submitGoals = (e) => {
+    const submitBMI = (e) => {
+        e.preventDefault();
+        objUserStats = {
 
+            height: height,
+            weight: weight,
+            age: age,
+            gender: gender
+        }
+        // function that calculate the BMI of the use and keep the data
+    }
+
+    const submitBMR = (e) => {
+        e.preventDefault();
+        objUserStats = {
+            height: height,
+            weight: weight,
+            age: age,
+            gender: gender
+        }
+        // function that calculate the BMI of the use and keep the data
     }
 
     const classes = useStyles();
@@ -48,7 +68,8 @@ const FormGoals = () => {
                 color="secondary"
                 onChange={(e) => setGender(e.target.value)}
             />
-            <button onClick={submitGoals}>calculate BMI</button>
+            <button onClick={submitBMI}>calculate BMI</button>
+            <button onClick={submitBMR}>calculate BMR</button>
         </form>
     );
 }

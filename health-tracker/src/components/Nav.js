@@ -36,6 +36,7 @@ const Nav = () => {
           <Link to="/register" className="navlinkcss">
             <Button className={classes.navlink}>REGISTER</Button>
           </Link>
+
         </Toolbar>
       </AppBar>
     </div>

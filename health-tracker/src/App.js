@@ -6,6 +6,9 @@ import Login from './pages/Login'
 import Footer from './components/Footer'
 import RegisterPage from "./pages/RegisterPage";
 import { Box } from "@material-ui/core";
+import Dashboard from "./pages/Dashboard";
+import UserGoals from "./pages/UserGoals";
+
 
 
 function App() {
@@ -22,10 +25,17 @@ function App() {
             <Route exact path="/register">
               <RegisterPage />
             </Route>
+            <Route exact path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route exact path="/userGoals">
+              <UserGoals />
+            </Route>
           </Switch>
           <Footer />
         </Router>
       </Box>
+
     </div>
   )
 }

@@ -11,7 +11,8 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import Dashboard from '../pages/Dashboard'
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
 const LoginCom = () => {
     // const url = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
     const useStyles = makeStyles((theme) => ({
@@ -35,8 +36,20 @@ const LoginCom = () => {
         },
 
     }));
-    const classes = useStyles();
 
+    function RedirectToNextPage() {
+
+        return (
+
+            <Link href="/dashboard" >
+                <Redirect to="/dashboard" />
+            </Link>
+        )
+
+    }
+
+
+    const classes = useStyles();
     return (
         <div >
             <Container component="main" maxWidth="xs">
@@ -48,7 +61,7 @@ const LoginCom = () => {
                     <Typography component="h1" variant="h5">
                         Sign in
         </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} Validate>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -75,23 +88,24 @@ const LoginCom = () => {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Sign In
-          </Button>
+
+                        < Link href="/dashboard" variant="body2" >
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                className={classes.submit} >
+                                Sign In
+                        </Button>
+                        </ Link>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-              </Link>
+                                <Link href="/" variant="body2">
+                                    Return to Home Page
+                         </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/register" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
@@ -101,7 +115,7 @@ const LoginCom = () => {
             </Container>
 
 
-        </div>
+        </div >
 
     );
 };
@@ -109,3 +123,5 @@ const LoginCom = () => {
 
 
 export default LoginCom
+
+
