@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import RegisterPage from "./pages/RegisterPage";
 import { Box } from "@material-ui/core";
 
+
 function App() {
 
   return (
