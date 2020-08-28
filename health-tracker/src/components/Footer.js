@@ -23,7 +23,7 @@ const Footer = () => {
         root: {
             display: 'flex',
             flexDirection: 'column',
-            maxHeight: '100vh',
+            minHeight: "100vh",
         },
         main: {
             marginTop: theme.spacing(8),
