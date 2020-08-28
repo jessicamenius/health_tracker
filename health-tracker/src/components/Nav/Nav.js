@@ -1,7 +1,11 @@
 import React from "react";
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import Login from "../../pages/Login";
+import Register from "../Pages/Register";
+
+
 // import "./style";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,6 +37,7 @@ const Nav = () => {
           <Link to="/register" className="navlinkcss">
             <Button className={classes.navlink}>REGISTER</Button>
           </Link>
+
         </Toolbar>
       </AppBar>
     </div>
