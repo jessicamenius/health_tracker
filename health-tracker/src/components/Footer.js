@@ -2,8 +2,8 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
 const Footer = () => {
+<<<<<<< HEAD
 
 
 
@@ -52,6 +52,12 @@ const Footer = () => {
 
 
         {new Date().getFullYear()}
+=======
+  function Copyright() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {"Copyright © "} {new Date().getFullYear()}
+>>>>>>> 26c5c8f59514327147c22816480eeb20df296ae4
         {"."}
       </Typography>
     );
@@ -77,9 +83,9 @@ const Footer = () => {
         <Container maxWidth="sm">
           <Typography variant="body1" style={{ textAlign: "center" }}>
             My Exercise Rest Nutrition Tracker (MERN-Tracker)
-            <Typography variant="body1" style={{ textAlign: "center" }}>
-              Developers Jessica, Philip, Mat, Steven
-            </Typography>
+          </Typography>
+          <Typography variant="body2" color="textSecondary" align="center">
+            Developers Jessica, Philip, Mat, Steven
           </Typography>
           <Copyright />
         </Container>
