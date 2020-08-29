@@ -1,9 +1,10 @@
 import React from 'react'
+import FormGoals from '../components/FormGoals'
 
 const UserGoals = () => {
     return (
         <div>
-            <h1>Hello</h1>
+            <FormGoals />
         </div>
     )
 }
