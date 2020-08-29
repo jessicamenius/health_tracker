@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 
 const FormGoals = () => {
 
-    const objUserStats = {};
+    let objUserStats = {};
     const useStyles = makeStyles((theme) => ({
         root: {
             '& > *': {
@@ -12,6 +12,34 @@ const FormGoals = () => {
                 width: '25ch',
             },
         },
+        container: {
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "row",
+            margin: "100px"
+        },
+        divOne: {
+            height: "50vh",
+            width: "50%"
+        },
+        form: {
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            position: "static",
+            flexDirection: "column",
+            width: "80%",
+            marginLeft: "50px",
+            marginTop: "50px"
+        },
+        button: {
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            marginTop: "50px"
+
+        }
+
     }));
 
     const [height, setHeight] = useState(0);
@@ -29,6 +57,9 @@ const FormGoals = () => {
             gender: gender
         }
         // function that calculate the BMI of the use and keep the data
+        let result;
+        result = (703 * weight) / Math.pow(height, 2);
+        return result;
     }
 
     const submitBMR = (e) => {
@@ -42,35 +73,50 @@ const FormGoals = () => {
         // function that calculate the BMI of the use and keep the data
     }
 
+
     const classes = useStyles();
 
     return (
-        <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="standard-secondary" label="Enter height" variant="outlined" color="secondary" onChange={(e) => setHeight(e.target.value)} />
-            <TextField
-                id="filled-secondary"
-                label="Enter weight"
-                variant="outlined"
-                color="secondary"
-                onChange={(e) => setWeight(e.target.value)}
-            />
-            <TextField
-                id="outlined-secondary"
-                label="Enter age"
-                variant="outlined"
-                color="secondary"
-                onChange={(e) => setAge(e.target.value)}
-            />
-            <TextField
-                id="outlined-secondary"
-                label="Enter Gender"
-                variant="outlined"
-                color="secondary"
-                onChange={(e) => setGender(e.target.value)}
-            />
-            <button onClick={submitBMI}>calculate BMI</button>
-            <button onClick={submitBMR}>calculate BMR</button>
-        </form>
+        <div className={classes.container}>
+
+            <div className={classes.divOne}>
+                <h2 style={{ textAlign: "center" }}>Welcome to My status page</h2>
+                <form className={classes.form} >
+                    <TextField id="standard-secondary" label="Enter height" variant="outlined" color="secondary"
+                        style={{ marginBottom: "20px" }}
+                        onChange={(e) => setHeight(e.target.value)} />
+                    <TextField
+                        id="filled-secondary"
+                        label="Enter weight"
+                        variant="outlined"
+                        color="secondary"
+                        style={{ marginBottom: "20px" }}
+                        onChange={(e) => setWeight(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-secondary"
+                        label="Enter age"
+                        variant="outlined"
+                        color="secondary" style={{ marginBottom: "20px" }}
+                        onChange={(e) => setAge(e.target.value)}
+                    />
+                    <TextField
+                        id="outlined-secondary"
+                        label="Enter Gender"
+                        variant="outlined"
+                        color="secondary"
+                        onChange={(e) => setGender(e.target.value)}
+                    />
+
+                </form>
+                <div className={classes.button}>
+                    <button onClick={submitBMI} style={{ marginRight: "10px" }}>calculate BMI</button>
+                    <button onClick={submitBMR}>calculate BMR</button>
+                </div>
+            </div>
+
+        </div>
+
     );
 }
 
