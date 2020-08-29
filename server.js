@@ -14,9 +14,11 @@ const apiRoutes = require("./routes/api-routes");
 app.use(apiRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("health-tracker/build"));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(
+      path.resolve(__dirname, "health-tracker", "build", "index.html")
+    );
   });
 }
 
