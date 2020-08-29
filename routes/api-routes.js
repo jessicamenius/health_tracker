@@ -98,6 +98,13 @@ router.patch("/stats/update", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+// Get a single user's Stats
+router.get("/stats/one", (req, res) => {
+  db.Stats.findOne({ where: { UserId: req.body.UserId } })
+    .then((response) => res.json(response))
+    .catch((err) => res.send(err));
+});
+
 // ========== FOOD LOG ROUTES ==========
 
 // create a new food log
