@@ -46,7 +46,8 @@ const FormGoals = () => {
     const [weight, setWeight] = useState(0);
     const [age, setAge] = useState(0);
     const [gender, setGender] = useState(0);
-
+    const [answer, setAnswer] = useState(false);
+    let result;
     const submitBMI = (e) => {
         e.preventDefault();
         objUserStats = {
@@ -57,8 +58,14 @@ const FormGoals = () => {
             gender: gender
         }
         // function that calculate the BMI of the use and keep the data
-        let result;
+
         result = (703 * weight) / Math.pow(height, 2);
+        if (!answer) {
+
+            setAnswer(true);
+        } else {
+            setAnswer(false)
+        }
         return result;
     }
 
@@ -69,6 +76,12 @@ const FormGoals = () => {
             weight: weight,
             age: age,
             gender: gender
+        }
+        if (!answer) {
+
+            setAnswer(true);
+        } else {
+            setAnswer(false)
         }
         // function that calculate the BMI of the use and keep the data
     }
@@ -113,6 +126,9 @@ const FormGoals = () => {
                     <button onClick={submitBMI} style={{ marginRight: "10px" }}>calculate BMI</button>
                     <button onClick={submitBMR}>calculate BMR</button>
                 </div>
+                {answer &&
+                    <h2>{result}</h2>
+                }
             </div>
 
         </div>
