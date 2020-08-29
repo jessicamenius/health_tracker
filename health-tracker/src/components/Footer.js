@@ -22,8 +22,7 @@ const Footer = () => {
     const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex',
-            flexDirection: 'column',
-            minHeight: "100vh",
+            flexDirection: 'column'
         },
         main: {
             marginTop: theme.spacing(8),
@@ -40,7 +39,7 @@ const Footer = () => {
         <div className={classes.root}>
             <footer footer="true" className={classes.footer}>
                 <Container maxWidth="sm">
-                    <Typography variant="body1">
+                    <Typography variant="body1" style={{ textAlign: "center" }}>
                         My Exercise Rest Nutrition Tracker (MERN-Tracker)
                     </Typography>
                     <Copyright />
