@@ -10,7 +10,7 @@ const Footer = () => {
         return (
             <Typography variant="body2" color="textSecondary" align="center">
                 {"Copyright © "}
-                <Link color="inherit" href="https://material-ui.com/">
+                <Link color="primary">
                     Developers Jessica, Philip, Mat, Steven
             </Link>{" "}
                 {new Date().getFullYear()}
