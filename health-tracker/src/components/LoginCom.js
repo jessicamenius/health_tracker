@@ -113,8 +113,6 @@ const LoginCom = () => {
                     </form>
                 </div>
             </Container>
-
-
         </div >
 
     );

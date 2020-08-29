@@ -8,9 +8,6 @@ import RegisterPage from "./pages/RegisterPage";
 import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
 import UserGoals from "./pages/UserGoals";
-
-
-
 function App() {
 
   return (
