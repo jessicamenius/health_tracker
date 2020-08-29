@@ -64,7 +64,7 @@ router.delete("/users/delete", (req, res) => {
 
 // ========== STATS ROUTES ==========
 
-// Set a user's stats
+// Set a user's Stats
 router.post("/stats/set", (req, res) => {
   db.Stats.create({
     height: req.body.height,
@@ -95,6 +95,13 @@ router.patch("/stats/update", (req, res) => {
     }
   )
     .then(() => res.send("Success!"))
+    .catch((err) => res.send(err));
+});
+
+// Get a single user's Stats
+router.get("/stats/one", (req, res) => {
+  db.Stats.findOne({ where: { UserId: req.body.UserId } })
+    .then((response) => res.json(response))
     .catch((err) => res.send(err));
 });
 
