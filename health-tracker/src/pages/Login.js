@@ -1,14 +1,12 @@
 import React from 'react'
-import FormSearch from '../components/FormSearch'
-import FormGoals from '../components/FormGoals'
+import LoginCom from '../components/LoginCom'
+
 
 
 const Login = () => {
     return (
         <div>
-            <h1>Hello Welcome to Login Page</h1>
-            <FormSearch />
-            <FormGoals />
+            <LoginCom />
         </div>
     )
 }

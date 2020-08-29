@@ -2,7 +2,6 @@ import React from "react";
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
-// import "./style";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navlink: {
     color: "#fff",
+    textDecoration: "none"
   },
 }));
 
@@ -23,16 +23,20 @@ const Nav = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography className={classes.title}>
-            My Exercise Rest Nutrition Tracker (MERN-Tracker)
+            <Link to="/">
+              My Exercise Rest Nutrition Tracker (MERN-Tracker)
+            </Link>
+
           </Typography>
 
-          <Link to="/" className="navlinkcss">
+          <Link to="/login" className="navlinkcss">
             <Button className={classes.navlink}>LOGIN</Button>
           </Link>
 
           <Link to="/register" className="navlinkcss">
             <Button className={classes.navlink}>REGISTER</Button>
           </Link>
+
         </Toolbar>
       </AppBar>
     </div>
