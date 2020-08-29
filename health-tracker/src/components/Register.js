@@ -88,6 +88,17 @@ const Register = () => {
                 variant="outlined"
                 required
                 fullWidth
+                id="userName"
+                label="User Name"
+                name="UserName"
+                autoComplete="user-name"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
@@ -121,7 +132,7 @@ const Register = () => {
               className={classes.submit}
             >
               Sign Up
-        </Button>
+            </Button>
           </Link>
 
           <Grid container justify="flex-end">
