@@ -47,7 +47,8 @@ const FormGoals = () => {
     const [age, setAge] = useState(0);
     const [gender, setGender] = useState(0);
     const [answer, setAnswer] = useState(false);
-    const [result, setResult] = useState(0);
+    const [resultBMI, setResult] = useState(0);
+    const [resultBMR, setResultBMR] = useState(0);
 
     const submitBMI = (e) => {
         e.preventDefault();
@@ -77,13 +78,26 @@ const FormGoals = () => {
             age: age,
             gender: gender
         }
-        if (!answer) {
+        if (answer) {
 
-            setAnswer(true);
+            setAnswer(false);
         } else {
-            setAnswer(false)
+            setAnswer(true)
         }
         // function that calculate the BMI of the use and keep the data
+        //         Men: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
+        // Women: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
+
+        if (gender.toLowerCase() === "man") {
+
+            let temp = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+            setResultBMR(temp);
+        } else {
+
+            let temp = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            setResultBMR(temp);
+
+        }
     }
 
 
@@ -126,16 +140,19 @@ const FormGoals = () => {
                     <button onClick={submitBMI} style={{ marginRight: "10px" }}>calculate BMI</button>
                     <button onClick={submitBMR}>calculate BMR</button>
                 </div>
-                {answer &&
-                    <div className={classes.form}>
-                        <p style={{ textAlign: "center" }}>Your BMI is: {Math.floor(result)}</p>
+                {answer && resultBMI > 0 &&
+                    <div div className={classes.form}>
+                        <p style={{ textAlign: "center" }}>Your BMI is: {Math.floor(resultBMI)}</p>
                     </div>
-
-
+                }
+                {answer && resultBMR > 0 &&
+                    <div div className={classes.form}>
+                        <p style={{ textAlign: "center" }}>Your BMR is: {Math.floor(resultBMR)}</p>
+                    </div>
                 }
             </div>
 
-        </div>
+        </div >
 
     );
 }
