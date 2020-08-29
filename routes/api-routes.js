@@ -64,7 +64,7 @@ router.delete("/users/delete", (req, res) => {
 
 // ========== STATS ROUTES ==========
 
-// Set a user's Stats
+// set a user's stats
 router.post("/stats/set", (req, res) => {
   db.Stats.create({
     height: req.body.height,
