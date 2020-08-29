@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
 import UserGoals from "./pages/UserGoals";
+import Landing from "./pages/Landing";
 function App() {
 
   return (
@@ -16,6 +17,9 @@ function App() {
         <Router>
           <Nav />
           <Switch>
+            <Route exact path="/">
+              <Landing />
+            </Route>
             <Route exact path="/login">
               <Login />
             </Route>
@@ -28,6 +32,9 @@ function App() {
             <Route exact path="/userGoals">
               <UserGoals />
             </Route>
+            {/* <Route exact path="/">
+              <Landing />
+            </Route> */}
           </Switch>
           <Footer />
         </Router>

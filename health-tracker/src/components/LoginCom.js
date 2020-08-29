@@ -11,8 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Dashboard from '../pages/Dashboard'
-import { BrowserRouter as Router, Redirect } from "react-router-dom";
+
 const LoginCom = () => {
     // const url = "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
     const useStyles = makeStyles((theme) => ({
@@ -36,18 +35,6 @@ const LoginCom = () => {
         },
 
     }));
-
-    function RedirectToNextPage() {
-
-        return (
-
-            <Link href="/dashboard" >
-                <Redirect to="/dashboard" />
-            </Link>
-        )
-
-    }
-
 
     const classes = useStyles();
     return (
@@ -117,8 +104,6 @@ const LoginCom = () => {
 
     );
 };
-
-
 
 export default LoginCom
 
