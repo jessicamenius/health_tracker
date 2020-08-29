@@ -96,7 +96,9 @@ const FormGoals = () => {
   return (
     <div className={classes.container}>
       <div className={classes.divOne}>
-        <h2 style={{ textAlign: "center" }}>Welcome to My status page</h2>
+        <h2 style={{ textAlign: "center" }}>
+          Enter stats here to calculate your BMI and BMR
+        </h2>
         <form className={classes.form}>
           <TextField
             id="standard-secondary"
