@@ -4,7 +4,7 @@ const db = require("../models");
 
 // ========== USER ROUTES ==========
 
-// Get all users from the database
+// get all users from the database
 // only shows basic user info
 router.get("/users/all", (req, res) => {
   db.User.findAll()
@@ -23,7 +23,7 @@ router.get("/users/one", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// posts a new user
+// post a new user
 // all fields required
 router.post("/users/new", (req, res) => {
   db.User.create({
@@ -64,7 +64,7 @@ router.delete("/users/delete", (req, res) => {
 
 // ========== STATS ROUTES ==========
 
-// Set a user's stats
+// set a user's stats
 router.post("/stats/set", (req, res) => {
   db.Stats.create({
     height: req.body.height,
@@ -79,7 +79,7 @@ router.post("/stats/set", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// Update a user's Stats
+// update a user's stats
 router.patch("/stats/update", (req, res) => {
   db.Stats.update(
     {
@@ -98,9 +98,16 @@ router.patch("/stats/update", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+// Get a single user's Stats
+router.get("/stats/one", (req, res) => {
+  db.Stats.findOne({ where: { UserId: req.body.UserId } })
+    .then((response) => res.json(response))
+    .catch((err) => res.send(err));
+});
+
 // ========== FOOD LOG ROUTES ==========
 
-// Create a new food log
+// create a new food log
 router.post("/food/new", (req, res) => {
   db.FoodLog.create({
     foodName: req.body.foodName,
@@ -114,21 +121,21 @@ router.post("/food/new", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// Get all food logs belonging to a user
+// get all food logs belonging to a user
 router.get("/food/user", (req, res) => {
   db.FoodLog.findAll({ where: { UserId: req.body.UserId } })
     .then((response) => res.json(response))
     .catch((err) => res.send(err));
 });
 
-// Get a single food log by its ID ## NOT USER ID ##
+// get a single food log by its ID ## NOT USER ID ##
 router.get("/food/single", (req, res) => {
   db.FoodLog.findOne({ where: { id: req.body.id } })
     .then((response) => res.json(response))
     .catch((err) => res.send(err));
 });
 
-// Update a food log by its ID ## NOT USER ID ##
+// update a food log by its ID ## NOT USER ID ##
 router.patch("/food/update", (req, res) => {
   db.FoodLog.update(
     {
@@ -144,7 +151,7 @@ router.patch("/food/update", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// Delete a log by its ID ## NOT USER ID ##
+// delete a log by its ID ## NOT USER ID ##
 router.delete("/food/delete", (req, res) => {
   db.FoodLog.destroy({ where: { id: req.body.id } })
     .then(() => res.send("Success!"))
