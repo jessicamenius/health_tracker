@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+
 
 const Footer = () => {
 
@@ -10,15 +10,12 @@ const Footer = () => {
         return (
             <Typography variant="body2" color="textSecondary" align="center">
                 {"Copyright © "}
-                <Link color="primary">
-                    Developers Jessica, Philip, Mat, Steven
-            </Link>{" "}
+                {" "}
                 {new Date().getFullYear()}
                 {"."}
             </Typography>
         );
     }
-
     const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex',
@@ -42,6 +39,9 @@ const Footer = () => {
                     <Typography variant="body1" style={{ textAlign: "center" }}>
                         My Exercise Rest Nutrition Tracker (MERN-Tracker)
                     </Typography>
+                    <Typography variant="body2" color="textSecondary" align="center">
+                        Developers Jessica, Philip, Mat, Steven
+                   </Typography>
                     <Copyright />
                 </Container>
             </footer>
