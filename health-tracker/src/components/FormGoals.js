@@ -3,7 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import { Fade, Loop } from 'react-animation-components'
+import { Fade, Loop } from "react-animation-components";
+
 const FormGoals = () => {
   let objUserStats = {};
   const useStyles = makeStyles((theme) => ({
@@ -90,19 +91,27 @@ const FormGoals = () => {
   };
   const classes = useStyles();
   return (
-
     <Fade in>
       <div className={classes.container}>
         <div className={classes.divOne}>
           <h2
             style={{
               textAlign: "center",
-              textDecoration: "underline",
+              textDecoration: "none",
               color: "blue",
             }}
           >
-            Welcome to My status page
-        </h2>
+            Let's get started!{" "}
+          </h2>
+          <h4
+            style={{
+              textAlign: "center",
+              textDecoration: "none",
+              color: "blue",
+            }}
+          >
+            Provide the below information to calculate your BMI and BMR.
+          </h4>
           <form className={classes.form}>
             <TextField
               id="standard-secondary"
@@ -130,7 +139,7 @@ const FormGoals = () => {
             />
             <TextField
               id="outlined-secondary"
-              label="Enter Gender"
+              label="Enter gender"
               variant="outlined"
               color="secondary"
               onChange={(e) => setGender(e.target.value)}
@@ -144,7 +153,7 @@ const FormGoals = () => {
               style={{ marginRight: "10px" }}
             >
               calculate BMI
-          </Button>
+            </Button>
             <Button
               variant="contained"
               color="primary"
@@ -152,7 +161,7 @@ const FormGoals = () => {
               style={{ marginRight: "10px" }}
             >
               calculate BMR
-          </Button>
+            </Button>
             <Link href="/dashboard" variant="body2">
               <Button
                 variant="contained"
@@ -160,10 +169,8 @@ const FormGoals = () => {
                 style={{ marginRight: "10px", color: "#ea80fc" }}
               >
                 Main Page
-          </Button>
-
+              </Button>
             </Link>
-
           </div>
           {answer && resultBMI > 0 && (
             <div div className={classes.form}>
@@ -182,8 +189,6 @@ const FormGoals = () => {
         </div>
       </div>
     </Fade>
-
   );
 };
 export default FormGoals;
-
