@@ -9,8 +9,10 @@ import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
 import UserGoals from "./pages/UserGoals";
 import Landing from "./pages/Landing";
+import API from "./utils/API";
 
 function App() {
+  API.getNutrients("banana", 100, "gram").then((res) => console.log(res.data));
   return (
     <div className="App">
       <Box>
