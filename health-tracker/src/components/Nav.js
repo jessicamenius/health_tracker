@@ -30,12 +30,12 @@ const Nav = () => {
             </Link>
           </Typography>
 
-          <Link to="/login" className="navlinkcss">
-            <Button className={classes.navlink}>LOGIN</Button>
-          </Link>
-
           <Link to="/register" className="navlinkcss">
             <Button className={classes.navlink}>REGISTER</Button>
+          </Link>
+
+          <Link to="/login" className="navlinkcss">
+            <Button className={classes.navlink}>LOGIN</Button>
           </Link>
         </Toolbar>
       </AppBar>
