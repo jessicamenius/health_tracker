@@ -1,6 +1,5 @@
 import React from 'react'
 import FormGoals from '../components/FormGoals'
-
 const UserGoals = () => {
     return (
         <div>
