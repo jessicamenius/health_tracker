@@ -97,12 +97,21 @@ const FormGoals = () => {
           <h2
             style={{
               textAlign: "center",
-              textDecoration: "underline",
+              textDecoration: "none",
               color: "blue",
             }}
           >
-            Welcome to My status page
+            Let's get started!{" "}
           </h2>
+          <h4
+            style={{
+              textAlign: "center",
+              textDecoration: "none",
+              color: "blue",
+            }}
+          >
+            Provide the below information to calculate your BMI and BMR.
+          </h4>
           <form className={classes.form}>
             <TextField
               id="standard-secondary"
