@@ -24,7 +24,9 @@ const Nav = () => {
         <Toolbar>
           <Typography className={classes.title}>
             <Link to="/">
-              MERN Health Tracker ~ My Exercise Rest Nutrition Health Tracker
+              <h1 className="title">
+                MERN Health Tracker ~ My Exercise Rest Nutrition Health Tracker
+              </h1>
             </Link>
           </Typography>
 
