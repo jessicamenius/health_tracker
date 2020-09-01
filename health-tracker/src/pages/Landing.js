@@ -1,50 +1,35 @@
 import React from "react";
 import img from "./img/Logo.png";
-
+import { Fade } from "react-animation-components";
+import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
+import Typography from "@material-ui/core/Typography";
 const Landing = () => {
   return (
     <div
       style={{
         display: "flex",
-        justifyContent: "right",
-        alignContent: "right",
+        justifyContent: "center",
+        alignContent: "center",
         flexDirection: "column",
         width: "50%",
         marginLeft: "25%",
-        marginTop: "10%",
+        fontFamily: "cursive",
       }}
     >
-      <h1 style={{ textAlign: "left" }}>Welcome to the MERN Health Tracker</h1>
-      <h2
-        style={{
-          textAlign: "left",
-          display: "flex",
-          justifyContent: "right",
-          alignContent: "right",
-          color: "#3F51B5",
-        }}
-      >
-        MERN Health Tracker is a web application which utilizes the Edamam API
-        that can be used to track daily and weekly nutritional intake, along
-        with weight goals and your progress towards them.
-        <br />
-        <br />
-        You will be able to log meals you eat and see detailed information about
-        them, such as fat, protein, and carb content, along with an overall view
-        for your intake each week.
-      </h2>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignContent: "center",
-          flexDirection: "column",
-          width: "50%",
-          marginLeft: "25%",
-          marginTop: "5%",
-        }}
-      >
+      <Fade in enterOpacity={1.25}>
+        <Typography
+          variant="h2"
+          style={{
+            textAlign: "center",
+            color: "#FF1493",
+            marginBottom: "50px",
+            marginTop: "50px",
+            fontFamily: "cursive",
+          }}
+        >
+          <DirectionsRunIcon fontSize="large" />
+          Welcome to MERN
+        </Typography>
         <div>
           <img
             src={img}
@@ -52,14 +37,13 @@ const Landing = () => {
             alt="Our Compnay Logo"
           />
         </div>
-        <h1 style={{ textAlign: "center" }}>Welcome to MERN</h1>
         <h2
           style={{
             textAlign: "center",
             display: "flex",
             justifyContent: "center",
             alignContent: "center",
-            color: "blue",
+            color: "#3F51B5",
           }}
         >
           MERN Health Tracker is a web application which utilizes the Edamam API
@@ -71,7 +55,7 @@ const Landing = () => {
           such as fat, protein, and carb content, along with an overall view for
           your intake each week.
         </h2>
-      </div>
+      </Fade>
     </div>
   );
 };
