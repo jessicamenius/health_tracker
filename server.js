@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT || 5000;
-const path = require("path");
-const db = require("./models");
 const session = require("express-session");
 const passport = require("passport");
+const db = require("./models");
+const PORT = process.env.PORT || 5000;
+const path = require("path");
 require("dotenv").config();
+
+//set up express
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,20 +25,12 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
+  session({ secret: process.env.SECRET, resave: true, saveUninitialized: true })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-db.sequelize
-  .sync()
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(`Listening at: http://localhost:${PORT}`)
-    )
-  );
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () => console.log(`Listening at: http://localhost:${PORT}`));
+});
