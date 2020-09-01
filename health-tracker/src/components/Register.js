@@ -131,6 +131,18 @@ export default function Register() {
                 autoComplete="current-password"
               />
             </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Verify Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
           </Grid>
           <Link href="/userGoals" variant="body2">
             <Button

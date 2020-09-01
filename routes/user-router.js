@@ -2,12 +2,21 @@ const router = require("express").Router();
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth");
+const auth = require("../config/middleware/auth");
 const { json } = require("express");
+const db = require("../models");
 
+// register a new user
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, passwordCheck, displayName } = req.body;
+    const {
+      userName,
+      firstName,
+      lastName,
+      email,
+      password,
+      passwordCheck,
+    } = req.body;
 
     // validation
 
@@ -24,14 +33,14 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "Enter the same password twice for verification" });
 
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await db.User.findOne({ email: email });
 
     if (existingUser)
       return res
         .status(400)
         .json({ msg: "Account with this email already exists" });
 
-    if (!displayName) displayName = email;
+    if (!userName) userName = email;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -40,7 +49,7 @@ router.post("/register", async (req, res) => {
     const newUser = new User({
       email,
       password: passwordHash,
-      displayName,
+      userName,
     });
 
     const savedUser = await newUser.save();
@@ -50,6 +59,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// login user
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -57,7 +67,7 @@ router.post("/login", async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ msg: "Not all field have been entered" });
 
-    const user = await User.findOne({ email: email });
+    const user = await db.User.findOne({ email: email });
     if (!user)
       return res
         .status(400)
@@ -73,7 +83,7 @@ router.post("/login", async (req, res) => {
       token,
       user: {
         id: user._id,
-        displayName: user.displayName,
+        userName: user.userName,
         email: user.email,
       },
     });
@@ -82,6 +92,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// delete user
 router.delete("/delete", auth, async (req, res) => {
   // console.log(req.user);
   try {
@@ -109,9 +120,10 @@ router.post("/tokenIsValid", async (req, res) => {
   }
 });
 
+// get a user by id
 router.get("/", auth, async (req, res) => {
   const user = await User.findById(req.user);
-  res.json({ displayName: user.displayName, id: user._id });
+  res.json({ userName: user.userName, id: user._id });
 });
 
 module.exports = router;
