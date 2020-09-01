@@ -2,6 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Fade } from "react-animation-components";
 const Footer = () => {
     function Copyright() {
         return (
@@ -27,19 +28,22 @@ const Footer = () => {
     }));
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <footer footer="true" className={classes.footer}>
-                <Container maxWidth="sm">
-                    <Typography variant="body1" style={{ textAlign: "center" }}>
-                        My Exercise Rest Nutrition Tracker (MERN-Tracker)
+        <Fade in >
+            <div className={classes.root}>
+                <footer footer="true" className={classes.footer}>
+                    <Container maxWidth="sm">
+                        <Typography variant="body1" style={{ textAlign: "center" }}>
+                            My Exercise Rest Nutrition Tracker (MERN-Tracker)
           </Typography>
-                    <Typography variant="body2" color="textSecondary" align="center">
-                        Developers Jessica, Philip, Mat, Steven
+                        <Typography variant="body2" color="textSecondary" align="center">
+                            Developers Jessica, Philip, Mat, Steven
           </Typography>
-                    <Copyright />
-                </Container>
-            </footer>
-        </div>
+                        <Copyright />
+                    </Container>
+                </footer>
+            </div>
+        </Fade>
+
     );
 };
 export default Footer;

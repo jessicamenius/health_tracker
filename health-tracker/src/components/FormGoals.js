@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import { Fade, Loop } from "react-animation-components";
+import { Fade } from "react-animation-components";
 
 const FormGoals = () => {
   let objUserStats = {};

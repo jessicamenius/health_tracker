@@ -12,10 +12,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+
   },
   navlink: {
-    color: "#ffffff",
     textDecoration: "none",
+    color: "white"
   },
 }));
 
@@ -25,21 +26,19 @@ const Nav = () => {
     <header id="header">
       <AppBar position="static">
         <Toolbar>
-          <Typography className={classes.title}>
-            <Link to="/">
-              <h2 className="title">
-                MERN Health Tracker - My Exercise Rest Nutrition Health Tracker
-              </h2>
+          <Typography className={classes.title} variant="h6" >
+            <Link to="/" className={classes.navlink}>
+              MERN Health Tracker - My Exercise Rest Nutrition Health Tracker
             </Link>
           </Typography>
 
           {/* <AuthOptions></AuthOptions> */}
 
-          <Link to="/register" className="navlinkcss">
-            <Button className={classes.navlink}>REGISTER</Button>
+          <Link to="/register" className={classes.navlink} >
+            <Button className={classes.navlink} >REGISTER</Button>
           </Link>
 
-          <Link to="/login" className="navlinkcss">
+          <Link to="/login" className={classes.navlink} >
             <Button className={classes.navlink}>LOGIN</Button>
           </Link>
         </Toolbar>
