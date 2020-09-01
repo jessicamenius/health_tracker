@@ -40,7 +40,7 @@ const Dashboard = () => {
                 <TableUser />
             </div>
             <div className={classes.center}>
-                <Chart dataKey={10} />
+                <Chart />
             </div>
             <div className={classes.right}>
                 <FormSearch />

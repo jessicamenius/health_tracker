@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import { Fade, Loop } from 'react-animation-components'
 const FormGoals = () => {
   let objUserStats = {};
   const useStyles = makeStyles((theme) => ({
@@ -88,92 +90,100 @@ const FormGoals = () => {
   };
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <div className={classes.divOne}>
-        <h2
-          style={{
-            textAlign: "center",
-            textDecoration: "underline",
-            color: "blue",
-          }}
-        >
-          Welcome to My status page
+
+    <Fade in>
+      <div className={classes.container}>
+        <div className={classes.divOne}>
+          <h2
+            style={{
+              textAlign: "center",
+              textDecoration: "underline",
+              color: "blue",
+            }}
+          >
+            Welcome to My status page
         </h2>
-        <form className={classes.form}>
-          <TextField
-            id="standard-secondary"
-            label="Enter height"
-            variant="outlined"
-            color="secondary"
-            style={{ marginBottom: "20px" }}
-            onChange={(e) => setHeight(e.target.value)}
-          />
-          <TextField
-            id="filled-secondary"
-            label="Enter weight"
-            variant="outlined"
-            color="secondary"
-            style={{ marginBottom: "20px" }}
-            onChange={(e) => setWeight(e.target.value)}
-          />
-          <TextField
-            id="outlined-secondary"
-            label="Enter age"
-            variant="outlined"
-            color="secondary"
-            style={{ marginBottom: "20px" }}
-            onChange={(e) => setAge(e.target.value)}
-          />
-          <TextField
-            id="outlined-secondary"
-            label="Enter Gender"
-            variant="outlined"
-            color="secondary"
-            onChange={(e) => setGender(e.target.value)}
-          />
-        </form>
-        <div className={classes.button}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={submitBMI}
-            style={{ marginRight: "10px" }}
-          >
-            calculate BMI
+          <form className={classes.form}>
+            <TextField
+              id="standard-secondary"
+              label="Enter height"
+              variant="outlined"
+              color="secondary"
+              style={{ marginBottom: "20px" }}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+            <TextField
+              id="filled-secondary"
+              label="Enter weight"
+              variant="outlined"
+              color="secondary"
+              style={{ marginBottom: "20px" }}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+            <TextField
+              id="outlined-secondary"
+              label="Enter age"
+              variant="outlined"
+              color="secondary"
+              style={{ marginBottom: "20px" }}
+              onChange={(e) => setAge(e.target.value)}
+            />
+            <TextField
+              id="outlined-secondary"
+              label="Enter Gender"
+              variant="outlined"
+              color="secondary"
+              onChange={(e) => setGender(e.target.value)}
+            />
+          </form>
+          <div className={classes.button}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={submitBMI}
+              style={{ marginRight: "10px" }}
+            >
+              calculate BMI
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={submitBMR}
-            style={{ marginRight: "10px" }}
-          >
-            calculate BMR
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={submitBMR}
+              style={{ marginRight: "10px" }}
+            >
+              calculate BMR
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={submitBMR}
-            style={{ marginRight: "10px", color: "#ea80fc" }}
-          >
-            Main Page
+            <Link href="/dashboard" variant="body2">
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: "10px", color: "#ea80fc" }}
+              >
+                Main Page
           </Button>
+
+            </Link>
+
+          </div>
+          {answer && resultBMI > 0 && (
+            <div div className={classes.form}>
+              <p style={{ textAlign: "center" }}>
+                Your BMI is: {Math.floor(resultBMI)}
+              </p>
+            </div>
+          )}
+          {answer && resultBMR > 0 && (
+            <div div className={classes.form}>
+              <p style={{ textAlign: "center" }}>
+                Your BMR is: {Math.floor(resultBMR)}
+              </p>
+            </div>
+          )}
         </div>
-        {answer && resultBMI > 0 && (
-          <div div className={classes.form}>
-            <p style={{ textAlign: "center" }}>
-              Your BMI is: {Math.floor(resultBMI)}
-            </p>
-          </div>
-        )}
-        {answer && resultBMR > 0 && (
-          <div div className={classes.form}>
-            <p style={{ textAlign: "center" }}>
-              Your BMR is: {Math.floor(resultBMR)}
-            </p>
-          </div>
-        )}
       </div>
-    </div>
+    </Fade>
+
   );
 };
 export default FormGoals;
+
