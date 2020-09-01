@@ -130,7 +130,7 @@ const FormGoals = () => {
             />
             <TextField
               id="outlined-secondary"
-              label="Enter Gender"
+              label="Enter gender"
               variant="outlined"
               color="secondary"
               onChange={(e) => setGender(e.target.value)}
