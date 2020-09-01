@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   navlink: {
-    color: "#fff",
-    textDecoration: "none"
+    color: "#ffffff",
+    textDecoration: "none",
   },
 }));
 
@@ -24,9 +24,8 @@ const Nav = () => {
         <Toolbar>
           <Typography className={classes.title}>
             <Link to="/">
-              My Exercise Rest Nutrition Tracker (MERN-Tracker)
+              MERN Health Tracker ~ My Exercise Rest Nutrition Health Tracker
             </Link>
-
           </Typography>
 
           <Link to="/login" className="navlinkcss">
@@ -36,7 +35,6 @@ const Nav = () => {
           <Link to="/register" className="navlinkcss">
             <Button className={classes.navlink}>REGISTER</Button>
           </Link>
-
         </Toolbar>
       </AppBar>
     </div>

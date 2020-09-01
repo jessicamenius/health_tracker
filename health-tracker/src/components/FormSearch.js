@@ -62,6 +62,7 @@ const FormSearch = () => {
                     setSearchFood(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} label="controlled" margin="normal" />}
+                style={{ marginBottom: "25px" }}
             />
             <TextField
                 id="outlined-number"
@@ -72,14 +73,16 @@ const FormSearch = () => {
                 variant="outlined"
                 className="mb-4"
                 onChange={numInput}
+                style={{ marginBottom: "25px" }}
             />
             <FormControl variant="filled" >
-                <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
+                <InputLabel id="demo-simple-select-filled-label">Volume</InputLabel>
                 <Select
                     labelId="demo-simple-select-filled-label"
                     id="demo-simple-select-filled"
                     value={measure}
                     onChange={measureInput}
+                    style={{ marginBottom: "25px" }}
                 >
                     <MenuItem value="Kilograms">
                         <em>Kilograms</em>
@@ -89,7 +92,7 @@ const FormSearch = () => {
                     <MenuItem value={"Gram"}>Gram</MenuItem>
                 </Select>
             </FormControl>
-            <Button onClick={submit}>Submit</Button>
+            <Button onClick={submit} color="primary">Submit</Button>
         </FormControl>
 
     )
