@@ -38,7 +38,6 @@ const FormGoals = () => {
       marginTop: "50px",
     },
   }));
-
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [age, setAge] = useState(0);
@@ -46,7 +45,6 @@ const FormGoals = () => {
   const [answer, setAnswer] = useState(false);
   const [resultBMI, setResult] = useState(0);
   const [resultBMR, setResultBMR] = useState(0);
-
   const submitBMI = (e) => {
     e.preventDefault();
     objUserStats = {
@@ -61,8 +59,14 @@ const FormGoals = () => {
     } else {
       setAnswer(true);
     }
+<<<<<<< HEAD
   };
 
+=======
+    let temp = (703 * weight) / Math.pow(height, 2);
+    setResult(temp);
+  };
+>>>>>>> b789a93ec223584a99544b27ae017982e074e0cb
   const submitBMR = (e) => {
     e.preventDefault();
     objUserStats = {
@@ -75,6 +79,7 @@ const FormGoals = () => {
       setAnswer(false);
     } else {
       setAnswer(true);
+<<<<<<< HEAD
     }
 
     // function that calculate the BMI of the use and keep the data
@@ -91,6 +96,21 @@ const FormGoals = () => {
 
   const classes = useStyles();
 
+=======
+    }
+    // function that calculate the BMI of the use and keep the data
+    // Men: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
+    // Women: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
+    if (gender.toLowerCase() === "man") {
+      let temp = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
+      setResultBMR(temp);
+    } else {
+      let temp = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
+      setResultBMR(temp);
+    }
+  };
+  const classes = useStyles();
+>>>>>>> b789a93ec223584a99544b27ae017982e074e0cb
   return (
     <div className={classes.container}>
       <div className={classes.divOne}>
@@ -180,5 +200,8 @@ const FormGoals = () => {
     </div>
   );
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> b789a93ec223584a99544b27ae017982e074e0cb
 export default FormGoals;
