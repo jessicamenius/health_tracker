@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "Booyah5%",
-=======
-    "password": "Sportfaza89!",
->>>>>>> b789a93ec223584a99544b27ae017982e074e0cb
     "database": "health_tracker_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

@@ -13,6 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 const apiRoutes = require("./routes/api-routes");
 app.use(apiRoutes);
 
+const foodRoutes = require("./routes/food-routes");
+app.use(foodRoutes);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("health-tracker/build"));
   app.get("*", (req, res) => {
