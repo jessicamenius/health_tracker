@@ -22,6 +22,7 @@ app.use(passport.session());
 
 app.use("/users", require("./routes/user-router"));
 
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("health-tracker/build"));
   app.get("*", (req, res) => {
