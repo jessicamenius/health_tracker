@@ -13,9 +13,9 @@ const Landing = () => {
             <Fade in enterOpacity={1.25}>
                 <Typography variant="h2" style={{ textAlign: "center", color: "#FF1493", marginBottom: "50px", marginTop: "50px", fontFamily: "cursive" }}>
                     <DirectionsRunIcon fontSize="large" />
-                    Welcome
+                    Welcome to MERN
                   </Typography>
-                <div>
+                <div >
                     <img src={img} style={{ height: "250px", width: "900px" }} alt="Our Compnay Logo" />
                 </div>
                 <h2 style={{ textAlign: "center", display: "flex", justifyContent: "center", alignContent: "center", color: "#3F51B5" }}>
