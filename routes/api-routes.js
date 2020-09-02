@@ -14,9 +14,9 @@ router.get("/users/all", (req, res) => {
 
 // get a single user from the db by their id
 // includes all info about the user
-router.get("/users/one", (req, res) => {
+router.get("/users/one/:id", (req, res) => {
   db.User.findOne({
-    where: { id: req.body.UserId },
+    where: { id: req.params.id },
     include: [db.Stats, db.FoodLog],
   })
     .then((user) => res.json(user))
@@ -25,17 +25,18 @@ router.get("/users/one", (req, res) => {
 
 // post a new user
 // all fields required
-router.post("/users/new", (req, res) => {
-  db.User.create({
-    userName: req.body.userName,
-    email: req.body.email,
-    password: req.body.password,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-  })
-    .then(() => res.send("Success!"))
-    .catch((err) => res.send(err));
-});
+// ** DEPRECATED, SEE USER-ROUTES **
+// router.post("/users/new", (req, res) => {
+//   db.User.create({
+//     userName: req.body.userName,
+//     email: req.body.email,
+//     password: req.body.password,
+//     firstName: req.body.firstName,
+//     lastName: req.body.lastName,
+//   })
+//     .then(() => res.send("Success!"))
+//     .catch((err) => res.send(err));
+// });
 
 // update a user's information
 // all fields are required
@@ -99,8 +100,8 @@ router.patch("/stats/update", (req, res) => {
 });
 
 // Get a single user's Stats
-router.get("/stats/one", (req, res) => {
-  db.Stats.findOne({ where: { UserId: req.body.UserId } })
+router.get("/stats/one/:id", (req, res) => {
+  db.Stats.findOne({ where: { UserId: req.params.id } })
     .then((response) => res.json(response))
     .catch((err) => res.send(err));
 });
@@ -122,15 +123,15 @@ router.post("/food/new", (req, res) => {
 });
 
 // get all food logs belonging to a user
-router.get("/food/user", (req, res) => {
-  db.FoodLog.findAll({ where: { UserId: req.body.UserId } })
+router.get("/food/user/:id", (req, res) => {
+  db.FoodLog.findAll({ where: { UserId: req.params.id } })
     .then((response) => res.json(response))
     .catch((err) => res.send(err));
 });
 
 // get a single food log by its ID ## NOT USER ID ##
-router.get("/food/single", (req, res) => {
-  db.FoodLog.findOne({ where: { id: req.body.id } })
+router.get("/food/single/:id", (req, res) => {
+  db.FoodLog.findOne({ where: { id: req.params.id } })
     .then((response) => res.json(response))
     .catch((err) => res.send(err));
 });
@@ -152,8 +153,8 @@ router.patch("/food/update", (req, res) => {
 });
 
 // delete a log by its ID ## NOT USER ID ##
-router.delete("/food/delete", (req, res) => {
-  db.FoodLog.destroy({ where: { id: req.body.id } })
+router.delete("/food/delete/:id", (req, res) => {
+  db.FoodLog.destroy({ where: { id: req.params.id } })
     .then(() => res.send("Success!"))
     .catch((err) => res.send(err));
 });
