@@ -3,7 +3,8 @@ import img from "./img/Logo.png";
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
-const Landing = () => {
+
+export default function Landing() {
   return (
     <div
       style={{
@@ -58,6 +59,4 @@ const Landing = () => {
       </Fade>
     </div>
   );
-};
-
-export default Landing;
+}
