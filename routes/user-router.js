@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
 router.delete("/delete", auth, async (req, res) => {
   // console.log(req.user);
   try {
-    const deletedUster = await db.User.findByIdAndDelete(req.user);
+    const deletedUster = await db.User.destroy(req.user);
     res.json(deletedUster);
   } catch (err) {
     res.status(500).json({ error: err.message });
