@@ -17,11 +17,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// const apiRoutes = require("./routes/api-routes");
-// app.use(apiRoutes);
+const apiRoutes = require("./routes/api-routes");
+app.use(apiRoutes);
 
-app.use("/users", require("./routes/user-router"));
+app.use("/users", require("./routes/user-routes"));
 
+const foodRoutes = require("./routes/food-routes");
+app.use(foodRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("health-tracker/build"));
@@ -33,5 +35,5 @@ if (process.env.NODE_ENV === "production") {
 }
 
 db.sequelize.sync().then(() => {
-  app.listen(PORT, () => console.log(`Listening at: http://localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`listening at: http://localhost:${PORT}`));
 });
