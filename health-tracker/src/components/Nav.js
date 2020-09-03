@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Nav = () => {
+export default function Nav() {
   const classes = useStyles();
   return (
     <header id="header">
@@ -44,6 +44,4 @@ const Nav = () => {
       </AppBar>
     </header>
   );
-};
-
-export default Nav;
+}
