@@ -4,6 +4,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import { Fade } from "react-animation-components";
+import Axios from "axios";
+import API from '../utils/API'
 
 const FormGoals = () => {
   let objUserStats = {};
