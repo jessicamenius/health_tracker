@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     password: { type: DataTypes.STRING, allowNull: false },
-    firstName: { type: DataTypes.STRING, allowNull: false },
-    lastName: { type: DataTypes.STRING, allowNull: false },
+    // firstName: { type: DataTypes.STRING, allowNull: false },
+    // lastName: { type: DataTypes.STRING, allowNull: false },
   });
 
   User.prototype.validPassword = function (password) {
