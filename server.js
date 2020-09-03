@@ -17,8 +17,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// const apiRoutes = require("./routes/api-routes");
-// app.use(apiRoutes);
+const apiRoutes = require("./routes/api-routes");
+app.use(apiRoutes);
 
 app.use("/users", require("./routes/user-router"));
 

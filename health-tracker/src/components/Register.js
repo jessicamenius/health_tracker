@@ -16,6 +16,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Transform } from "react-animation-components";
 
 export default function Register() {
   const [firstName, setFirstName] = useState();
@@ -71,7 +72,11 @@ export default function Register() {
   const classes = useStyles();
 
   return (
-    <Transform enterTransform="translateX(100px)" exitTransform="translateX(500px)" in>
+    <Transform
+      enterTransform="translateX(100px)"
+      exitTransform="translateX(500px)"
+      in
+    >
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -80,7 +85,7 @@ export default function Register() {
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
-        </Typography>
+          </Typography>
           <form className={classes.form} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -149,20 +154,21 @@ export default function Register() {
                 className={classes.submit}
               >
                 Sign Up
-            </Button>
+              </Button>
             </Link>
 
             <Grid container justify="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
                   Already have an account? Sign in
-              </Link>
+                </Link>
               </Grid>
             </Grid>
           </form>
         </div>
 
-      <Box mt={5}>{/* <Copyright /> */}</Box>
-    </Container>
+        <Box mt={5}>{/* <Copyright /> */}</Box>
+      </Container>
+    </Transform>
   );
 }

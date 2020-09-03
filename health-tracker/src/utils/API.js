@@ -1,7 +1,33 @@
 import axios from "axios";
 
 export default {
-  getNutrients: (food, qty, unit) => {
-    return axios.get(`/food/${food}/${qty}/${unit}`);
-  },
+  getNutrients: (food, qty, unit) => axios.get(`/food/${food}/${qty}/${unit}`),
+
+  // getAllUsers: () => axios.get("/users/all"),
+
+  // getOneUser: (id) => axios.get("users/one/" + id),
+
+  // obj must include 'UserId:' key
+  setStats: (obj) => axios.post("stats/set", obj),
+
+  // obj must include 'UserId:' key
+  updateStats: (obj) => axios.post("stats/update", obj),
+
+  // requires UserId, returns their stats
+  getStats: (id) => axios.get("stats/one/" + id),
+
+  // must include 'UserId:' key
+  newFoodLog: (obj) => axios.post("/food/new", obj),
+
+  // takes user ID
+  getUserLogs: (id) => axios.get("/food/user/" + id),
+
+  // takes individual log ID, not user ID
+  getSingleLog: (id) => axios.get("/food/single/" + id),
+
+  // must include log ID
+  updateSingleLog: (obj) => axios.patch("/food/update", obj),
+
+  // must include log ID
+  deleteLog: (id) => axios.delete("/food/delete/" + id),
 };
