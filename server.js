@@ -17,18 +17,16 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// const apiRoutes = require("./routes/api-routes");
-// app.use(apiRoutes);
+const apiRoutes = require("./routes/api-routes");
+app.use(apiRoutes);
 
 app.use("/users", require("./routes/user-router"));
 
-<<<<<<< HEAD
-=======
 
 const foodRoutes = require("./routes/food-routes");
 app.use(foodRoutes);
 
->>>>>>> af611b386d2349ab825f487e19da0048efcb5562
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("health-tracker/build"));
   app.get("*", (req, res) => {
