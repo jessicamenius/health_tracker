@@ -2,7 +2,6 @@ import React from "react";
 import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
-import AuthOptions from "../auth/AuthOptions";
 
 import "../App.css";
 
@@ -32,13 +31,9 @@ const Nav = () => {
               </h2>
             </Link>
           </Typography>
-
-          {/* <AuthOptions></AuthOptions> */}
-
           <Link to="/register" className="navlinkcss">
             <Button className={classes.navlink}>REGISTER</Button>
           </Link>
-
           <Link to="/login" className="navlinkcss">
             <Button className={classes.navlink}>LOGIN</Button>
           </Link>
