@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/userModel");
+const User = require("../models/user.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../config/middleware/auth");
@@ -19,7 +19,6 @@ router.post("/register", async (req, res) => {
     } = req.body;
 
     // validation
-
     if (!email || !password || !passwordCheck)
       return res.status(400).json({ msg: "Not all fields have been entered" });
 
