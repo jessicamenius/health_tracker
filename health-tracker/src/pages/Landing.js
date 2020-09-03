@@ -14,7 +14,7 @@ export default function Landing() {
         flexDirection: "column",
         width: "50%",
         marginLeft: "25%",
-        fontFamily: "cursive",
+        fontFamily: "Roboto",
       }}
     >
       <Fade in enterOpacity={1.25}>
@@ -25,7 +25,7 @@ export default function Landing() {
             color: "#FF1493",
             marginBottom: "50px",
             marginTop: "50px",
-            fontFamily: "cursive",
+            fontFamily: "Roboto",
           }}
         >
           <DirectionsRunIcon fontSize="large" />
