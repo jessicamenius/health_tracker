@@ -3,9 +3,9 @@ import axios from "axios";
 export default {
   getNutrients: (food, qty, unit) => axios.get(`/food/${food}/${qty}/${unit}`),
 
-  // getAllUsers: () => axios.get("/users/all"),
+  getAllUsers: () => axios.get("/users/all"),
 
-  // getOneUser: (id) => axios.get("users/one/" + id),
+  getOneUser: (id) => axios.get("users/one/" + id),
 
   // obj must include 'UserId:' key
   setStats: (obj) => axios.post("stats/set", obj),
