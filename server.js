@@ -22,8 +22,10 @@ app.use(apiRoutes);
 
 app.use("/users", require("./routes/user-router"));
 
+
 const foodRoutes = require("./routes/food-routes");
 app.use(foodRoutes);
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("health-tracker/build"));
