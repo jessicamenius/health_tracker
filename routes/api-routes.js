@@ -24,21 +24,6 @@ router.get("/users/one/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// post a new user
-// all fields required
-// ** DEPRECATED, SEE USER-ROUTES **
-// router.post("/users/new", (req, res) => {
-//   db.User.create({
-//     userName: req.body.userName,
-//     email: req.body.email,
-//     password: req.body.password,
-//     firstName: req.body.firstName,
-//     lastName: req.body.lastName,
-//   })
-//     .then(() => res.send("Success!"))
-//     .catch((err) => res.send(err));
-// });
-
 // update a user's information
 // all fields are required
 router.patch("/users/update", (req, res) => {
@@ -56,13 +41,13 @@ router.patch("/users/update", (req, res) => {
 });
 
 // delete a user and all of their related information
-router.delete("/users/delete", (req, res) => {
-  db.User.destroy({
-    where: { id: req.body.UserId },
-  })
-    .then(() => res.send("Success"))
-    .catch((err) => res.send(err));
-});
+// router.delete("/users/delete", (req, res) => {
+//   db.User.destroy({
+//     where: { id: req.body.UserId },
+//   })
+//     .then(() => res.send("Success"))
+//     .catch((err) => res.send(err));
+// });
 
 // ========== STATS ROUTES ==========
 

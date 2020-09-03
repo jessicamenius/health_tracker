@@ -3,13 +3,13 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../config/middleware/auth");
-const { json } = require("express");
+// const { json } = require("express");
 const db = require("../models");
 
 // register a new user
 router.post("/register", async (req, res) => {
   try {
-    const {
+    let {
       userName,
       firstName,
       lastName,
@@ -45,14 +45,14 @@ router.post("/register", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
     console.log(passwordHash);
 
-    let newUser = new User({
+    let newUser = db.User.create({
       email,
       password: passwordHash,
       userName,
     });
 
-    const savedUser = await newUser.save();
-    res.json(savedUser);
+    // const savedUser = await newUser.save();
+    res.json(newUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -71,10 +71,11 @@ router.post("/login", async (req, res) => {
       return res
         .status(400)
         .json({ msg: "No account with this email has been registered" });
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
-      return res.status(400).json({ msg: "Invalid login credentials" });
+    console.log(user);
+    const isMatch = await bcrypt.compareSync(password, user.password, () => {
+      if (!isMatch)
+        return res.status(400).json({ msg: "Invalid login credentials" });
+    });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     // console.log(token);
@@ -95,7 +96,7 @@ router.post("/login", async (req, res) => {
 router.delete("/delete", auth, async (req, res) => {
   // console.log(req.user);
   try {
-    const deletedUser = await User.findByIdAndDelete(req.user);
+    const deletedUser = await db.User.destroy(req.user);
     res.json(deletedUser);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -121,7 +122,7 @@ router.post("/tokenIsValid", async (req, res) => {
 
 // get a user by id
 router.get("/", auth, async (req, res) => {
-  const user = await User.findById(req.user);
+  const user = await db.User.findById(req.user);
   res.json({ userName: user.userName, id: user._id });
 });
 
