@@ -20,7 +20,7 @@ app.use(passport.session());
 const apiRoutes = require("./routes/api-routes");
 app.use(apiRoutes);
 
-app.use("/users", require("./routes/user-router"));
+app.use("/users", require("./routes/user-routes"));
 
 const foodRoutes = require("./routes/food-routes");
 app.use(foodRoutes);
