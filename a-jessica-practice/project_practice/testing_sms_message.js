@@ -13,7 +13,7 @@
 // Download the helper library from https://www.twilio.com/docs/node/install
 // Your Account Sid and Auth Token from twilio.com/console
 // DANGER! This is insecure. See http://twil.io/secure
-const accountSid = "ACdda9c9ed92ef5b4af2d599de5a613084";
+const accountSid = process.env.TWILIO_SID;
 const authToken = process.env.TWILIO_API;
 const client = require("twilio")(accountSid, authToken);
 
