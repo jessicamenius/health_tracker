@@ -9,7 +9,7 @@ const db = require("../models");
 router.post("/register", async (req, res) => {
   try {
     let {
-      displayName,
+      userName,
       firstName,
       lastName,
       email,
@@ -38,7 +38,7 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "Account with this email already exists" });
 
-    if (!displayName) displayName = email;
+    if (!userName) userName = email;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -47,13 +47,14 @@ router.post("/register", async (req, res) => {
     let newUser = db.User.create({
       email,
       password: passwordHash,
-      displayName,
+      userName,
       firstName,
       lastName,
     });
 
     // const savedUser = await newUser.save();
     res.json(newUser);
+    res.redirect("/login");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -78,13 +79,13 @@ router.post("/login", async (req, res) => {
         return res.status(400).json({ msg: "Invalid login credentials" });
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     // console.log(token);
     res.json({
       token,
       user: {
-        id: user._id,
-        displayName: user.displayName,
+        id: user.id,
+        userName: user.userName,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -119,7 +120,7 @@ router.post("/tokenIsValid", async (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (!verified) return res.json(false);
 
-    const user = await db.User.findById(verified.id);
+    const user = await db.User.findByPk(verified.id);
     if (!user) return res.json(false);
 
     return res.json(true);
@@ -130,8 +131,8 @@ router.post("/tokenIsValid", async (req, res) => {
 
 // get a user by id
 router.get("/", auth, async (req, res) => {
-  const user = await db.User.findById(req.user);
-  res.json({ displayName: user.displayName, id: user._id });
+  const user = await db.User.findByPk(req.user);
+  res.json({ userName: user.userName, id: user.id });
 });
 
 module.exports = router;
