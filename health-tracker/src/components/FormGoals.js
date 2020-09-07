@@ -3,16 +3,15 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import { Fade } from "react-animation-components";
-import API from '../utils/API'
+// import { Fade } from "react-animation-components";
+import API from "../utils/API";
 import Typography from "@material-ui/core/Typography";
-import AlertMessage from '../components/AlertMessage'
+import AlertMessage from "../components/AlertMessage";
+
 // Men: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
 // Women: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
 
-
 const FormGoals = () => {
-
   let objUserStats = {};
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,11 +57,16 @@ const FormGoals = () => {
   const [validate, setValidate] = useState(false);
   const [status, setStatusBase] = useState("");
 
-
   const submitBMIAndBMR = async (e) => {
     e.preventDefault();
     // function that calculate the BMI of the use and keep the data
-    if (height !== 0 && weight !== 0 && age !== 0 && gender !== "" && validate) {
+    if (
+      height !== 0 &&
+      weight !== 0 &&
+      age !== 0 &&
+      gender !== "" &&
+      validate
+    ) {
       let bmi = (703 * weight) / Math.pow(height, 2);
       setResultBMI(bmi);
       let bmr;
@@ -81,7 +85,7 @@ const FormGoals = () => {
         gender: gender,
         bmi: bmi,
         bmr: bmr,
-        UserId: 1
+        UserId: 1,
       };
       API.setStats(objUserStats);
       setAnswer(true);
@@ -89,8 +93,7 @@ const FormGoals = () => {
       setAnswer(false);
       setStatusBase({ msg: "Error", key: Math.random() });
     }
-  }
-
+  };
 
   const classes = useStyles();
   let renderElement;
@@ -114,7 +117,7 @@ const FormGoals = () => {
           }}
         >
           Provide the below information to calculate your BMI and BMR.
-            </h4>
+        </h4>
         <form className={classes.form}>
           <TextField
             id="standard-secondary"
@@ -129,8 +132,7 @@ const FormGoals = () => {
               } else {
                 setValidate(false);
               }
-            }
-            }
+            }}
           />
           <TextField
             id="filled-secondary"
@@ -145,8 +147,7 @@ const FormGoals = () => {
               } else {
                 setValidate(false);
               }
-            }
-            }
+            }}
           />
           <TextField
             id="outlined-secondary"
@@ -161,26 +162,28 @@ const FormGoals = () => {
               } else {
                 setValidate(false);
               }
-            }
-            }
+            }}
           />
+
           <TextField
-            id={'filled-secondary'}
+            id={"filled-secondary"}
             label="Enter gender"
             variant="outlined"
             onChange={(e) => {
               var pattern = new RegExp(/^[a-zA-Z0-9- ]*$/);
               var hasNumber = /\d/;
 
-              if (e.target.value === "" || hasNumber.test(e.target.value) || !pattern.test(e.target.value)) {
-
+              if (
+                e.target.value === "" ||
+                hasNumber.test(e.target.value) ||
+                !pattern.test(e.target.value)
+              ) {
                 setValidate(false);
               } else {
                 setGender(e.target.value);
                 setValidate(true);
               }
-            }
-            }
+            }}
           />
         </form>
         <div className={classes.button}>
@@ -191,39 +194,38 @@ const FormGoals = () => {
             style={{ marginRight: "10px" }}
           >
             CALCULATE
-            {status ? <AlertMessage key={status.key} message={status.msg} /> : null}
+            {status ? (
+              <AlertMessage key={status.key} message={status.msg} />
+            ) : null}
           </Button>
-
         </div>
       </div>
-    )
+    );
   } else {
     renderElement = (
       <div>
         <Typography color="secondary" variant="h4" align="center">
-          Your BMI is: {Math.floor(resultBMI)}
-          {" "}
-              Your BMR is: {Math.floor(resultBMR)}
+          Your BMI is: {Math.floor(resultBMI)} Your BMR is:{" "}
+          {Math.floor(resultBMR)}
         </Typography>
         <div className={classes.form}>
-          <Link href="/dashboard" variant="body2" style={{ textAlign: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-            >
+          <Link
+            href="/dashboard"
+            variant="body2"
+            style={{ textAlign: "center" }}
+          >
+            <Button variant="contained" color="primary">
               Main Page
-                </Button>
+            </Button>
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    < div className={classes.container} >
-      <div className={classes.divOne}  >
-        {renderElement}
-      </div>
+    <div className={classes.container}>
+      <div className={classes.divOne}>{renderElement}</div>
     </div>
   );
 };
