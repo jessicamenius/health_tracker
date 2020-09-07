@@ -12,7 +12,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    displayName: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -38,6 +38,16 @@ module.exports = function (sequelize, DataTypes) {
       null
     );
   });
+
+  User.associate = (models) => {
+    User.hasOne(models.Stats, {
+      onDelete: "cascade",
+    });
+
+    User.hasMany(models.FoodLog, {
+      onDelete: "cascade",
+    });
+  };
 
   return User;
 };

@@ -3,16 +3,6 @@
 const router = require("express").Router();
 const db = require("../models");
 
-// ========== USER ROUTES ==========
-
-// get all users from the database
-// only shows basic user info
-router.get("/users/all", (req, res) => {
-  db.User.findAll()
-    .then((users) => res.json(users))
-    .catch((err) => res.send(err));
-});
-
 // get a single user from the db by their id
 // includes all info about the user
 router.get("/users/one/:id", (req, res) => {

@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import RegisterPage from "./pages/RegisterPage";
+import Register from "./pages/Register";
 import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
 import UserGoals from "./pages/UserGoals";
@@ -52,10 +52,10 @@ export default function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Landing}></Route>
+              <Route path="/register" component={Register}></Route>
+              <Route path="/usergoals" component={UserGoals}></Route>
               <Route path="/login" component={Login}></Route>
-              <Route path="/register" component={RegisterPage}></Route>
               <Route path="/dashboard" component={Dashboard}></Route>
-              <Route path="/userGoals" component={UserGoals}></Route>
             </Switch>
             <Footer />
           </Box>

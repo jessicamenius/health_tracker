@@ -3,6 +3,8 @@ import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import "../App.css";
+import AuthOptions from "../components/auth/AuthOptions";
+// import UserContext from "../components/context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Nav() {
+export default function Nav(props) {
   const classes = useStyles();
   return (
     <header id="header">
@@ -28,14 +30,7 @@ export default function Nav() {
               MERN Health Tracker - My Exercise Rest Nutrition Health Tracker
             </Link>
           </Typography>
-
-          <Link to="/register" className={classes.navlink}>
-            <Button className={classes.navlink}>REGISTER</Button>
-          </Link>
-
-          <Link to="/login" className={classes.navlink}>
-            <Button className={classes.navlink}>LOGIN</Button>
-          </Link>
+          <AuthOptions />
         </Toolbar>
       </AppBar>
     </header>

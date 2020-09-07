@@ -9,7 +9,7 @@ const db = require("../models");
 router.post("/register", async (req, res) => {
   try {
     let {
-      displayName,
+      userName,
       firstName,
       lastName,
       email,
@@ -38,7 +38,7 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "Account with this email already exists" });
 
-    if (!displayName) displayName = email;
+    if (!userName) userName = email;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
     let newUser = db.User.create({
       email,
       password: passwordHash,
-      displayName,
+      userName,
       firstName,
       lastName,
     });
@@ -83,8 +83,8 @@ router.post("/login", async (req, res) => {
     res.json({
       token,
       user: {
-        id: user._id,
-        displayName: user.displayName,
+        id: user.id,
+        userName: user.userName,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -131,7 +131,14 @@ router.post("/tokenIsValid", async (req, res) => {
 // get a user by id
 router.get("/", auth, async (req, res) => {
   const user = await db.User.findById(req.user);
-  res.json({ displayName: user.displayName, id: user._id });
+  res.json({ userName: user.userName, id: user._id });
+});
+
+// get all users
+router.get("/users/all", (req, res) => {
+  db.User.findAll()
+    .then((users) => res.json(users))
+    .catch((err) => res.send(err));
 });
 
 module.exports = router;
