@@ -30,4 +30,7 @@ export default {
 
   // must include log ID
   deleteLog: (id) => axios.delete("/food/delete/" + id),
+
+  // gets the userID and userName of the currently logged in user
+  getCurrentUser: () => axios.get("/users/"),
 };
