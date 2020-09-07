@@ -1,9 +1,8 @@
 const router = require("express").Router();
-// const User = require("../models/user.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../config/middleware/auth");
-// const { json } = require("express");
+const { json } = require("express");
 const db = require("../models");
 
 // register a new user
@@ -49,6 +48,8 @@ router.post("/register", async (req, res) => {
       email,
       password: passwordHash,
       userName,
+      firstName,
+      lastName,
     });
 
     // const savedUser = await newUser.save();
@@ -85,11 +86,18 @@ router.post("/login", async (req, res) => {
         id: user._id,
         userName: user.userName,
         email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
       },
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
 });
 
 // delete user
