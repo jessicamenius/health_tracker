@@ -52,7 +52,7 @@ export default function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Landing}></Route>
-              <Route path="/register" component={Register}></Route>
+              <Route path="/register" component={RegisterPage}></Route>
               <Route path="/usergoals" component={UserGoals}></Route>
               <Route path="/login" component={Login}></Route>
               <Route path="/dashboard" component={Dashboard}></Route>
