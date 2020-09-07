@@ -101,4 +101,4 @@ const Dashboard = () => {
 }
 // submitFunc={submit}
 
-export default Dashboard
+export default Dashboard;
