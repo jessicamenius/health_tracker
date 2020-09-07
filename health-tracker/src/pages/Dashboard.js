@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from "@material-ui/core/styles";
 import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
@@ -30,7 +30,34 @@ const Dashboard = () => {
             flexDirection: "row"
         }
     }));
+    // function click submit
 
+
+    //useState('userData')
+
+    // useEffect(() => {
+    //     const res =//query
+    //     if (res.length == 0) {
+    //         setUserData([])
+
+    //     } else {
+    //         setuserData(res)
+    //         rows = res;
+    //     }
+    // }, []);
+
+
+    // row = {carbs:}
+    //chartData
+    // let rows = [];
+    // let chartData = [];
+    // const submit = (amount, measure) => {
+    //     //
+    //     //api call
+    //     rows.push({});
+    //     chartData.push({});
+    //     //
+    // }
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -40,13 +67,14 @@ const Dashboard = () => {
                 <TableUser />
             </div>
             <div className={classes.center}>
-                <Chart />
+                <FormSearch />
             </div>
             <div className={classes.right}>
-                <FormSearch />
+                <Chart />
             </div>
         </div>
     )
 }
+// submitFunc={submit}
 
 export default Dashboard

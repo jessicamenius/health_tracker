@@ -6,7 +6,7 @@ import { Button, Select } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import InputLabel from '@material-ui/core/InputLabel';
 
-const FormSearch = () => {
+const FormSearch = (props) => {
     const top100Films = [
         { title: 'The Shawshank Redemption', year: 1994 },
         { title: 'The Godfather', year: 1972 },
@@ -36,17 +36,18 @@ const FormSearch = () => {
 
     const numInput = (e) => {
         setAmount(e.target.value);
-        console.log(e.target.value)
+        // console.log(e.target.value)
     }
     const measureInput = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         setMeasure(e.target.value)
     }
     const submit = (e) => {
         e.preventDefault();
-        console.log(searchFood.title);
-        console.log(measure);
-        console.log(amount)
+        // console.log(searchFood.title);
+        // console.log(measure);
+        // console.log(amount)
+        // props.submitFunc(amount,)
     }
 
 
