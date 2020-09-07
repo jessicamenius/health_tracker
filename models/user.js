@@ -15,7 +15,11 @@ module.exports = function (sequelize, DataTypes) {
         isEmail: true,
       },
     },
+<<<<<<< HEAD
+    userName: {
+=======
     password: {
+>>>>>>> 6dbbfc55cf727e685ddea0238b82205e9a4885bf
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -45,6 +49,10 @@ module.exports = function (sequelize, DataTypes) {
     User.hasOne(models.Stats, {
       onDelete: "cascade",
     });
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6dbbfc55cf727e685ddea0238b82205e9a4885bf
     User.hasMany(models.FoodLog, {
       onDelete: "cascade",
     });
