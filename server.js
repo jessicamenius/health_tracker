@@ -1,17 +1,28 @@
 const express = require("express");
 const app = express();
 const session = require("express-session");
-const passport = require("passport");
+
 const db = require("./models");
 const PORT = process.env.PORT || 5000;
 const path = require("path");
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const passportJWT = require("passport-jwt");
+
+var ExtractJwt = passportJWT.ExtractJwt;
+var JwtStrategy = passportJWT.Strategy;
+
 require("dotenv").config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
-  session({ secret: process.env.SECRET, resave: true, saveUninitialized: true })
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
 );
 
 app.use(passport.initialize());
