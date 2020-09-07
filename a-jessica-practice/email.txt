@@ -1,1 +1,0 @@
-https://blog.mailtrap.io/react-send-email/
