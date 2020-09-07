@@ -9,7 +9,7 @@ const db = require("../models");
 router.post("/register", async (req, res) => {
   try {
     let {
-      userName,
+      displayName,
       firstName,
       lastName,
       email,
@@ -38,7 +38,7 @@ router.post("/register", async (req, res) => {
         .status(400)
         .json({ msg: "Account with this email already exists" });
 
-    if (!userName) userName = email;
+    if (!displayName) displayName = email;
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
     let newUser = db.User.create({
       email,
       password: passwordHash,
-      userName,
+      displayName,
       firstName,
       lastName,
     });
@@ -84,7 +84,7 @@ router.post("/login", async (req, res) => {
       token,
       user: {
         id: user._id,
-        userName: user.userName,
+        displayName: user.displayName,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -131,7 +131,7 @@ router.post("/tokenIsValid", async (req, res) => {
 // get a user by id
 router.get("/", auth, async (req, res) => {
   const user = await db.User.findById(req.user);
-  res.json({ userName: user.userName, id: user._id });
+  res.json({ displayName: user.displayName, id: user._id });
 });
 
 module.exports = router;

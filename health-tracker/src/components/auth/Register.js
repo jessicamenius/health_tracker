@@ -116,9 +116,9 @@ export default function Register() {
                 variant="outlined"
                 required
                 fullWidth
-                id="userName"
+                id="displayName"
                 label="User Name"
-                name="UserName"
+                name="displayName"
                 autoComplete="user-name"
               />
             </Grid>
