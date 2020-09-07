@@ -54,6 +54,7 @@ router.post("/register", async (req, res) => {
 
     // const savedUser = await newUser.save();
     res.json(newUser);
+    res.redirect("/login");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -78,7 +79,7 @@ router.post("/login", async (req, res) => {
         return res.status(400).json({ msg: "Invalid login credentials" });
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
     // console.log(token);
     res.json({
       token,
@@ -119,7 +120,11 @@ router.post("/tokenIsValid", async (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (!verified) return res.json(false);
 
+<<<<<<< HEAD
     const user = await db.User.findbyPk(verified.id);
+=======
+    const user = await db.User.findByPk(verified.id);
+>>>>>>> 6dbbfc55cf727e685ddea0238b82205e9a4885bf
     if (!user) return res.json(false);
 
     return res.json(true);
@@ -130,6 +135,7 @@ router.post("/tokenIsValid", async (req, res) => {
 
 // get a user by id
 router.get("/", auth, async (req, res) => {
+<<<<<<< HEAD
   const user = await db.User.findbyPk(req.user);
   res.json({ userName: user.userName, id: user._id });
 });
@@ -139,6 +145,10 @@ router.get("/users/all", (req, res) => {
   db.User.findAll()
     .then((users) => res.json(users))
     .catch((err) => res.send(err));
+=======
+  const user = await db.User.findByPk(req.user);
+  res.json({ userName: user.userName, id: user.id });
+>>>>>>> 6dbbfc55cf727e685ddea0238b82205e9a4885bf
 });
 
 module.exports = router;

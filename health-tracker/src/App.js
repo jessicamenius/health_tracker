@@ -5,7 +5,7 @@ import Nav from "./components/Nav";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import Register from "./pages/Register";
+import RegisterPage from "./pages/RegisterPage";
 import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
 import UserGoals from "./pages/UserGoals";

@@ -2,20 +2,26 @@ const bcrypt = require("bcryptjs");
 
 module.exports = function (sequelize, DataTypes) {
   const User = sequelize.define("User", {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: { isEmail: true },
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     userName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
+    },
+<<<<<<< HEAD
+    userName: {
+=======
+    password: {
+>>>>>>> 6dbbfc55cf727e685ddea0238b82205e9a4885bf
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     firstName: {
       type: DataTypes.STRING,
@@ -43,7 +49,10 @@ module.exports = function (sequelize, DataTypes) {
     User.hasOne(models.Stats, {
       onDelete: "cascade",
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6dbbfc55cf727e685ddea0238b82205e9a4885bf
     User.hasMany(models.FoodLog, {
       onDelete: "cascade",
     });
