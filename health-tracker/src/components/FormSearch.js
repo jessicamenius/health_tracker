@@ -47,7 +47,7 @@ const FormSearch = (props) => {
         // console.log(searchFood.title);
         // console.log(measure);
         // console.log(amount)
-        // props.submitFunc(amount,)
+        props.eventSubmitBtn(searchFood.title, amount, measure);
     }
 
 
@@ -67,10 +67,7 @@ const FormSearch = (props) => {
             />
             <TextField
                 id="outlined-number"
-                type="number"
-                InputLabelProps={{
-                    shrink: true,
-                }}
+
                 variant="outlined"
                 className="mb-4"
                 onChange={numInput}
@@ -85,12 +82,22 @@ const FormSearch = (props) => {
                     onChange={measureInput}
                     style={{ marginBottom: "25px" }}
                 >
-                    <MenuItem value="Kilograms">
+                    <MenuItem value="kilogram">
                         <em>Kilograms</em>
                     </MenuItem>
-                    <MenuItem value={"Pounds"}>Pounds</MenuItem>
-                    <MenuItem value={"Ounce"}>Ounce</MenuItem>
-                    <MenuItem value={"Gram"}>Gram</MenuItem>
+                    <MenuItem value={"pound"}>Pounds</MenuItem>
+                    <MenuItem value={"ounce"}>Ounce</MenuItem>
+                    <MenuItem value={"gram"}>Gram</MenuItem>
+                    <MenuItem value={"pinch"}>Pinch</MenuItem>
+                    <MenuItem value={"liter"}>Liter</MenuItem>
+                    <MenuItem value={"fluid_ounce"}>fluid-Ounce</MenuItem>
+                    <MenuItem value={"pint"}>Pint</MenuItem>
+                    <MenuItem value={"quart"}>Quart</MenuItem>
+                    <MenuItem value={"milliliter"}>Milliliter</MenuItem>
+                    <MenuItem value={"drop"}>Drop</MenuItem>
+                    <MenuItem value={"cup"}>Cup</MenuItem>
+                    <MenuItem value={"tablespoon"}>Tablespoon</MenuItem>
+                    <MenuItem value={"teaspoon"}>Teaspoon</MenuItem>
                 </Select>
             </FormControl>
             <Button onClick={submit} color="primary">Submit</Button>
@@ -100,4 +107,18 @@ const FormSearch = (props) => {
 }
 
 export default FormSearch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

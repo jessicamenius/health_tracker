@@ -85,13 +85,13 @@ const FormGoals = () => {
         gender: gender,
         bmi: bmi,
         bmr: bmr,
-        UserId: 1,
+        UserId: 2,
       };
       API.setStats(objUserStats);
       setAnswer(true);
     } else {
       setAnswer(false);
-      setStatusBase({ msg: "Error", key: Math.random() });
+      setStatusBase({ msg: "Error - Invalid Input", key: Math.random() });
     }
   };
 

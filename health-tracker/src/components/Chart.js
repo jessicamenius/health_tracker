@@ -1,7 +1,8 @@
 import React from 'react'
 import { PieChart, Pie, Tooltip } from 'recharts'
 
-const Chart = () => {
+const Chart = (props) => {
+    console.log(props.foodLog);
     const data01 = [{ name: 'Carbs', value: 400 }, { name: 'Protein', value: 300 },
     { name: 'Fat', value: 300 }, { name: 'Calories', value: 200 }]
     return (
