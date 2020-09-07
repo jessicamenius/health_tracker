@@ -119,7 +119,7 @@ router.post("/tokenIsValid", async (req, res) => {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
     if (!verified) return res.json(false);
 
-    const user = await db.User.findById(verified.id);
+    const user = await db.User.findbyPk(verified.id);
     if (!user) return res.json(false);
 
     return res.json(true);
@@ -130,7 +130,7 @@ router.post("/tokenIsValid", async (req, res) => {
 
 // get a user by id
 router.get("/", auth, async (req, res) => {
-  const user = await db.User.findById(req.user);
+  const user = await db.User.findbyPk(req.user);
   res.json({ userName: user.userName, id: user._id });
 });
 
