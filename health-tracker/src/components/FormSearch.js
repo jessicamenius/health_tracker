@@ -4,7 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button, Select } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import InputLabel from '@material-ui/core/InputLabel';
+
 
 const FormSearch = (props) => {
     const top100Films = [
@@ -36,71 +36,62 @@ const FormSearch = (props) => {
 
     const numInput = (e) => {
         setAmount(e.target.value);
-        // console.log(e.target.value)
     }
     const measureInput = (e) => {
-        // console.log(e.target.value);
         setMeasure(e.target.value)
     }
     const submit = (e) => {
         e.preventDefault();
-        // console.log(searchFood.title);
-        // console.log(measure);
-        // console.log(amount)
         props.eventSubmitBtn(searchFood.title, amount, measure);
     }
 
 
     return (
-        <FormControl variant="outlined" >
+        <FormControl variant="outlined" style={{ marginRight: "50px" }} >
             <Autocomplete
                 {...defaultProps}
                 id="controlled-demo"
+                variant="outlined"
                 getOptionSelected={() => flatProps}
                 value={searchFood}
                 onChange={(event, newValue) => {
 
                     setSearchFood(newValue);
                 }}
-                renderInput={(params) => <TextField {...params} label="controlled" margin="normal" />}
+                renderInput={(params) => <TextField {...params} margin="normal" />}
                 style={{ marginBottom: "25px" }}
             />
             <TextField
                 id="outlined-number"
-
                 variant="outlined"
                 className="mb-4"
                 onChange={numInput}
-                style={{ marginBottom: "25px" }}
+                style={{ marginBottom: "25px", width: "500px" }}
             />
-            <FormControl variant="filled" >
-                <InputLabel id="demo-simple-select-filled-label">Volume</InputLabel>
-                <Select
-                    labelId="demo-simple-select-filled-label"
-                    id="demo-simple-select-filled"
-                    value={measure}
-                    onChange={measureInput}
-                    style={{ marginBottom: "25px" }}
-                >
-                    <MenuItem value="kilogram">
-                        <em>Kilograms</em>
-                    </MenuItem>
-                    <MenuItem value={"pound"}>Pounds</MenuItem>
-                    <MenuItem value={"ounce"}>Ounce</MenuItem>
-                    <MenuItem value={"gram"}>Gram</MenuItem>
-                    <MenuItem value={"pinch"}>Pinch</MenuItem>
-                    <MenuItem value={"liter"}>Liter</MenuItem>
-                    <MenuItem value={"fluid_ounce"}>fluid-Ounce</MenuItem>
-                    <MenuItem value={"pint"}>Pint</MenuItem>
-                    <MenuItem value={"quart"}>Quart</MenuItem>
-                    <MenuItem value={"milliliter"}>Milliliter</MenuItem>
-                    <MenuItem value={"drop"}>Drop</MenuItem>
-                    <MenuItem value={"cup"}>Cup</MenuItem>
-                    <MenuItem value={"tablespoon"}>Tablespoon</MenuItem>
-                    <MenuItem value={"teaspoon"}>Teaspoon</MenuItem>
-                </Select>
-            </FormControl>
-            <Button onClick={submit} color="primary">Submit</Button>
+            <Select
+                labelId="demo-simple-select-filled-label"
+                id="demo-simple-select-filled"
+                value={measure}
+                onChange={measureInput}
+                style={{ marginBottom: "25px" }} >
+
+                <MenuItem value="kilogram"> Kilograms</MenuItem>
+                <MenuItem value={"pound"}>Pounds</MenuItem>
+                <MenuItem value={"ounce"}>Ounce</MenuItem>
+                <MenuItem value={"gram"}>Gram</MenuItem>
+                <MenuItem value={"pinch"}>Pinch</MenuItem>
+                <MenuItem value={"liter"}>Liter</MenuItem>
+                <MenuItem value={"fluid_ounce"}>fluid-Ounce</MenuItem>
+                <MenuItem value={"pint"}>Pint</MenuItem>
+                <MenuItem value={"quart"}>Quart</MenuItem>
+                <MenuItem value={"milliliter"}>Milliliter</MenuItem>
+                <MenuItem value={"drop"}>Drop</MenuItem>
+                <MenuItem value={"cup"}>Cup</MenuItem>
+                <MenuItem value={"tablespoon"}>Tablespoon</MenuItem>
+                <MenuItem value={"teaspoon"}>Teaspoon</MenuItem>
+
+            </Select>
+            <Button onClick={submit} variant="contained" color="primary">Submit</Button>
         </FormControl>
 
     )

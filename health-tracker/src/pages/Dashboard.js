@@ -19,13 +19,13 @@ const Dashboard = () => {
         },
         right: {
             float: "right",
-            width: "300px",
             marginRight: "40px"
 
         },
         center: {
             display: "inline-block",
-            flexDirection: "row"
+            flexDirection: "row",
+            marginLeft: "30px"
         }
     }));
 
@@ -52,10 +52,8 @@ const Dashboard = () => {
         });
     }, [])
 
-    // function click submit
-
     const eventSubmitBtn = (foodName, amount, volume) => {
-        API.getNutrients("Rice", amount, volume).then(res => {
+        API.getNutrients("egg", amount, volume).then(res => {
             // need to get the user id from the auth
             let id = + foodLog[foodLog.length - 1].id + 1;
             let objFood = {
@@ -93,12 +91,12 @@ const Dashboard = () => {
             </div>
             <div className={classes.right}>
                 {
-                    flag ? <Chart /> : null
+                    flag ? <Chart foodLog={foodLog} isUser={isUser} /> : null
                 }
             </div>
         </div>
     )
 }
-// submitFunc={submit}
+
 
 export default Dashboard;

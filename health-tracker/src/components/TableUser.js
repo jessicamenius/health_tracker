@@ -21,15 +21,19 @@ const TableUser = (props) => {
 
     let rows = [];
     let table;
+    console.log(props.isUser.FoodLogs)
     if (props.isUser) {
         if (props.foodLog.length > 0) {
-            for (let i = 0; i < props.isUser.FoodLogs.length; i++) {
+            for (let i = props.isUser.FoodLogs.length - 1; i > 7; i--) {
                 rows.push(createData(props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
             }
             table = (
                 <TableBody>
                     {rows.map((row, index) => (
                         <TableRow key={index}>
+                            <TableCell component="th" scope="row">
+                                <button>Click ME</button>
+                            </TableCell>
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
@@ -54,6 +58,7 @@ const TableUser = (props) => {
             <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
+                        <TableCell></TableCell>
                         <TableCell>Food Name </TableCell>
                         <TableCell align="right">Calories</TableCell>
                         <TableCell align="right">Fat&nbsp;(g)</TableCell>
