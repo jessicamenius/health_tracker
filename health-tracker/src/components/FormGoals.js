@@ -186,6 +186,7 @@ const FormGoals = () => {
             }}
           />
         </form>
+
         <div className={classes.button}>
           <Button
             variant="contained"
