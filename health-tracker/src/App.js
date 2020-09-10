@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Axios from "axios";
 import Nav from "./components/Nav";
-// import Header from "./components/header/Header";
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
@@ -53,10 +52,10 @@ export default function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Landing}></Route>
-              <Route path="/login" component={Login}></Route>
               <Route path="/register" component={RegisterPage}></Route>
+              <Route path="/usergoals" component={UserGoals}></Route>
+              <Route path="/login" component={Login}></Route>
               <Route path="/dashboard" component={Dashboard}></Route>
-              <Route path="/userGoals" component={UserGoals}></Route>
             </Switch>
             <Footer />
           </Box>

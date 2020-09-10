@@ -7,6 +7,9 @@ export default {
 
   getOneUser: (id) => axios.get("users/one/" + id),
 
+  // gets the userID and userName of the currently logged in user
+  // getCurrentUser: () => axios.get("/users/"),
+
   // obj must include 'UserId:' key
   setStats: (obj) => axios.post("stats/set", obj),
 
@@ -30,4 +33,7 @@ export default {
 
   // must include log ID
   deleteLog: (id) => axios.delete("/food/delete/" + id),
+
+  // autocomplete route, pass in a string
+  autocomplete: (str) => axios.get("/food/autocomplete/" + str),
 };

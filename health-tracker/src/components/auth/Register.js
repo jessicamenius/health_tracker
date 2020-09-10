@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import UserContext from "../../context/UserContext";
 import Axios from "axios";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -19,12 +19,12 @@ import Container from "@material-ui/core/Container";
 // import { Transform } from "react-animation-components";
 
 export default function Register() {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [userName, setUserName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordCheck, setPasswordCheck] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [userName, setUserName] = useState();
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
@@ -32,12 +32,12 @@ export default function Register() {
   const submit = async (e) => {
     e.preventDefault();
     const newUser = {
-      firstName,
-      lastName,
       email,
       password,
       passwordCheck,
       userName,
+      firstName,
+      lastName,
     };
     await Axios.post("http://localhost:5000/users/register", newUser);
     const loginRes = await Axios.post("http://localhost:5000/users/login", {
@@ -116,9 +116,9 @@ export default function Register() {
                 variant="outlined"
                 required
                 fullWidth
-                id="userName"
+                id="displayName"
                 label="User Name"
-                name="UserName"
+                name="displayName"
                 autoComplete="user-name"
               />
             </Grid>
@@ -145,6 +145,18 @@ export default function Register() {
                 autoComplete="current-password"
               />
             </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="passwordCheck"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
           </Grid>
           <Link href="/userGoals" variant="body2">
             <Button
