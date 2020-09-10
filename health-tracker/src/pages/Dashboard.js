@@ -4,7 +4,7 @@ import FormSearch from "../components/FormSearch";
 import Chart from "../components/Chart";
 import TableUser from "../components/TableUser";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -32,6 +32,8 @@ const Dashboard = () => {
   }));
 
   const classes = useStyles();
+
+  console.log("props.user in dashboard", props.user);
   return (
     <div className={classes.root}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>

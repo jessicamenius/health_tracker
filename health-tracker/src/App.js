@@ -55,7 +55,11 @@ export default function App() {
               <Route path="/register" component={RegisterPage}></Route>
               <Route path="/usergoals" component={UserGoals}></Route>
               <Route path="/login" component={Login}></Route>
-              <Route path="/dashboard" component={Dashboard}></Route>
+              <Route
+                path="/dashboard"
+                user={userData.user}
+                component={Dashboard}
+              ></Route>
             </Switch>
             <Footer />
           </Box>
