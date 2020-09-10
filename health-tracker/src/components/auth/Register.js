@@ -2,11 +2,8 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
-<<<<<<< HEAD
-=======
 import ErrorNotice from "../../misc/ErrorNotice";
 
->>>>>>> 97cacddd4fa4d13dffc8db68c0091581fd648465
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";

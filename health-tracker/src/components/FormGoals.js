@@ -132,18 +132,6 @@ const FormGoals = () => {
               textDecoration: "none",
               color: "blue",
             }}
-<<<<<<< HEAD
-=======
-          />
-        </form>
-
-        <div className={classes.button}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={submitBMIAndBMR}
-            style={{ marginRight: "10px" }}
->>>>>>> 97cacddd4fa4d13dffc8db68c0091581fd648465
           >
             Provide the below information to calculate your BMI and BMR.
         </h4>
