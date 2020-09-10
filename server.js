@@ -31,6 +31,12 @@ app.use(passport.session());
 const apiRoutes = require("./routes/api-routes");
 app.use(apiRoutes);
 
+const statsRoutes = require("./routes/stats-routes");
+app.use(statsRoutes);
+
+const foodLogRoutes = require("./routes/foodLog-routes");
+app.use(foodLogRoutes);
+
 app.use("/users", require("./routes/user-routes"));
 
 const foodRoutes = require("./routes/food-routes");
