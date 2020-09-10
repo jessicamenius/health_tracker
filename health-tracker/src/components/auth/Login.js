@@ -90,6 +90,7 @@ const LoginCom = () => {
                   variant="contained"
                   color="primary"
                   className={classes.submit}
+                  onclick={submit}
                 >
                   LOGIN
                 </Button>
