@@ -55,20 +55,40 @@ const Dashboard = () => {
     const eventSubmitBtn = (foodName, amount, volume) => {
         API.getNutrients("egg", amount, volume).then(res => {
             // need to get the user id from the auth
-            let id = + foodLog[foodLog.length - 1].id + 1;
-            let objFood = {
-                id: id,
-                foodName: foodName,
-                carbs: res.data.totalNutrients.CHOCDF.quantity,
-                protein: res.data.totalNutrients.PROCNT.quantity,
-                fat: res.data.totalNutrients.FAT.quantity,
-                calories: res.data.calories,
-                UserId: 2
+            console.log(foodLog);
+            console.log(flag)
+            if (foodLog.length > 0) {
+
+                let id = foodLog[foodLog.length - 1].id + 1;
+                let objFood = {
+                    id: id,
+                    foodName: foodName,
+                    carbs: res.data.totalNutrients.CHOCDF.quantity,
+                    protein: res.data.totalNutrients.PROCNT.quantity,
+                    fat: res.data.totalNutrients.FAT.quantity,
+                    calories: res.data.calories,
+                    UserId: 1
+                }
+                API.newFoodLog(objFood);
+                foodLog.push(objFood);
+                setFoodLog([...foodLog]);
+            } else {
+
+                let id = 1;
+                let objFood = {
+                    id: id,
+                    foodName: foodName,
+                    carbs: res.data.totalNutrients.CHOCDF.quantity,
+                    protein: res.data.totalNutrients.PROCNT.quantity,
+                    fat: res.data.totalNutrients.FAT.quantity,
+                    calories: res.data.calories,
+                    UserId: 1
+                }
+                API.newFoodLog(objFood);
+                foodLog.push(objFood);
+                setFoodLog([...foodLog]);
+
             }
-            // Route works
-            API.newFoodLog(objFood);
-            foodLog.push(objFood);
-            setFoodLog([...foodLog]);
 
         });
 
