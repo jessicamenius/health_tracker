@@ -36,4 +36,6 @@ export default {
 
   // autocomplete route, pass in a string
   autocomplete: (str) => axios.get("/food/autocomplete/" + str),
+
+  register: (obj) => axios.post("users/register", obj),
 };
