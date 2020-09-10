@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
+const passport = require("../config/passport.js");
 
 // get a single user from the db by their id
 // includes all info about the user

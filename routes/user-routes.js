@@ -4,17 +4,22 @@ const jwt = require("jsonwebtoken");
 const auth = require("../config/middleware/auth");
 const { json } = require("express");
 const db = require("../models");
+const passport = require("../config/passport");
+
+router.get("/api", (req, res) => {
+  res.send({ msg: "success" });
+});
 
 // register a new user
 router.post("/register", async (req, res) => {
   try {
     let {
-      userName,
-      firstName,
-      lastName,
       email,
       password,
       passwordCheck,
+      userName,
+      firstName,
+      lastName,
     } = req.body;
 
     // validation

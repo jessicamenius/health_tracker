@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../context/UserContext";
+import Axios from "axios";
+import ErrorNotice from "../../misc/ErrorNotice";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +17,30 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { FadeTransform } from "react-animation-components";
 
-const LoginCom = () => {
+export default function LoginCom() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
+
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      const loginUser = { email, password };
+      const loginRes = await Axios.post(
+        "http://localhost:5000/users/login",
+        loginUser
+      );
+      setUserData({ token: loginRes.data.token, user: loginRes.data.user });
+      localStorage.setItem("auth-token", loginRes.data.token);
+      history.push("/");
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
+    }
+  };
+
   const url =
     "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
   const useStyles = makeStyles((theme) => ({
@@ -36,6 +63,7 @@ const LoginCom = () => {
     },
   }));
   const classes = useStyles();
+
   return (
     <FadeTransform
       in
@@ -90,7 +118,7 @@ const LoginCom = () => {
                   variant="contained"
                   color="primary"
                   className={classes.submit}
-                  onclick={submit}
+                  onClick={submit}
                 >
                   LOGIN
                 </Button>
@@ -113,5 +141,4 @@ const LoginCom = () => {
       </div>{" "}
     </FadeTransform>
   );
-};
-export default LoginCom;
+}
