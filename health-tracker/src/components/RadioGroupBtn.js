@@ -10,16 +10,29 @@ const RadioGroupBtn = (props) => {
     const handleChange = (event) => {
         props.setValue(event.target.value);
     };
+    const handleChangeGender = (event) => {
+        props.setGender(event.target.value);
+    };
     return (
-        <FormControl component="fieldset">
-            <FormLabel component="legend">Measurement</FormLabel>
-            <br />
-            <RadioGroup aria-label="gender" name="gender1" value={props.value} onChange={handleChange}>
-                <FormControlLabel value="Metric" control={<Radio />} label="Metric - Centimeters, Kilograms" />
-                <FormControlLabel value="Standard" control={<Radio />} label="Standard - Feet+Inches, Pounds" />
-            </RadioGroup>
-        </FormControl>
+        <div>
+            <FormControl component="fieldset">
+                <FormLabel component="legend">Measurement</FormLabel>
+                <RadioGroup aria-label="gender" name="gender1" value={props.value} onChange={handleChange}>
+                    <FormControlLabel value="Metric" control={<Radio />} label="Metric - Centimeters, Kilograms" />
+                    <FormControlLabel value="Standard" control={<Radio />} label="Standard - Feet+Inches, Pounds" />
+                </RadioGroup>
+            </FormControl>
+            <FormControl component="fieldset">
+                <FormLabel component="legend">Gender</FormLabel>
+                <RadioGroup aria-label="gender" name="gender1" value={props.gender} onChange={handleChangeGender}>
+                    <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                    <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                </RadioGroup>
+            </FormControl>
+        </div>
+
     );
+
 }
 
 export default RadioGroupBtn

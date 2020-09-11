@@ -60,13 +60,14 @@ const FormGoals = () => {
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [age, setAge] = useState(0);
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [answer, setAnswer] = useState(false);
   const [resultBMI, setResultBMI] = useState(0);
   const [resultBMR, setResultBMR] = useState(0);
   const [validate, setValidate] = useState(false);
   const [status, setStatusBase] = useState("");
   const [value, setValue] = useState("Metric");
+
 
 
   const submitBMIAndBMR = (e) => {
@@ -90,7 +91,7 @@ const FormGoals = () => {
         //  Metric BMR Formula Women: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)
         // Men: BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) 
         console.log(gender);
-        if (gender.toUpperCase() === "M") {
+        if (gender === "Male") {
           console.log(gender);
           console.log(value);
           bmr = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
@@ -106,7 +107,7 @@ const FormGoals = () => {
         // Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
         // Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
         let bmr;
-        if (gender.toLowerCase() === "M") {
+        if (gender === "Male") {
           bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
           setResultBMR(bmr);
         } else {
@@ -205,25 +206,6 @@ const FormGoals = () => {
                 }
               }}
             />
-            <TextField
-              id={"filled-secondary"}
-              label="Enter gender"
-              variant="outlined"
-              onChange={(e) => {
-                var pattern = new RegExp(/^[a-zA-Z0-9- ]*$/);
-                var hasNumber = /\d/;
-
-                if (
-                  e.target.value === "" || hasNumber.test(e.target.value) || !pattern.test(e.target.value)) {
-                  setValidate(false);
-                } else {
-                  setGender(e.target.value);
-                  setValidate(true);
-                }
-              }}
-              helperText="Enter M or F"
-            />
-
           </form>
           <div className={classes.button}>
             <Button
@@ -257,7 +239,7 @@ const FormGoals = () => {
       <div style={{ marginTop: "100px", marginLeft: "30px" }}>
         <Fade in>
           {
-            !answer ? <RadioGroupBtn value={value} setValue={setValue} /> : null
+            !answer ? <RadioGroupBtn value={value} gender={gender} setValue={setValue} setGender={setGender} /> : null
           }
         </Fade>
       </div>

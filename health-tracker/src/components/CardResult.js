@@ -26,13 +26,12 @@ const CardResult = (props) => {
     });
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.root}>
             <CardContent>
                 <Typography color="primary" gutterBottom component="h1" >
-                    <h1>Summary</h1>
+                    Summary
                 </Typography>
                 <Typography color="primary" gutterBottom component="h2" >
                     Your BMI is: {Math.floor(props.resultBMI)}
