@@ -27,17 +27,19 @@ export default function LoginCom() {
 
   const submit = async (e) => {
     e.preventDefault();
+
     try {
       const loginUser = { email, password };
       const loginRes = await Axios.post(
         "http://localhost:5000/users/login",
         loginUser
       );
+
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/dashboard");
     } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+      err.response.msg && setError(err.response.msg);
     }
   };
 
@@ -84,6 +86,12 @@ export default function LoginCom() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            {error && (
+              <ErrorNotice
+                message={error}
+                clearError={() => setError(undefined)}
+              />
+            )}
             <form className={classes.form} Validate>
               <TextField
                 variant="outlined"
@@ -95,6 +103,7 @@ export default function LoginCom() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="outlined"
@@ -106,6 +115,7 @@ export default function LoginCom() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <FormControlLabel

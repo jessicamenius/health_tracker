@@ -140,4 +140,27 @@ router.get("/", auth, async (req, res) => {
   res.json({ userName: user.userName, id: user.id });
 });
 
+router.get("/one/:id", (req, res) => {
+  db.User.findOne({
+    where: { id: req.params.id },
+    include: [db.Stats, db.FoodLog],
+  })
+    .then((user) => res.json(user))
+    .catch((err) => res.send(err));
+});
+
+router.patch("/update", (req, res) => {
+  db.User.update(
+    {
+      userName: req.body.userName,
+      email: req.body.email,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+    },
+    { where: { id: req.body.UserId } }
+  )
+    .then(() => res.send("Success!"))
+    .catch((err) => res.send(err));
+});
+
 module.exports = router;

@@ -30,7 +30,7 @@ export default function Nav(props) {
               MERN Health Tracker - My Exercise Rest Nutrition Health Tracker
             </Link>
           </Typography>
-          <AuthOptions />
+          <AuthOptions></AuthOptions>
         </Toolbar>
       </AppBar>
     </header>
