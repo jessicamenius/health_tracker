@@ -12,13 +12,10 @@ router.get("/food/:food/:qty/:unit", (req, res) => {
   );
 });
 
-<<<<<<< HEAD
-=======
 router.get("/food/autocomplete/:str", (req, res) => {
   autoComplete(req.params.str)
     .then((response) => res.json(response.data))
     .catch((err) => res.send(err));
 });
->>>>>>> 97cacddd4fa4d13dffc8db68c0091581fd648465
 
 module.exports = router;

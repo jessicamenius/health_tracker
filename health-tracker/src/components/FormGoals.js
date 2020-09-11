@@ -21,7 +21,6 @@ import CardResult from "./CardResult";
 
 const FormGoals = () => {
   let objUserStats = {};
-
   const useStyles = makeStyles((theme) => ({
     root: {
       "& > *": {
@@ -69,10 +68,12 @@ const FormGoals = () => {
   const [status, setStatusBase] = useState("");
   const [value, setValue] = useState("Metric");
 
-  console.log(value);
-  const submitBMIAndBMR = async (e) => {
+
+  const submitBMIAndBMR = (e) => {
     e.preventDefault();
     // function that calculate the BMI of the use and keep the data
+    let bmi;
+    let bmr;
     if (
       height !== 0 &&
       weight !== 0 &&
@@ -80,17 +81,40 @@ const FormGoals = () => {
       gender !== "" &&
       validate
     ) {
+      //  [weight (kg) / height (cm) / height (cm)] x 10,000
 
-      let bmi = (703 * weight) / Math.pow(height, 2);
-      setResultBMI(bmi);
-      let bmr;
-      if (gender.toLowerCase() === "M") {
-        bmr = 88.362 + 13.397 * weight + 4.799 * height - 5.677 * age;
-        setResultBMR(bmr);
+      if (value === "Metric") {
+        console.log(value);
+        bmi = (weight / height / height) * 10000;
+        setResultBMI(bmi);
+        //  Metric BMR Formula Women: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)
+        // Men: BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) 
+        console.log(gender);
+        if (gender.toUpperCase() === "M") {
+          console.log(gender);
+          console.log(value);
+          bmr = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+          setResultBMR(bmr);
+        } else {
+          bmr = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age)
+          setResultBMR(bmr);
+        }
       } else {
-        bmr = 447.593 + 9.247 * weight + 3.098 * height - 4.33 * age;
-        setResultBMR(bmr);
+        // [weight (lb) / height (in) / height (in)] x 703
+        let bmi = ((weight / height) / height) * 703;
+        setResultBMI(bmi);
+        // Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
+        // Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
+        let bmr;
+        if (gender.toLowerCase() === "M") {
+          bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
+          setResultBMR(bmr);
+        } else {
+          bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age)
+          setResultBMR(bmr);
+        }
       }
+
       // Need to get the UserID from the page
       objUserStats = {
         height: height,
@@ -115,8 +139,6 @@ const FormGoals = () => {
     renderElement = (
       <div>
         <Fade in>
-
-
           <h2
             style={{
               textAlign: "center",

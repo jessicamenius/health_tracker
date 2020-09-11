@@ -14,8 +14,6 @@ import Container from "@material-ui/core/Container";
 import { FadeTransform } from "react-animation-components";
 
 const LoginCom = () => {
-  const url =
-    "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),

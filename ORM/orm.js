@@ -32,10 +32,6 @@ const getNutrients = (id, qty, unit) => {
   });
 };
 
-<<<<<<< HEAD
-
-module.exports = { getFood, getNutrients };
-=======
 const autoComplete = (str) => {
   return new Promise((resolve, reject) => {
     axios({
@@ -48,4 +44,3 @@ const autoComplete = (str) => {
 };
 
 module.exports = { getFood, getNutrients, autoComplete };
->>>>>>> 97cacddd4fa4d13dffc8db68c0091581fd648465

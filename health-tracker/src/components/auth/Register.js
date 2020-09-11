@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../../misc/ErrorNotice";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -33,7 +32,6 @@ export default function Register() {
 
   const submit = async (e) => {
     e.preventDefault();
-
     try {
       const newUser = {
         email,
@@ -51,7 +49,7 @@ export default function Register() {
       });
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/usergoals");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
@@ -78,11 +76,6 @@ export default function Register() {
   }));
 
   const classes = useStyles();
-
-  function register(e) {
-    e.preventDefault();
-    console.log(firstName, lastName, userName, email, password, passwordCheck);
-  }
 
   return (
     <Transform
@@ -182,18 +175,18 @@ export default function Register() {
                   onChange={(e) => setPasswordCheck(e.target.value)}
                 />
               </Grid>
-              <Link href="/userGoals" variant="body2">
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={submit}
-                >
-                  REGISTER
+              {/* <Link href="/userGoals" variant="body2">
+               
+              </Link> */}
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={submit}
+              >
+                REGISTER
                 </Button>
-              </Link>
-
               <Grid container justify="flex-end">
                 <Grid item>
                   <Link href="/login" variant="body2">

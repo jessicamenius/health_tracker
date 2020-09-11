@@ -4,9 +4,10 @@ import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
 import TableUser from '../components/TableUser';
 import API from '../utils/API'
-
+import { useHistory } from "react-router-dom";
 const Dashboard = () => {
-
+    const history = useHistory();
+    console.log(history);
     const useStyles = makeStyles((theme) => ({
         root: {
             textAlign: "center",

@@ -1,6 +1,5 @@
 import React from 'react'
 import { PieChart, Pie, Cell } from 'recharts'
-import Tooltip from '@material-ui/core/Tooltip';
 const Chart = (props) => {
     console.log(props.foodLog);
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -9,13 +8,13 @@ const Chart = (props) => {
     let protein = 0;
     let fat = 0;
     let calories = 0;
-    for (let i = props.foodLog.length - 1; i > 7; i--) {
+    for (let i = 0; i < props.foodLog.length - 1; i++) {
         carbs += props.foodLog[i].carbs;
         protein += props.foodLog[i].protein;
         fat += props.foodLog[i].fat;
         calories += props.foodLog[i].calories;
     }
-    const foodArr = [{ name: 'Carbs', value: 400 }, { name: 'Protein', value: 200 }, { name: 'Fat', value: 100 }]
+    const foodArr = [{ name: 'Carbs', value: carbs }, { name: 'Protein', value: protein }, { name: 'Fat', value: fat }]
     const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -24,12 +23,9 @@ const Chart = (props) => {
             <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
                 {`${(percent * 100).toFixed(0)}%`
                 }
-
             </text>
         );
-
     };
-
     return (
         <div style={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
             <PieChart width={600} height={300}>
