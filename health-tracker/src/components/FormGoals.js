@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -11,7 +11,11 @@ import AlertMessage from "../components/AlertMessage";
 // Men: BMR = 88.362 + (13.397 x weight in kg) + (4.799 x height in cm) - (5.677 x age in years)
 // Women: BMR = 447.593 + (9.247 x weight in kg) + (3.098 x height in cm) - (4.330 x age in years)
 
-const FormGoals = () => {
+const FormGoals = (props) => {
+  useEffect(() => {
+    console.log(props);
+  }, []);
+
   let objUserStats = {};
   const useStyles = makeStyles((theme) => ({
     root: {
