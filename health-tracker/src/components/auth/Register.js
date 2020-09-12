@@ -51,7 +51,7 @@ export default function Register() {
       });
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/usergoals");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
     }
