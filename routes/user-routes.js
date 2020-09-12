@@ -45,19 +45,13 @@ router.post("/register", async (req, res) => {
 
     if (!userName) userName = email;
 
-    // const salt = await bcrypt.genSalt();
-    // const passwordHash = await bcrypt.hash(password, salt);
-    // console.log(passwordHash);
-
-    let newUser = db.User.create({
+    let newUser = await db.User.create({
       email,
       password,
       userName,
       firstName,
       lastName,
     });
-    // const savedUser = await newUser.save();
-    console.log(newUser);
     res.json(newUser);
   } catch (err) {
     res.status(500).json({ error: err.message });

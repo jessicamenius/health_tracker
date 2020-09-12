@@ -45,17 +45,20 @@ export default function Register() {
 
       console.log(newUser);
 
-      await Axios.post("http://localhost:5000/users/register", newUser);
+      const userResponse = await Axios.post("/users/register", newUser);
+
       const loginRes = await Axios.post("http://localhost:5000/users/login", {
-        email,
-        password,
+        email: userResponse.data.email,
+        password: newUser.password,
       });
+
+      console.log(loginRes.data);
+
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/usergoals");
     } catch (err) {
       console.log(err);
-      err.response.data.msg && setError(err.response.data.msg);
     }
   };
 
@@ -181,7 +184,7 @@ export default function Register() {
                 onChange={(e) => setPasswordCheck(e.target.value)}
               />
             </Grid>
-            <Link href="/userGoals" variant="body2">
+            <Link variant="body2">
               <Button
                 fullWidth
                 variant="contained"
