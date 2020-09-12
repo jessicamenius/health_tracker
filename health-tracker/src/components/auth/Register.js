@@ -30,7 +30,6 @@ export default function Register() {
 
   const submit = async (e) => {
     e.preventDefault();
-
     try {
       const newUser = {
         email,
@@ -82,17 +81,8 @@ export default function Register() {
 
   const classes = useStyles();
 
-  function register(e) {
-    e.preventDefault();
-    console.log(firstName, lastName, userName, email, password, passwordCheck);
-  }
-
   return (
-    // <Transform
-    //   enterTransform="translateX(100px)"
-    //   exitTransform="translateX(500px)"
-    //   in
-    // >
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -205,6 +195,5 @@ export default function Register() {
 
       <Box mt={5}>{/* <Copyright /> */}</Box>
     </Container>
-    // </Transform>
   );
 }
