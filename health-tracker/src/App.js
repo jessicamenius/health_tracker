@@ -10,7 +10,6 @@ import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
 import UserGoals from "./pages/UserGoals";
 import UserContext from "./context/UserContext";
-
 import "./App.css";
 
 export default function App() {
@@ -32,7 +31,6 @@ export default function App() {
         null,
         { headers: { "x-auth-token": token } }
       );
-      // console.log(tokenRes.data);
       if (tokenRes.data) {
         const userRes = await Axios.get("http://localhost:5000/users/", {
           headers: { "x-auth-token": token },
@@ -57,14 +55,14 @@ export default function App() {
               <Route path="/register">
                 <RegisterPage userData={userData} />
               </Route>
-              <Route path="/usergoals">
-                <UserGoals userData={userData} />
-              </Route>
               <Route path="/login">
                 <Login userData={userData} setUserData={setUserData} />
               </Route>
               <Route path="/dashboard">
                 <Dashboard userData={userData} />
+              </Route>
+              <Route path="/usergoals">
+                <UserGoals userData={userData} />
               </Route>
             </Switch>
             <Footer />
