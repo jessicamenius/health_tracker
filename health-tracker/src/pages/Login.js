@@ -1,5 +1,6 @@
 import React from "react";
 import LoginCom from "../components/auth/LoginCom";
+
 const Login = (props) => {
   return (
     <div>
@@ -7,4 +8,6 @@ const Login = (props) => {
     </div>
   );
 };
+
 export default Login;
+
