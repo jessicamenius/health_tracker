@@ -17,9 +17,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { FadeTransform } from "react-animation-components";
 
-<<<<<<< HEAD:health-tracker/src/components/auth/Login.js
-const LoginCom = () => {
-=======
 export default function LoginCom(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -55,7 +52,6 @@ export default function LoginCom(props) {
 
   const url =
     "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
->>>>>>> 3e98781e69719389170c2ea8a1e379311364969c:health-tracker/src/components/auth/LoginCom.js
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),

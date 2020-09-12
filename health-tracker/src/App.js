@@ -61,6 +61,9 @@ export default function App() {
               <Route path="/dashboard">
                 <Dashboard userData={userData} />
               </Route>
+              <Route path="/usergoals">
+                <UserGoals userData={userData} />
+              </Route>
             </Switch>
             <Footer />
           </Box>

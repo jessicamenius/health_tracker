@@ -82,113 +82,7 @@ export default function Register() {
   const classes = useStyles();
 
   return (
-<<<<<<< HEAD
-    <Transform
-      enterTransform="translateX(100px)"
-      exitTransform="translateX(500px)"
-      in
-    >
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          {error && (
-            <ErrorNotice
-              message={error}
-              clearError={() => setError(undefined)}
-            />
-          )}
-          <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="userName"
-                  label="User Name"
-                  name="userName"
-                  autoComplete="user-name"
-                  onChange={(e) => setUserName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="passwordCheck"
-                  label="Verify password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={(e) => setPasswordCheck(e.target.value)}
-                />
-              </Grid>
-              {/* <Link href="/userGoals" variant="body2">
-               
-              </Link> */}
-=======
-    // <Transform
-    //   enterTransform="translateX(100px)"
-    //   exitTransform="translateX(500px)"
-    //   in
-    // >
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -277,7 +171,6 @@ export default function Register() {
                 autoComplete="current-password"
                 onChange={(e) => setPasswordCheck(e.target.value)}
               />
->>>>>>> 3e98781e69719389170c2ea8a1e379311364969c
               <Button
                 fullWidth
                 variant="contained"
@@ -286,15 +179,6 @@ export default function Register() {
                 onClick={submit}
               >
                 REGISTER
-<<<<<<< HEAD
-                </Button>
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link href="/login" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
-=======
               </Button>
             </Grid>
 
@@ -303,7 +187,6 @@ export default function Register() {
                 <Link href="/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
->>>>>>> 3e98781e69719389170c2ea8a1e379311364969c
               </Grid>
             </Grid>
           </Grid>
@@ -312,6 +195,5 @@ export default function Register() {
 
       <Box mt={5}>{/* <Copyright /> */}</Box>
     </Container>
-    // </Transform>
   );
 }
