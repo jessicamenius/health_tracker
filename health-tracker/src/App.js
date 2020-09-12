@@ -55,7 +55,10 @@ export default function App() {
                 <Landing userData={userData} />
               </Route>
               <Route path="/register">
-                <Register userData={userData} />
+                <RegisterPage userData={userData} />
+              </Route>
+              <Route path="/usergoals">
+                <UserGoals userData={userData} />
               </Route>
               <Route path="/login">
                 <Login userData={userData} setUserData={setUserData} />
