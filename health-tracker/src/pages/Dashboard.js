@@ -31,6 +31,8 @@ const Dashboard = (props) => {
     },
   }));
 
+  // console.log(value);
+
   const classes = useStyles();
 
   console.log("props.user in dashboard", props.user);
