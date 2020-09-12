@@ -3,13 +3,10 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../../misc/ErrorNotice";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -17,7 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Transform } from "react-animation-components";
+// import { Transform } from "react-animation-components";
 
 export default function Register() {
   const [email, setEmail] = useState();
@@ -43,17 +40,23 @@ export default function Register() {
         firstName,
         lastName,
       };
+
       console.log(newUser);
-      await Axios.post("/users/register", newUser);
-      const loginRes = await Axios.post("/users/login", {
-        email,
-        password,
+
+      const userResponse = await Axios.post("/users/register", newUser);
+
+      const loginRes = await Axios.post("http://localhost:5000/users/login", {
+        email: userResponse.data.email,
+        password: newUser.password,
       });
+
+      console.log(loginRes.data);
+
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/usergoals");
     } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+      console.log(err);
     }
   };
 
@@ -85,128 +88,123 @@ export default function Register() {
   }
 
   return (
-    <Transform
-      enterTransform="translateX(100px)"
-      exitTransform="translateX(500px)"
-      in
-    >
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
-          {error && (
-            <ErrorNotice
-              message={error}
-              clearError={() => setError(undefined)}
-            />
-          )}
-          <form className={classes.form} noValidate>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="userName"
-                  label="User Name"
-                  name="userName"
-                  autoComplete="user-name"
-                  onChange={(e) => setUserName(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="passwordCheck"
-                  label="Verify password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={(e) => setPasswordCheck(e.target.value)}
-                />
-              </Grid>
-              <Link href="/userGoals" variant="body2">
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={submit}
-                >
-                  REGISTER
-                </Button>
-              </Link>
+    // <Transform
+    //   enterTransform="translateX(100px)"
+    //   exitTransform="translateX(500px)"
+    //   in
+    // >
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        {error && (
+          <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        )}
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                // required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                // required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                // required
+                fullWidth
+                id="userName"
+                label="User Name"
+                name="userName"
+                autoComplete="user-name"
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="passwordCheck"
+                label="Verify password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={(e) => setPasswordCheck(e.target.value)}
+              />
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={submit}
+              >
+                REGISTER
+              </Button>
+            </Grid>
 
-              <Grid container justify="flex-end">
-                <Grid item>
-                  <Link href="/login" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
-                </Grid>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Link href="/login" variant="body2">
+                  Already have an account? Sign in
+                </Link>
               </Grid>
             </Grid>
-          </form>
-        </div>
+          </Grid>
+        </form>
+      </div>
 
-        <Box mt={5}>{/* <Copyright /> */}</Box>
-      </Container>{" "}
-    </Transform>
+      <Box mt={5}>{/* <Copyright /> */}</Box>
+    </Container>
+    // </Transform>
   );
 }

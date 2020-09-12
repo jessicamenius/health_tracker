@@ -1,11 +1,10 @@
-import React from 'react'
-import LoginCom from '../components/auth/Login'
-const Login = () => {
-    return (
-        <div>
-            <LoginCom />
-        </div>
-    )
-}
+import React from "react";
+import LoginCom from "../components/auth/LoginCom";
 
-export default Login
+export default Login = (props) => {
+  return (
+    <div>
+      <LoginCom userData={props.userData} setUserData={props.setUserData} />
+    </div>
+  );
+};
