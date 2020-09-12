@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../context/UserContext";
+import Axios from "axios";
+import ErrorNotice from "../../misc/ErrorNotice";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,7 +17,45 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { FadeTransform } from "react-animation-components";
 
+<<<<<<< HEAD:health-tracker/src/components/auth/Login.js
 const LoginCom = () => {
+=======
+export default function LoginCom(props) {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
+
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
+
+  useEffect(() => {
+    console.log(props);
+  }, []);
+
+  const submit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const loginUser = { email, password };
+      const loginRes = await Axios.post(
+        "http://localhost:5000/users/login",
+        loginUser
+      );
+
+      props.setUserData({
+        token: loginRes.data.token,
+        user: loginRes.data.user,
+      });
+      localStorage.setItem("auth-token", loginRes.data.token);
+      history.push("/dashboard");
+    } catch (err) {
+      err.response.msg && setError(err.response.msg);
+    }
+  };
+
+  const url =
+    "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
+>>>>>>> 3e98781e69719389170c2ea8a1e379311364969c:health-tracker/src/components/auth/LoginCom.js
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -34,6 +76,7 @@ const LoginCom = () => {
     },
   }));
   const classes = useStyles();
+
   return (
     <FadeTransform
       in
@@ -54,6 +97,12 @@ const LoginCom = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            {error && (
+              <ErrorNotice
+                message={error}
+                clearError={() => setError(undefined)}
+              />
+            )}
             <form className={classes.form} Validate>
               <TextField
                 variant="outlined"
@@ -65,6 +114,7 @@ const LoginCom = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="outlined"
@@ -76,6 +126,7 @@ const LoginCom = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <FormControlLabel
@@ -88,6 +139,7 @@ const LoginCom = () => {
                   variant="contained"
                   color="primary"
                   className={classes.submit}
+                  onClick={submit}
                 >
                   LOGIN
                 </Button>
@@ -110,5 +162,4 @@ const LoginCom = () => {
       </div>{" "}
     </FadeTransform>
   );
-};
-export default LoginCom;
+}

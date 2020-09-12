@@ -1,9 +1,9 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const db = require("../models");
-var jwtOptions = {};
-jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
-jwtOptions.secretOrKey = process.env.JWT_SECRET;
+// var jwtOptions = {};
+// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+// jwtOptions.secretOrKey = process.env.JWT_SECRET;
 
 passport.use(
   new LocalStrategy(

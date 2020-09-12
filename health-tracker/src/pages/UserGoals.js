@@ -1,12 +1,12 @@
-import React from 'react'
-import FormGoals from '../components/FormGoals'
+import React from "react";
+import FormGoals from "../components/FormGoals";
 
-const UserGoals = () => {
-    return (
-        <div>
-            <FormGoals />
-        </div>
-    )
-}
+const UserGoals = (props) => {
+  return (
+    <div>
+      <FormGoals userData={props.userData} />
+    </div>
+  );
+};
 
-export default UserGoals
+export default UserGoals;
