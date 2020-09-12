@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Typography, Toolbar, Button } from "@material-ui/core";
+import { AppBar, Typography, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import "../App.css";
