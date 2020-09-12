@@ -30,7 +30,6 @@ export default function Register() {
 
   const submit = async (e) => {
     e.preventDefault();
-
     try {
       const newUser = {
         email,
@@ -43,17 +42,20 @@ export default function Register() {
 
       console.log(newUser);
 
-      await Axios.post("http://localhost:5000/users/register", newUser);
+      const userResponse = await Axios.post("/users/register", newUser);
+
       const loginRes = await Axios.post("http://localhost:5000/users/login", {
-        email,
-        password,
+        email: userResponse.data.email,
+        password: newUser.password,
       });
+
+      console.log(loginRes.data);
+
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/");
+      history.push("/usergoals");
     } catch (err) {
       console.log(err);
-      err.response.data.msg && setError(err.response.data.msg);
     }
   };
 
@@ -79,17 +81,8 @@ export default function Register() {
 
   const classes = useStyles();
 
-  function register(e) {
-    e.preventDefault();
-    console.log(firstName, lastName, userName, email, password, passwordCheck);
-  }
-
   return (
-    // <Transform
-    //   enterTransform="translateX(100px)"
-    //   exitTransform="translateX(500px)"
-    //   in
-    // >
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -178,17 +171,15 @@ export default function Register() {
                 autoComplete="current-password"
                 onChange={(e) => setPasswordCheck(e.target.value)}
               />
-              <Link href="/userGoals" variant="body2">
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={submit}
-                >
-                  REGISTER
-                </Button>
-              </Link>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={submit}
+              >
+                REGISTER
+              </Button>
             </Grid>
 
             <Grid container justify="flex-end">
@@ -204,6 +195,5 @@ export default function Register() {
 
       <Box mt={5}>{/* <Copyright /> */}</Box>
     </Container>
-    // </Transform>
   );
 }

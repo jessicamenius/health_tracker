@@ -8,11 +8,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const TableUser = () => {
-
+const TableUser = (props) => {
     const useStyles = makeStyles({
         table: {
-            minWidth: 300,
+            minWidth: 650,
         },
     });
 
@@ -20,29 +19,20 @@ const TableUser = () => {
         return { name, calories, fat, carbs, protein, weight, height, gender };
     }
 
-    const rows = [
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 85, 180, "Man"),
-    ];
-    const classes = useStyles();
-
-    return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell >User Profile</TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                        <TableCell align="right">Weight&nbsp;(Kg)</TableCell>
-                        <TableCell align="right">Height&nbsp;(cn)</TableCell>
-                        <TableCell align="right">Gender&nbsp;</TableCell>
-                    </TableRow>
-                </TableHead>
+    let rows = [];
+    let table;
+    if (props.isUser) {
+        if (props.foodLog.length > 0) {
+            for (let i = 0; i < props.isUser.FoodLogs.length - 1; i++) {
+                rows.push(createData(props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
+            }
+            table = (
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.name}>
+                    {rows.map((row, index) => (
+                        <TableRow key={index}>
+                            <TableCell component="th" scope="row">
+                                <button>Click ME</button>
+                            </TableCell>
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
@@ -50,20 +40,41 @@ const TableUser = () => {
                             <TableCell align="right">{row.fat}</TableCell>
                             <TableCell align="right">{row.carbs}</TableCell>
                             <TableCell align="right">{row.protein}</TableCell>
-                            <TableCell align="right">{row.weight}</TableCell>
                             <TableCell align="right">{row.height}</TableCell>
+                            <TableCell align="right">{row.weight}</TableCell>
                             <TableCell align="right">{row.gender}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
+            )
+        }
+    }
+
+    const classes = useStyles();
+
+    return (
+        <TableContainer component={Paper}>
+            <Table className={classes.table} size="small" aria-label="a dense table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell></TableCell>
+                        <TableCell>Food Name </TableCell>
+                        <TableCell align="right">Calories</TableCell>
+                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
+                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                        <TableCell align="right">Height&nbsp;</TableCell>
+                        <TableCell align="right">Weight&nbsp;</TableCell>
+                        <TableCell align="right">Gender&nbsp;</TableCell>
+                    </TableRow>
+                </TableHead>
+                {props.foodLog.length > 0 ? table : null}
             </Table>
         </TableContainer>
     );
 }
 
 export default TableUser
-
-
 
 
 
