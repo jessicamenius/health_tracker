@@ -51,28 +51,18 @@ export default function App() {
           <Box>
             <Nav />
             <Switch>
-              <Route
-                exact
-                path="/"
-                userData={userData}
-                component={Landing}
-              ></Route>
-              <Route
-                path="/register"
-                userData={userData}
-                component={RegisterPage}
-              ></Route>
-              <Route path="/usergoals">
-                <UserGoals userData={userData} />
+              <Route exact path="/">
+                <Landing userData={userData} />
+              </Route>
+              <Route path="/register">
+                <Register userData={userData} />
               </Route>
               <Route path="/login">
                 <Login userData={userData} setUserData={setUserData} />
               </Route>
-              <Route
-                path="/dashboard"
-                userData={userData}
-                component={Dashboard}
-              ></Route>
+              <Route path="/dashboard">
+                <Dashboard userData={userData} />
+              </Route>
             </Switch>
             <Footer />
           </Box>
