@@ -4,7 +4,7 @@ import FormSearch from "../components/FormSearch";
 import Chart from "../components/Chart";
 import TableUser from "../components/TableUser";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -30,6 +30,8 @@ const Dashboard = () => {
       flexDirection: "row",
     },
   }));
+
+  // console.log(value);
 
   const classes = useStyles();
   return (
