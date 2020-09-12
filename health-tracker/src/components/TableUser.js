@@ -21,7 +21,6 @@ const TableUser = (props) => {
 
     let rows = [];
     let table;
-    console.log(props.isUser.FoodLogs)
     if (props.isUser) {
         if (props.foodLog.length > 0) {
             for (let i = 0; i < props.isUser.FoodLogs.length - 1; i++) {

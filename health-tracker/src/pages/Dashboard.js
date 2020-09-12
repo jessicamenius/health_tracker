@@ -4,10 +4,9 @@ import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
 import TableUser from '../components/TableUser';
 import API from '../utils/API'
-import { useHistory } from "react-router-dom";
+
 const Dashboard = () => {
-    const history = useHistory();
-    console.log(history);
+
     const useStyles = makeStyles((theme) => ({
         root: {
             textAlign: "center",
@@ -54,13 +53,11 @@ const Dashboard = () => {
     }, [])
 
     const eventSubmitBtn = (foodName, amount, volume) => {
-        API.getNutrients("egg", amount, volume).then(res => {
+        API.getNutrients(foodName, amount, volume).then(res => {
             // need to get the user id from the auth
-            console.log(foodLog);
-            console.log(flag)
             if (foodLog.length > 0) {
 
-                let id = foodLog[foodLog.length - 1].id + 1;
+                let id = + foodLog[foodLog.length - 1].id + 1;
                 let objFood = {
                     id: id,
                     foodName: foodName,
@@ -74,7 +71,6 @@ const Dashboard = () => {
                 foodLog.push(objFood);
                 setFoodLog([...foodLog]);
             } else {
-
                 let id = 1;
                 let objFood = {
                     id: id,
