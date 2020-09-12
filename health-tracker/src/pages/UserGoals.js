@@ -1,7 +1,7 @@
 import React from "react";
 import FormGoals from "../components/FormGoals";
 
-const UserGoals = (props) => {
+export default UserGoals = (props) => {
   return (
     <div>
       <FormGoals userData={props.userData} />
