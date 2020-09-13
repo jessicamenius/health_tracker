@@ -10,7 +10,7 @@ const Dashboard = (props) => {
   const [isUser, setIsUser] = useState("");
   const [foodLog, setFoodLog] = useState([]);
   const [flag, setFlag] = useState(false);
-
+  const user = props.userData;
   const useStyles = makeStyles((theme) => ({
     root: {
       textAlign: "center",
@@ -94,7 +94,7 @@ const Dashboard = (props) => {
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>Welcome to Our Dashboard</h1>
       <div className={classes.left}>
         {
-          flag ? <TableUser isUser={isUser} foodLog={foodLog} /> : null
+          flag ? <TableUser isUser={isUser} foodLog={[...foodLog]} user={user} /> : null
         }
 
       </div>
@@ -103,7 +103,7 @@ const Dashboard = (props) => {
       </div>
       <div className={classes.right}>
         {
-          flag ? <Chart foodLog={foodLog} isUser={isUser} /> : null
+          flag ? <Chart foodLog={[...foodLog]} isUser={isUser} /> : null
         }
       </div>
     </div>

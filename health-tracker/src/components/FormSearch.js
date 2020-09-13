@@ -6,11 +6,10 @@ import { Button, Select } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import API from '../utils/API'
 import AlertMessage from '../components/AlertMessage'
-
 const FormSearch = (props) => {
 
   const [measure, setMeasure] = useState('Pounds');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [searchFood, setSearchFood] = useState("");
   const [arrayFood, setArrayFood] = useState([]);
   const [flag, setFlag] = useState(false);
@@ -21,7 +20,7 @@ const FormSearch = (props) => {
     setAmount(e.target.value);
   }
   const measureInput = (e) => {
-    setMeasure(e.target.value)
+    setMeasure(e.target.value);
   }
 
   const onKeyPress = (e) => {
@@ -34,6 +33,7 @@ const FormSearch = (props) => {
         setArrayFood([...arrayInput]);
       });
     }
+
   }
   const onSave = (event, newValue) => {
     setSearchFood(newValue);
@@ -44,6 +44,9 @@ const FormSearch = (props) => {
 
     if (searchFood !== "" && amount !== "" && measure !== "") {
       props.eventSubmitBtn(searchFood, amount, measure);
+      setMeasure("");
+      setAmount("");
+      setSearchFood("");
     } else {
       setFlag(true);
       setStatusBase({ msg: "Error - Invalid Input", key: Math.random() });
@@ -67,36 +70,42 @@ const FormSearch = (props) => {
   <MenuItem value={"teaspoon"}>Teaspoon</MenuItem>];
 
   return (
-    <FormControl variant="outlined" style={{ marginRight: "50px" }} >
-      <Autocomplete
-        options={arrayFood}
-        id="controlled-demo"
-        value={searchFood}
-        getOptionLabel={(option) => option}
-        onKeyUp={onKeyPress}
-        onChange={onSave}
-        renderInput={(params) => <TextField {...params} label="selectOnFocus" margin="normal" />}
-        style={{ marginBottom: "25px", width: "500px" }}
-      />
-      <TextField
-        id="outlined-number"
-        variant="outlined"
-        className="mb-4"
-        onChange={numInput}
-        style={{ marginBottom: "25px", width: "500px" }}
-      />
-      <Select
-        value={measure}
-        onChange={measureInput}
-        style={{ marginBottom: "25px" }} >
-        {arr}
-      </Select>
-      <Button onClick={submit} variant="contained" color="primary">Submit
+    <div>
+      <FormControl variant="outlined" style={{ marginRight: "50px" }} >
+        <Autocomplete
+          options={arrayFood}
+          id="controlled-demo"
+          value={searchFood}
+          getOptionLabel={(option) => option}
+          onKeyUp={onKeyPress}
+          onChange={onSave}
+          renderInput={(params) => <TextField {...params} label="selectOnFocus" margin="normal" />}
+          style={{ marginBottom: "25px", width: "500px" }}
+        />
+        <TextField
+          id="outlined-number"
+          variant="outlined"
+          value={amount}
+          className="mb-4"
+          onChange={numInput}
+          style={{ marginBottom: "25px", width: "500px" }}
+        />
+        <Select
+          value={measure}
+          onChange={measureInput}
+          style={{ marginBottom: "25px" }} >
+          {arr}
+        </Select>
+        <Button onClick={submit} variant="contained" color="primary">Submit
             {flag ? (
-          <AlertMessage key={status.key} message={status.msg} />
-        ) : null}
-      </Button>
-    </FormControl>
+            <AlertMessage key={status.key} message={status.msg} />
+          ) : null}
+        </Button>
+      </FormControl>
+
+
+    </div>
+
   )
 }
 

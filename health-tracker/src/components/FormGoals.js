@@ -21,9 +21,9 @@ import CardResult from "./CardResult";
 
 const FormGoals = (props) => {
 
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [age, setAge] = useState(0);
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [age, setAge] = useState("");
   const [gender, setGender] = useState("Male");
   const [answer, setAnswer] = useState(false);
   const [resultBMI, setResultBMI] = useState(0);
@@ -135,6 +135,9 @@ const FormGoals = (props) => {
       };
       API.setStats(objUserStats);
       setAnswer(true);
+      setWeight("");
+      setHeight("");
+      setAge("");
     } else {
       setAnswer(false);
       setStatusBase({ msg: "Error - Invalid Input", key: Math.random() });
@@ -171,6 +174,7 @@ const FormGoals = (props) => {
               id="standard-secondary"
               label="Enter height"
               variant="outlined"
+              value={height}
               style={{ marginBottom: "20px" }}
               onChange={(e) => {
                 var hasNumber = /\d/;
@@ -187,6 +191,7 @@ const FormGoals = (props) => {
               id="filled-secondary"
               label="Enter weight"
               variant="outlined"
+              value={height}
               style={{ marginBottom: "20px" }}
               onChange={(e) => {
                 var hasNumber = /\d/;
@@ -202,6 +207,7 @@ const FormGoals = (props) => {
               id="outlined-secondary"
               label="Enter age"
               variant="outlined"
+              value={age}
               style={{ marginBottom: "20px" }}
               onChange={(e) => {
                 var hasNumber = /\d/;
