@@ -39,16 +39,21 @@ const Dashboard = (props) => {
   useEffect(() => {
     idUser = props.userData.user.id;
     API.getOneUser(idUser).then(res => {
+
+      console.log(res.data);
       if (res.data !== null) {
         let foodLogs = res.data.FoodLogs;
         let data = res.data;
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
-          setFlag(true)
+          setFlag(true);
+        } else {
+          let data = res.data;
+          setIsUser(data);
+          setFlag(false);
         }
-      } else {
-        setFlag(false)
+
       }
     });
   }, [props.userData])
@@ -56,6 +61,8 @@ const Dashboard = (props) => {
 
   const eventSubmitBtn = (foodName, amount, volume) => {
     API.getNutrients(foodName, amount, volume).then(res => {
+
+
       if (foodLog.length > 0) {
         let id = + foodLog[foodLog.length - 1].id + 1;
         let objFood = {
@@ -71,6 +78,7 @@ const Dashboard = (props) => {
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
       } else {
+        console.log("inisde the else after api call");
         let id = 1;
         let objFood = {
           id: id,
@@ -81,6 +89,8 @@ const Dashboard = (props) => {
           calories: res.data.calories,
           UserId: props.userData.user.id
         }
+        setFlag(true);
+        console.log(isUser);
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
