@@ -4,7 +4,6 @@ import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
 import TableUser from '../components/TableUser';
 import API from '../utils/API'
-import Footer from '../components/Footer';
 
 const Dashboard = (props) => {
 
@@ -28,22 +27,21 @@ const Dashboard = (props) => {
       // height: "auto"
     },
     center: {
-      display: "inline-block",
+      display: "inline",
       flexDirection: "row",
-      marginLeft: "30px"
+      marginLeft: "30px",
+      justifyContent: "center"
     }
   }));
 
 
   let idUser;
   useEffect(() => {
-    console.log(props.userData);
     idUser = props.userData.user.id;
     API.getOneUser(idUser).then(res => {
       if (res.data !== null) {
         let foodLogs = res.data.FoodLogs;
         let data = res.data;
-        console.log(data)
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
@@ -53,7 +51,6 @@ const Dashboard = (props) => {
           setIsUser(data);
           setFlag(false);
         }
-
       }
     });
   }, [props.userData])
@@ -104,20 +101,19 @@ const Dashboard = (props) => {
 
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <div className={classes.center}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
         Welcome to Our Dashboard {isUser.userName}
       </h1>
-      <div className={classes.left}>
+      <div >
         {
           flag ? <TableUser isUser={isUser} foodLog={[...foodLog]} user={user} deleteFood={deleteFood} /> : null
         }
-
       </div>
-      <div className={classes.center}>
+      <div >
         <FormSearch eventSubmitBtn={eventSubmitBtn} />
       </div>
-      <div className={classes.right}>
+      <div >
         {
           flag ? <Chart foodLog={[...foodLog]} isUser={isUser} /> : null
         }

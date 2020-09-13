@@ -69,7 +69,7 @@ const FormSearch = (props) => {
   <MenuItem value={"teaspoon"}>Teaspoon</MenuItem>];
 
   return (
-    <div>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       <FormControl variant="outlined" style={{ marginRight: "50px" }} >
         <Autocomplete
           options={arrayFood}

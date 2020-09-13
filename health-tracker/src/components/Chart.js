@@ -27,7 +27,7 @@ const Chart = (props) => {
         );
     };
     return (
-        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
             <PieChart width={200} height={200}>
                 <Pie
                     data={foodArr}
@@ -46,7 +46,7 @@ const Chart = (props) => {
                     }
                 </Pie>
             </PieChart>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ marginTop: "30px" }}>
                 <ul>
                     <li>Blue Color 🍞 :Carbs {carbs} </li>
                     <li>Green Color 🥩 :Protein {protein}</li>
