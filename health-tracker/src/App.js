@@ -15,7 +15,7 @@ import "./App.css";
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
-    user: "im a user",
+    user: undefined,
   });
 
   useEffect(() => {

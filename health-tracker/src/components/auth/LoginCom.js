@@ -26,7 +26,7 @@ export default function LoginCom(props) {
   const history = useHistory();
 
   useEffect(() => {
-    console.log(props);
+    console.log(props.userData);
   }, []);
 
   const submit = async (e) => {
@@ -50,8 +50,7 @@ export default function LoginCom(props) {
     }
   };
 
-  const url =
-    "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80";
+
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),

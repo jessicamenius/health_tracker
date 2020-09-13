@@ -35,15 +35,13 @@ const Dashboard = (props) => {
 
 
   let idUser;
-
   useEffect(() => {
     idUser = props.userData.user.id;
     API.getOneUser(idUser).then(res => {
-
-      console.log(res.data);
       if (res.data !== null) {
         let foodLogs = res.data.FoodLogs;
         let data = res.data;
+        console.log(data)
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
@@ -101,7 +99,9 @@ const Dashboard = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <h1 style={{ textAlign: "center", color: "#3F51B5" }}>Welcome to Our Dashboard</h1>
+      <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
+        Welcome to Our Dashboard {isUser.userName}
+      </h1>
       <div className={classes.left}>
         {
           flag ? <TableUser isUser={isUser} foodLog={[...foodLog]} user={user} /> : null
