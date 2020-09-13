@@ -23,7 +23,8 @@ const TableUser = (props) => {
     let table;
     if (props.isUser) {
         if (props.foodLog.length > 0) {
-            for (let i = 0; i < props.isUser.FoodLogs.length - 1; i++) {
+            console.log("Inside the table")
+            for (let i = 0; i < props.isUser.FoodLogs.length; i++) {
                 rows.push(createData(props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
             }
             table = (

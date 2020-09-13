@@ -20,6 +20,18 @@ import CardResult from "./CardResult";
 
 
 const FormGoals = (props) => {
+
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [age, setAge] = useState(0);
+  const [gender, setGender] = useState("Male");
+  const [answer, setAnswer] = useState(false);
+  const [resultBMI, setResultBMI] = useState(0);
+  const [resultBMR, setResultBMR] = useState(0);
+  const [validate, setValidate] = useState(false);
+  const [status, setStatusBase] = useState("");
+  const [value, setValue] = useState("Metric");
+
   useEffect(() => {
     console.log(props);
   }, []);
@@ -61,16 +73,7 @@ const FormGoals = (props) => {
       color: "white"
     }
   }));
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [age, setAge] = useState(0);
-  const [gender, setGender] = useState("Male");
-  const [answer, setAnswer] = useState(false);
-  const [resultBMI, setResultBMI] = useState(0);
-  const [resultBMR, setResultBMR] = useState(0);
-  const [validate, setValidate] = useState(false);
-  const [status, setStatusBase] = useState("");
-  const [value, setValue] = useState("Metric");
+
 
 
 
@@ -128,7 +131,7 @@ const FormGoals = (props) => {
         gender: gender,
         bmi: bmi,
         bmr: bmr,
-        UserId: 1,
+        UserId: props.userData.user.id,
       };
       API.setStats(objUserStats);
       setAnswer(true);

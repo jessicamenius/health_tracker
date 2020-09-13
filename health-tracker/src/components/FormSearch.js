@@ -6,13 +6,17 @@ import { Button, Select } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import API from '../utils/API'
 import AlertMessage from '../components/AlertMessage'
+
 const FormSearch = (props) => {
+
   const [measure, setMeasure] = useState('Pounds');
   const [amount, setAmount] = useState(0);
   const [searchFood, setSearchFood] = useState("");
   const [arrayFood, setArrayFood] = useState([]);
   const [flag, setFlag] = useState(false);
   const [status, setStatusBase] = useState("");
+
+
   const numInput = (e) => {
     setAmount(e.target.value);
   }
@@ -37,7 +41,8 @@ const FormSearch = (props) => {
   };
   const submit = (e) => {
     e.preventDefault();
-    if (searchFood > 1 && amount !== "" && measure !== "") {
+
+    if (searchFood !== "" && amount !== "" && measure !== "") {
       props.eventSubmitBtn(searchFood, amount, measure);
     } else {
       setFlag(true);

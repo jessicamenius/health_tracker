@@ -8,7 +8,7 @@ const Chart = (props) => {
     let protein = 0;
     let fat = 0;
     let calories = 0;
-    for (let i = 0; i < props.foodLog.length - 1; i++) {
+    for (let i = 0; i < props.foodLog.length; i++) {
         carbs += props.foodLog[i].carbs;
         protein += props.foodLog[i].protein;
         fat += props.foodLog[i].fat;
