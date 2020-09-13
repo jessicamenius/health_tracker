@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,47 +9,40 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const TableUser = (props) => {
-
     function createData(name, calories, fat, carbs, protein, weight, height, gender) {
         return { name, calories, fat, carbs, protein, weight, height, gender };
     }
-    const renderTable = () => {
-        let rows = [];
-        if (props.isUser) {
-            if (props.foodLog.length > 0) {
-                for (let i = 0; i < props.isUser.FoodLogs.length; i++) {
-                    rows.push(createData(props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
-                }
+    let temp = [];
+    let arrayForTable;
+    if (props.isUser) {
+        if (props.foodLog.length > 0) {
+            for (let i = 0; i < props.foodLog.length; i++) {
+                temp.push(createData(props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
             }
-        }
 
-        return rows;
-    }
-
-    const arrayForTable = renderTable();
-
-    const RenderTable = () => {
-        return arrayForTable.map((row, index) => {
-            return (
-                <TableBody>
-                    <TableRow key={index}>
-                        <TableCell component="th" scope="row">
-                            <button>Click ME</button>
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                            {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell>
-                        <TableCell align="right">{row.height}</TableCell>
-                        <TableCell align="right">{row.weight}</TableCell>
-                        <TableCell align="right">{row.gender}</TableCell>
-                    </TableRow>
-                </TableBody>
+            arrayForTable = (
+                temp.map((row, index) => (
+                    < TableBody >
+                        <TableRow key={index}>
+                            <TableCell component="th" scope="row">
+                                <button>Click ME</button>
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.calories}</TableCell>
+                            <TableCell align="right">{row.fat}</TableCell>
+                            <TableCell align="right">{row.carbs}</TableCell>
+                            <TableCell align="right">{row.protein}</TableCell>
+                            <TableCell align="right">{row.height}</TableCell>
+                            <TableCell align="right">{row.weight}</TableCell>
+                            <TableCell align="right">{row.gender}</TableCell>
+                        </TableRow>
+                    </ TableBody >
+                ))
             )
-        })
+
+        }
     }
 
     const useStyles = makeStyles({
@@ -74,7 +67,7 @@ const TableUser = (props) => {
                         <TableCell align="right">Gender&nbsp;</TableCell>
                     </TableRow>
                 </TableHead>
-                {props.foodLog.length > 0 ? <RenderTable /> : null}
+                {props.foodLog.length > 0 ? arrayForTable : null}
             </Table>
         </TableContainer>
     );
