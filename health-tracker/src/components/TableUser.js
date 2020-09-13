@@ -9,23 +9,28 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const TableUser = (props) => {
-    function createData(name, calories, fat, carbs, protein, weight, height, gender) {
-        return { name, calories, fat, carbs, protein, weight, height, gender };
+    function createData(id, name, calories, fat, carbs, protein, weight, height, gender) {
+        return { id, name, calories, fat, carbs, protein, weight, height, gender };
     }
     let temp = [];
     let arrayForTable;
     if (props.isUser) {
         if (props.foodLog.length > 0) {
             for (let i = 0; i < props.foodLog.length; i++) {
-                temp.push(createData(props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
+                temp.push(createData(props.foodLog[i].id, props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
             }
-
+            console.log(props.foodLog);
             arrayForTable = (
                 temp.map((row, index) => (
                     < TableBody >
-                        <TableRow key={index}>
+                        <TableRow key={index} id={row.id}>
                             <TableCell component="th" scope="row">
-                                <button>Click ME</button>
+                                <button onClick={(e) => {
+                                    e.preventDefault();
+                                    const idFood = e.target.id;
+                                    const idToDelete = e.target.attributes.getNamedItem('data-tag').value;
+                                    props.deleteFood(idFood, idToDelete);
+                                }} id={row.id} data-tag={index} >Click ME</button>
                             </TableCell>
                             <TableCell component="th" scope="row">
                                 {row.name}
@@ -41,9 +46,9 @@ const TableUser = (props) => {
                     </ TableBody >
                 ))
             )
-
         }
     }
+
 
     const useStyles = makeStyles({
         table: {

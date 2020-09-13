@@ -16,11 +16,14 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { FadeTransform } from "react-animation-components";
+import AlertMessage from "../AlertMessage";
 
 export default function LoginCom(props) {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [error, setError] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [status, setStatusBase] = useState("");
+
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
@@ -33,18 +36,22 @@ export default function LoginCom(props) {
     e.preventDefault();
 
     try {
-      const loginUser = { email, password };
-      const loginRes = await Axios.post(
-        "http://localhost:5000/users/login",
-        loginUser
-      );
+      if (email && password) {
+        const loginUser = { email, password };
+        const loginRes = await Axios.post(
+          "http://localhost:5000/users/login",
+          loginUser
+        );
 
-      props.setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
-      localStorage.setItem("auth-token", loginRes.data.token);
-      history.push("/dashboard");
+        props.setUserData({
+          token: loginRes.data.token,
+          user: loginRes.data.user,
+        });
+        localStorage.setItem("auth-token", loginRes.data.token);
+        history.push("/dashboard");
+      } else {
+        setStatusBase({ msg: "Error - Email && Password\n cannot be empty", key: Math.random() });
+      }
     } catch (err) {
       err.response.msg && setError(err.response.msg);
     }
@@ -128,17 +135,18 @@ export default function LoginCom(props) {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Link href="/dashboard" variant="body2">
-                <Button
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={submit}
-                >
-                  LOGIN
-                </Button>
-              </Link>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={submit}
+              >
+                LOGIN
+                {status ? (
+                  <AlertMessage key={status.key} message={status.msg} />
+                ) : null}
+              </Button>
               <Grid container>
                 <Grid item xs>
                   <Link href="/" variant="body2">

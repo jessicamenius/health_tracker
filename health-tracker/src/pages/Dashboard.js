@@ -62,7 +62,6 @@ const Dashboard = (props) => {
   const eventSubmitBtn = (foodName, amount, volume) => {
     API.getNutrients(foodName, amount, volume).then(res => {
 
-
       if (foodLog.length > 0) {
         let id = + foodLog[foodLog.length - 1].id + 1;
         let objFood = {
@@ -78,7 +77,6 @@ const Dashboard = (props) => {
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
       } else {
-        console.log("inisde the else after api call");
         let id = 1;
         let objFood = {
           id: id,
@@ -90,13 +88,19 @@ const Dashboard = (props) => {
           UserId: props.userData.user.id
         }
         setFlag(true);
-        console.log(isUser);
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
       }
     });
   }
+
+  const deleteFood = (idFood, idToDelete) => {
+    foodLog.splice(idToDelete, 1);
+    API.deleteLog(idFood);
+    setFoodLog([...foodLog]);
+  }
+
 
   const classes = useStyles();
   return (
@@ -106,7 +110,7 @@ const Dashboard = (props) => {
       </h1>
       <div className={classes.left}>
         {
-          flag ? <TableUser isUser={isUser} foodLog={[...foodLog]} user={user} /> : null
+          flag ? <TableUser isUser={isUser} foodLog={[...foodLog]} user={user} deleteFood={deleteFood} /> : null
         }
 
       </div>

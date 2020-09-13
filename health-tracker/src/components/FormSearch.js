@@ -41,7 +41,6 @@ const FormSearch = (props) => {
   };
   const submit = (e) => {
     e.preventDefault();
-
     if (searchFood !== "" && amount !== "" && measure !== "") {
       props.eventSubmitBtn(searchFood, amount, measure);
       setMeasure("");
