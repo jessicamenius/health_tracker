@@ -14,8 +14,9 @@ import "./App.css";
 
 export default function App() {
   const [userData, setUserData] = useState({
-    token: undefined,
-    user: undefined,
+    token: "",
+    user: ""
+    ,
   });
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export default function App() {
             <Nav />
             <Switch>
               <Route exact path="/">
-                <Landing userData={userData} />
+                <Landing userData={userData} setUserData={setUserData} />
               </Route>
               <Route path="/register">
                 <RegisterPage userData={userData} />

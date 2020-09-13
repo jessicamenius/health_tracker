@@ -79,7 +79,7 @@ const FormSearch = (props) => {
           getOptionLabel={(option) => option}
           onKeyUp={onKeyPress}
           onChange={onSave}
-          renderInput={(params) => <TextField {...params} label="selectOnFocus" margin="normal" />}
+          renderInput={(params) => <TextField {...params} margin="normal" />}
           style={{ marginBottom: "25px", width: "500px" }}
         />
         <TextField

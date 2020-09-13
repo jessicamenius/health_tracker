@@ -4,6 +4,7 @@ import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
 import TableUser from '../components/TableUser';
 import API from '../utils/API'
+import Footer from '../components/Footer';
 
 const Dashboard = (props) => {
 
@@ -23,8 +24,8 @@ const Dashboard = (props) => {
     },
     right: {
       float: "right",
-      marginRight: "40px"
-
+      marginRight: "40px",
+      // height: "auto"
     },
     center: {
       display: "inline-block",
@@ -36,6 +37,7 @@ const Dashboard = (props) => {
 
   let idUser;
   useEffect(() => {
+    console.log(props.userData);
     idUser = props.userData.user.id;
     API.getOneUser(idUser).then(res => {
       if (res.data !== null) {

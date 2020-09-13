@@ -2,22 +2,13 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
+import { useHistory } from "react-router-dom";
 import { Fade } from "react-animation-components";
 import API from "../utils/API";
 import Typography from "@material-ui/core/Typography";
 import AlertMessage from "../components/AlertMessage";
 import RadioGroupBtn from "./RadioGroupBtn"
 import CardResult from "./CardResult";
-
-
-// BMI Metric  [weight (kg) / height (cm) / height (cm)] x 10,000 ,Calculation: [weight (lb) / height (in) / height (in)] x 703
-// Metric BMR Formula Women: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)
-// Men: BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) 
-// English BMR Formula
-// Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
-// Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
-
 
 const FormGoals = (props) => {
 
@@ -31,10 +22,7 @@ const FormGoals = (props) => {
   const [validate, setValidate] = useState(false);
   const [status, setStatusBase] = useState("");
   const [value, setValue] = useState("Metric");
-
-  useEffect(() => {
-    console.log(props);
-  }, []);
+  const history = useHistory();
 
   let objUserStats = {};
   const useStyles = makeStyles((theme) => ({
@@ -75,6 +63,13 @@ const FormGoals = (props) => {
   }));
 
 
+  useEffect(() => {
+
+    const token = localStorage.getItem("auth-token");
+    if (!token) {
+      history.push("/");
+    }
+  }, []);
 
 
   const submitBMIAndBMR = (e) => {

@@ -3,13 +3,17 @@ import img from '../pages/img/Logo2.png';
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
-
+import { useHistory } from "react-router-dom";
 export default function Landing(props) {
 
+  const history = useHistory();
   useEffect(() => {
-
-    console.log(props.userData);
-
+    const token = localStorage.getItem("auth-token");
+    if (token !== "") {
+      localStorage.setItem("auth-token", "");
+      props.setUserData({ token: undefined, user: undefined })
+      history.push("/");
+    }
   }, [])
 
   return (

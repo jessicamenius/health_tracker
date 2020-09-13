@@ -28,11 +28,11 @@ const Chart = (props) => {
     };
     return (
         <div style={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
-            <PieChart width={600} height={300}>
+            <PieChart width={200} height={200}>
                 <Pie
                     data={foodArr}
-                    cx={300}
-                    cy={200}
+                    cx={100}
+                    cy={100}
                     label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
@@ -51,9 +51,9 @@ const Chart = (props) => {
                     <li>Blue Color 🍞 :Carbs {carbs} </li>
                     <li>Green Color 🥩 :Protein {protein}</li>
                     <li>Yellow Color 🥑: Fat {fat}</li>
-                    <p>Total Calories {calories}</p>
-                    <p>BMI {props.isUser.Stat.bmi}</p>
-                    <p>BMR {props.isUser.Stat.bmr}</p>
+                    <li>Total Calories {calories}</li>
+                    <li>BMI {props.isUser.Stat.bmi}</li>
+                    <li>BMR {props.isUser.Stat.bmr}</li>
                 </ul>
 
             </div>
