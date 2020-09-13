@@ -191,7 +191,7 @@ const FormGoals = (props) => {
               id="filled-secondary"
               label="Enter weight"
               variant="outlined"
-              value={height}
+              value={weight}
               style={{ marginBottom: "20px" }}
               onChange={(e) => {
                 var hasNumber = /\d/;
