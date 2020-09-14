@@ -123,34 +123,3 @@ const TableUser = (props) => {
 }
 
 export default TableUser
-
-
-
-
-
-
-
-
-
-
-// return (
-//     <TableBody>
-//         {  rows.map((row, index) => (
-//             <TableRow key={index}>
-//                 <TableCell component="th" scope="row">
-//                     <button>Click ME</button>
-//                 </TableCell>
-//                 <TableCell component="th" scope="row">
-//                     {row.name}
-//                 </TableCell>
-//                 <TableCell align="right">{row.calories}</TableCell>
-//                 <TableCell align="right">{row.fat}</TableCell>
-//                 <TableCell align="right">{row.carbs}</TableCell>
-//                 <TableCell align="right">{row.protein}</TableCell>
-//                 <TableCell align="right">{row.height}</TableCell>
-//                 <TableCell align="right">{row.weight}</TableCell>
-//                 <TableCell align="right">{row.gender}</TableCell>
-//             </TableRow>
-//         ))}
-//     </TableBody>
-// )

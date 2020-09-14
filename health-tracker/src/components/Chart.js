@@ -50,14 +50,6 @@ const Chart = (props) => {
                 </Pie>
             </PieChart>
             <div style={{ marginTop: "30px" }}>
-                {/* <ul>
-                    <li> </li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li</li>
-                    <li></li>
-                </ul> */}
                 <List >
                     <ListItemText>
 
@@ -73,15 +65,15 @@ const Chart = (props) => {
                     </ListItemText>
                     <ListItemText>
 
-                        {" "}Total Calories {calories}
+                        {" "}Total Calories : {calories}
                     </ListItemText>
                     <ListItemText>
 
-                        {" "}  BMI {props.isUser.Stat.bmi}
+                        {" "}  BMI: {props.isUser.Stat.bmi}
                     </ListItemText>
                     <ListItemText>
 
-                        {" "} BMR {props.isUser.Stat.bmr}
+                        {" "} BMR: {props.isUser.Stat.bmr}
                     </ListItemText>
                 </List>
             </div>
@@ -91,5 +83,4 @@ const Chart = (props) => {
 
 export default Chart
 
-// dataKey="value" isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" 
 
