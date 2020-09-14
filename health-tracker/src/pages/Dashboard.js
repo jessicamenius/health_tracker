@@ -11,7 +11,7 @@ const Dashboard = (props) => {
   const [foodLog, setFoodLog] = useState([]);
   const [flag, setFlag] = useState(false);
   const user = props.userData;
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles(() => ({
     root: {
       textAlign: "center",
     },

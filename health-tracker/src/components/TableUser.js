@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,12 +8,51 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
+
+
 const TableUser = (props) => {
+
+    const useStyles = makeStyles({
+        table: {
+            minWidth: 650,
+        },
+        btn: {
+            backgroundColor: "red",
+            color: "white",
+            fontSize: "20px",
+            padding: "10px 15px",
+            borderRadius: "5px",
+            margin: "10px 0px",
+            cursor: "pointer"
+
+        }
+    });
+
+    const StyledTableCell = withStyles((theme) => ({
+        head: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        body: {
+            fontSize: 18,
+        },
+    }))(TableCell);
+    const classes = useStyles();
     function createData(id, name, calories, fat, carbs, protein, weight, height, gender) {
         return { id, name, calories, fat, carbs, protein, weight, height, gender };
     }
+
+
     let temp = [];
     let arrayForTable;
+    const click = (e) => {
+        e.preventDefault();
+        const idFood = e.target.id;
+        const idToDelete = e.target.attributes.getNamedItem('data-tag').value;
+        props.deleteFood(idFood, idToDelete);
+    }
+
     if (props.isUser) {
         if (props.foodLog.length > 0) {
             for (let i = 0; i < props.foodLog.length; i++) {
@@ -24,24 +63,23 @@ const TableUser = (props) => {
                 temp.map((row, index) => (
                     < TableBody >
                         <TableRow key={index} id={row.id}>
-                            <TableCell component="th" scope="row">
-                                <button onClick={(e) => {
-                                    e.preventDefault();
-                                    const idFood = e.target.id;
-                                    const idToDelete = e.target.attributes.getNamedItem('data-tag').value;
-                                    props.deleteFood(idFood, idToDelete);
-                                }} id={row.id} data-tag={index} >Click ME</button>
-                            </TableCell>
-                            <TableCell component="th" scope="row">
+                            <StyledTableCell component="th" scope="row">
+                                <button className={classes.btn} onClick={click} id={row.id} data-tag={index} >
+                                    Delete
+                                </button>
+
+
+                            </StyledTableCell>
+                            <StyledTableCell component="th" scope="row">
                                 {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.calories}</TableCell>
-                            <TableCell align="right">{row.fat}</TableCell>
-                            <TableCell align="right">{row.carbs}</TableCell>
-                            <TableCell align="right">{row.protein}</TableCell>
-                            <TableCell align="right">{row.height}</TableCell>
-                            <TableCell align="right">{row.weight}</TableCell>
-                            <TableCell align="right">{row.gender}</TableCell>
+                            </StyledTableCell>
+                            <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                            <StyledTableCell align="right">{row.fat}</StyledTableCell>
+                            <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+                            <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                            <StyledTableCell align="right">{row.height}</StyledTableCell>
+                            <StyledTableCell align="right">{row.weight}</StyledTableCell>
+                            <StyledTableCell align="right">{row.gender}</StyledTableCell>
                         </TableRow>
                     </ TableBody >
                 ))
@@ -50,26 +88,21 @@ const TableUser = (props) => {
     }
 
 
-    const useStyles = makeStyles({
-        table: {
-            minWidth: 650,
-        },
-    });
-    const classes = useStyles();
+
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={classes.root}>
             <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell>Food Name </TableCell>
-                        <TableCell align="right">Calories</TableCell>
-                        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                        <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                        <TableCell align="right">Protein&nbsp;(g)</TableCell>
-                        <TableCell align="right">Height&nbsp;</TableCell>
-                        <TableCell align="right">Weight&nbsp;</TableCell>
-                        <TableCell align="right">Gender&nbsp;</TableCell>
+                        <StyledTableCell></StyledTableCell>
+                        <StyledTableCell>Food Name </StyledTableCell>
+                        <StyledTableCell align="right" >Calories</StyledTableCell>
+                        <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
+                        <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
+                        <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+                        <StyledTableCell align="right">Height&nbsp;</StyledTableCell>
+                        <StyledTableCell align="right">Weight&nbsp;</StyledTableCell>
+                        <StyledTableCell align="right">Gender&nbsp;</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 {props.foodLog.length > 0 ? arrayForTable : null}
