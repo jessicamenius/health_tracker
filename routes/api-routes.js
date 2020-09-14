@@ -12,6 +12,14 @@ router.get("/users/one/:id", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+router.get("/users/all", (req, res) => {
+  db.User.findAll({
+    include: [db.Stats, db.FoodLog],
+  })
+    .then((user) => res.json(user))
+    .catch((err) => res.send(err));
+});
+
 // update a user's information
 // all fields are required
 router.patch("/users/update", (req, res) => {

@@ -38,18 +38,4 @@ export default {
   autocomplete: (str) => axios.get("/food/autocomplete/" + str),
 
   register: (obj) => axios.post("users/register", obj),
-
-  getWeekLogs: (id) => {
-    axios.get("/food/user/" + id).then((response) => {
-      let weekAgo = moment().subtract(1, "week").format("YYYY-MM-DD");
-      let weekLogs = [];
-      response.map((element, index) => {
-        let separated = element.createdAt.split(" ");
-        if (separated[0] > weekAgo) {
-          weekLogs.push(element);
-        }
-      });
-      return weekLogs;
-    });
-  },
 };
