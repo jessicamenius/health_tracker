@@ -1,5 +1,8 @@
 import React from 'react'
-import { PieChart, Pie, Cell } from 'recharts'
+import { PieChart, Pie, Cell } from 'recharts';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
+
 const Chart = (props) => {
     console.log(props.foodLog);
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -47,17 +50,41 @@ const Chart = (props) => {
                 </Pie>
             </PieChart>
             <div style={{ marginTop: "30px" }}>
-                <ul>
-                    <li>Blue Color 🍞 :Carbs {carbs} </li>
-                    <li>Green Color 🥩 :Protein {protein}</li>
-                    <li>Yellow Color 🥑: Fat {fat}</li>
-                    <li>Total Calories {calories}</li>
-                    <li>BMI {props.isUser.Stat.bmi}</li>
-                    <li>BMR {props.isUser.Stat.bmr}</li>
-                </ul>
+                {/* <ul>
+                    <li> </li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li</li>
+                    <li></li>
+                </ul> */}
+                <List >
+                    <ListItemText>
 
+                        {" "}Blue Color 🍞 :Carbs {carbs}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "}Green Color 🥩 :Protein {protein}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "} Yellow Color 🥑: Fat {fat}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "}Total Calories {calories}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "}  BMI {props.isUser.Stat.bmi}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "} BMR {props.isUser.Stat.bmr}
+                    </ListItemText>
+                </List>
             </div>
-
         </div>
     );
 }
@@ -65,3 +92,4 @@ const Chart = (props) => {
 export default Chart
 
 // dataKey="value" isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" 
+

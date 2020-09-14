@@ -14,7 +14,7 @@ import "./App.css";
 
 export default function App() {
   const [userData, setUserData] = useState({
-    token: "",
+    token: undefined,
     user: ""
     ,
   });

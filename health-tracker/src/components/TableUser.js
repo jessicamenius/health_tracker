@@ -7,10 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
-
-
-
+import WcIcon from '@material-ui/icons/Wc';
+import Icon from '@material-ui/core/Icon';
 const TableUser = (props) => {
 
     const useStyles = makeStyles({
@@ -28,7 +26,6 @@ const TableUser = (props) => {
 
         }
     });
-
     const StyledTableCell = withStyles((theme) => ({
         head: {
             backgroundColor: theme.palette.common.black,
@@ -67,8 +64,6 @@ const TableUser = (props) => {
                                 <button className={classes.btn} onClick={click} id={row.id} data-tag={index} >
                                     Delete
                                 </button>
-
-
                             </StyledTableCell>
                             <StyledTableCell component="th" scope="row">
                                 {row.name}
@@ -87,22 +82,38 @@ const TableUser = (props) => {
         }
     }
 
-
-
     return (
         <TableContainer component={Paper} className={classes.root}>
             <Table className={classes.table} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <StyledTableCell></StyledTableCell>
-                        <StyledTableCell>Food Name </StyledTableCell>
-                        <StyledTableCell align="right" >Calories</StyledTableCell>
-                        <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                        <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                        <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
-                        <StyledTableCell align="right">Height&nbsp;</StyledTableCell>
-                        <StyledTableCell align="right">Weight&nbsp;</StyledTableCell>
-                        <StyledTableCell align="right">Gender&nbsp;</StyledTableCell>
+                        <StyledTableCell>
+                            <Icon className="fas fa-trash"></Icon>
+                        </StyledTableCell>
+                        <StyledTableCell>
+                            <Icon className="fas fa-search"></Icon>
+                            {" "}Food Name </StyledTableCell>
+                        <StyledTableCell align="right" >
+                            <Icon className="fab fa-nutritionix"></Icon>
+                            {" "} Calories</StyledTableCell>
+                        <StyledTableCell align="right">
+                            <Icon className="fab fa-nutritionix"></Icon>
+                            {" "} Fat&nbsp;(g)</StyledTableCell>
+                        <StyledTableCell align="right">
+                            <Icon className="fab fa-nutritionix"></Icon>
+                            {" "}Carbs&nbsp;(g)</StyledTableCell>
+                        <StyledTableCell align="right">
+                            <Icon className="fab fa-nutritionix"></Icon>
+                            {" "} Protein&nbsp;(g)</StyledTableCell>
+                        <StyledTableCell align="right">
+                            <Icon className="fas fa-balance-scale"></Icon>
+                            {" "} Height&nbsp;</StyledTableCell>
+                        <StyledTableCell align="right">
+                            <Icon className="fas fa-weight"></Icon>
+                            {" "}  Weight&nbsp;</StyledTableCell>
+                        <StyledTableCell align="right">
+                            <WcIcon />
+                            {" "} Gender&nbsp;</StyledTableCell>
                     </TableRow>
                 </TableHead>
                 {props.foodLog.length > 0 ? arrayForTable : null}

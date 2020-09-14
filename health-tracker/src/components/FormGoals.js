@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import { Fade } from "react-animation-components";
 import API from "../utils/API";
-import Typography from "@material-ui/core/Typography";
 import AlertMessage from "../components/AlertMessage";
 import RadioGroupBtn from "./RadioGroupBtn"
 import CardResult from "./CardResult";
@@ -64,7 +63,7 @@ const FormGoals = (props) => {
 
 
   useEffect(() => {
-
+    console.log(props.userData);
     const token = localStorage.getItem("auth-token");
     if (!token) {
       history.push("/");
@@ -84,18 +83,10 @@ const FormGoals = (props) => {
       gender !== "" &&
       validate
     ) {
-      //  [weight (kg) / height (cm) / height (cm)] x 10,000
-
       if (value === "Metric") {
-        console.log(value);
         bmi = (weight / height / height) * 10000;
         setResultBMI(bmi);
-        //  Metric BMR Formula Women: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)
-        // Men: BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) 
-        console.log(gender);
         if (gender === "Male") {
-          console.log(gender);
-          console.log(value);
           bmr = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
           setResultBMR(bmr);
         } else {
@@ -103,22 +94,17 @@ const FormGoals = (props) => {
           setResultBMR(bmr);
         }
       } else {
-        // [weight (lb) / height (in) / height (in)] x 703
-        let bmi = ((weight / height) / height) * 703;
+        let bmi = ((weight / (height * 12)) / (height * 12)) * 703;
         setResultBMI(bmi);
-        // Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
-        // Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
         let bmr;
         if (gender === "Male") {
-          bmr = 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age);
+          bmr = 66 + (6.23 * weight) + (12.7 * (height * 12)) - (6.8 * age);
           setResultBMR(bmr);
         } else {
-          bmr = 655 + (4.35 * weight) + (4.7 * height) - (4.7 * age)
+          bmr = 655 + (4.35 * weight) + (4.7 * (height * 12)) - (4.7 * age)
           setResultBMR(bmr);
         }
       }
-
-      // Need to get the UserID from the page
       objUserStats = {
         height: height,
         weight: weight,
@@ -255,3 +241,11 @@ const FormGoals = (props) => {
   );
 };
 export default FormGoals;
+
+
+  //  Metric BMR Formula Women: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)
+        // Men: BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years) 
+        // Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
+        // Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
+        // [weight (lb) / height (in) / height (in)] x 703
+            //  [weight (kg) / height (cm) / height (cm)] x 10,000

@@ -6,23 +6,21 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Link from "@material-ui/core/Link";
-
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
+import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 
 const CardResult = (props) => {
 
     const useStyles = makeStyles({
         root: {
-            minWidth: 275,
+            minWidth: 225,
+            fontSize: "20px"
         },
-        bullet: {
-            display: 'inline-block',
-            margin: '0 2px',
-            transform: 'scale(0.8)',
-        },
-
-        pos: {
-            marginBottom: 12,
-        },
+        ulDiv: {
+            flex: "center",
+            justifyContent: "center"
+        }
     });
 
     const classes = useStyles();
@@ -30,26 +28,38 @@ const CardResult = (props) => {
     return (
         <Card className={classes.root}>
             <CardContent>
-                <Typography color="primary" gutterBottom component="h1" >
+                <Typography color="primary" component="h1" >
                     Summary
                 </Typography>
-                <Typography color="primary" gutterBottom component="h2" >
+                <Typography color="primary" component="h2" >
                     Your BMI is: {Math.floor(props.resultBMI)}
                 </Typography>
-                <div style={{ flex: "center", justifyContent: "center" }}>
-                    <ul>
-                        <li>Underweight = 18.5</li>
-                        <li> Normal weight = 18.5–24.9</li>
-                        <li> Overweight = 25–29.9</li>
-                        <li> Obesity = BMI of 30 or greater</li>
-                    </ul>
+                <div className={classes.ulDiv}>
+                    <List >
+                        <ListItemText>
+                            <FitnessCenterIcon />
+                            {" "}Underweight = 18.5
+                        </ListItemText>
+                        <ListItemText>
+                            <FitnessCenterIcon />
+                            {" "} Normal weight = 18.5–24.9
+                        </ListItemText>
+                        <ListItemText>
+                            <FitnessCenterIcon />
+                            {" "} Overweight = 25–29.9
+                        </ListItemText>
+                        <ListItemText>
+                            <FitnessCenterIcon />
+                            {" "}  Obesity = BMI of 30 or greater
+                        </ListItemText>
+                    </List>
                 </div>
-                <Typography color="primary" gutterBottom component="h2"  >
+                <Typography color="primary" component="h2"  >
                     Your BMR is: {" "}
                     {Math.floor(props.resultBMR)}
                 </Typography>
-                <Typography variant="subtitle1" component="p">
-                    <Link href="https://www.bmi-calculator.net/bmr-calculator/harris-benedict-equation/">Explanation</Link>
+                <Typography variant="subtitle1" component="p" color="primary">
+                    <Link href="https://www.bmi-calculator.net/bmr-calculator/harris-benedict-equation/"> Link: Reference To BMI and BMR Explanation</Link>
                 </Typography>
             </CardContent>
             <CardActions >
@@ -57,14 +67,10 @@ const CardResult = (props) => {
                     <Link
                         href="/dashboard"
                         variant="body2"
-                        style={{ textAlign: "center" }}
-                    >
-                        <Button variant="contained" color="primary">
-                            Main Page
-            </Button>
+                        style={{ textAlign: "center" }}>
+                        <Button variant="contained" color="primary">Main Page</Button>
                     </Link>
                 </div>
-
             </CardActions>
         </Card>
     );

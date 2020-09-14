@@ -4,9 +4,10 @@ import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
 import TableUser from '../components/TableUser';
 import API from '../utils/API'
+import { useHistory } from "react-router-dom";
 
 const Dashboard = (props) => {
-
+  const history = useHistory();
   const [isUser, setIsUser] = useState("");
   const [foodLog, setFoodLog] = useState([]);
   const [flag, setFlag] = useState(false);
@@ -37,6 +38,7 @@ const Dashboard = (props) => {
 
   let idUser;
   useEffect(() => {
+
     idUser = props.userData.user.id;
     API.getOneUser(idUser).then(res => {
       if (res.data !== null) {
@@ -45,14 +47,18 @@ const Dashboard = (props) => {
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
+          console.log(foodLogs);
           setFlag(true);
         } else {
           let data = res.data;
           setIsUser(data);
+          console.log(data)
           setFlag(false);
         }
       }
     });
+
+
   }, [props.userData])
 
 
@@ -73,6 +79,7 @@ const Dashboard = (props) => {
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
+        console.log(foodLog);
       } else {
         let id = 1;
         let objFood = {
@@ -95,6 +102,8 @@ const Dashboard = (props) => {
   const deleteFood = (idFood, idToDelete) => {
     foodLog.splice(idToDelete, 1);
     API.deleteLog(idFood);
+    let idUser = props.userData.user.id;
+    API.getOneUser(idUser);
     setFoodLog([...foodLog]);
   }
 
