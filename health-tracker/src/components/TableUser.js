@@ -68,10 +68,10 @@ const TableUser = (props) => {
                             <StyledTableCell component="th" scope="row">
                                 {row.name}
                             </StyledTableCell>
-                            <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                            <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                            <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                            <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                            <StyledTableCell align="right">{row.calories.toFixed(3)}</StyledTableCell>
+                            <StyledTableCell align="right">{row.fat.toFixed(3)}</StyledTableCell>
+                            <StyledTableCell align="right">{row.carbs.toFixed(3)}</StyledTableCell>
+                            <StyledTableCell align="right">{row.protein.toFixed(3)}</StyledTableCell>
                             <StyledTableCell align="right">{row.height}</StyledTableCell>
                             <StyledTableCell align="right">{row.weight}</StyledTableCell>
                             <StyledTableCell align="right">{row.gender}</StyledTableCell>

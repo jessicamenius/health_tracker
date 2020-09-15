@@ -5,6 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 const Chart = (props) => {
     console.log(props.foodLog);
+
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     const RADIAN = Math.PI / 180;
     let carbs = 0;
@@ -29,6 +30,8 @@ const Chart = (props) => {
             </text>
         );
     };
+
+
     return (
         <div style={{ display: "flex", justifyContent: "center" }}>
             <PieChart width={200} height={200}>
@@ -53,19 +56,19 @@ const Chart = (props) => {
                 <List >
                     <ListItemText>
 
-                        {" "}Blue Color 🍞 :Carbs {carbs}
+                        {" "}Blue Color 🍞 :Carbs {carbs.toFixed(3)}
                     </ListItemText>
                     <ListItemText>
 
-                        {" "}Green Color 🥩 :Protein {protein}
+                        {" "}Green Color 🥩 :Protein {protein.toFixed(3)}
                     </ListItemText>
                     <ListItemText>
 
-                        {" "} Yellow Color 🥑: Fat {fat}
+                        {" "} Yellow Color 🥑: Fat {fat.toFixed(3)}
                     </ListItemText>
                     <ListItemText>
 
-                        {" "}Total Calories : {calories}
+                        {" "}Total Calories : {calories.toFixed(3)}
                     </ListItemText>
                     <ListItemText>
 

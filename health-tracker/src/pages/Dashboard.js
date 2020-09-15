@@ -112,7 +112,7 @@ const Dashboard = (props) => {
   return (
     <div className={classes.center}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
-        Welcome to Our Dashboard {isUser.userName}
+        Welcome To Our Dashboard {isUser.userName}
       </h1>
       <div >
         {
