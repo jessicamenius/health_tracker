@@ -44,12 +44,13 @@ const Dashboard = (props) => {
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
-          console.log(foodLogs);
+          console.log("foodlogs:", foodLogs);
+          console.log("data:", data);
           setFlag(true);
         } else {
           let data = res.data;
           setIsUser(data);
-          console.log(data);
+          console.log("else data:", data);
           setFlag(false);
         }
       }
