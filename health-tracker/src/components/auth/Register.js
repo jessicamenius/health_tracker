@@ -16,7 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 // import { Transform } from "react-animation-components";
 
-export default function Register() {
+export default function Register(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [passwordCheck, setPasswordCheck] = useState();
@@ -40,7 +40,8 @@ export default function Register() {
         lastName,
       };
 
-      console.log(newUser);
+      console.log("new user:", newUser);
+      console.log("props.userData", props.userData);
 
       const userResponse = await Axios.post("/users/register", newUser);
 
