@@ -1,14 +1,18 @@
 import React from 'react'
-import { PieChart, Pie, Cell } from 'recharts'
+import { PieChart, Pie, Cell } from 'recharts';
+import List from '@material-ui/core/List';
+import ListItemText from '@material-ui/core/ListItemText';
+
 const Chart = (props) => {
     console.log(props.foodLog);
+
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     const RADIAN = Math.PI / 180;
     let carbs = 0;
     let protein = 0;
     let fat = 0;
     let calories = 0;
-    for (let i = 0; i < props.foodLog.length - 1; i++) {
+    for (let i = 0; i < props.foodLog.length; i++) {
         carbs += props.foodLog[i].carbs;
         protein += props.foodLog[i].protein;
         fat += props.foodLog[i].fat;
@@ -26,13 +30,15 @@ const Chart = (props) => {
             </text>
         );
     };
+
+
     return (
-        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column" }}>
-            <PieChart width={600} height={300}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+            <PieChart width={200} height={200}>
                 <Pie
                     data={foodArr}
-                    cx={300}
-                    cy={200}
+                    cx={100}
+                    cy={100}
                     label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
@@ -46,22 +52,38 @@ const Chart = (props) => {
                     }
                 </Pie>
             </PieChart>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-                <ul>
-                    <li>Blue Color 🍞 :Carbs {carbs} </li>
-                    <li>Green Color 🥩 :Protein {protein}</li>
-                    <li>Yellow Color 🥑: Fat {fat}</li>
-                    <p>Total Calories {calories}</p>
-                    <p>BMI {props.isUser.Stat.bmi}</p>
-                    <p>BMR {props.isUser.Stat.bmr}</p>
-                </ul>
+            <div style={{ marginTop: "30px" }}>
+                <List >
+                    <ListItemText>
 
+                        {" "}Blue Color 🍞 :Carbs {carbs.toFixed(3)}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "}Green Color 🥩 :Protein {protein.toFixed(3)}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "} Yellow Color 🥑: Fat {fat.toFixed(3)}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "}Total Calories : {calories.toFixed(3)}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "}  BMI: {props.isUser.Stat.bmi}
+                    </ListItemText>
+                    <ListItemText>
+
+                        {" "} BMR: {props.isUser.Stat.bmr}
+                    </ListItemText>
+                </List>
             </div>
-
         </div>
     );
 }
 
 export default Chart
 
-// dataKey="value" isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" 
+

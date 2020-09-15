@@ -14,6 +14,7 @@ export default function AuthOptions() {
   const logout = () => {
     setUserData({ token: undefined, user: undefined });
     localStorage.setItem("auth-token", "");
+    history.push("/")
   };
 
   return (
@@ -29,25 +30,25 @@ export default function AuthOptions() {
             LOGOUT
           </Button>
         ) : (
-          <>
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={register}
-            >
-              REGISTER
+            <>
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={register}
+              >
+                REGISTER
             </Button>
-            <Button
-              fullWidth
-              variant="contained"
-              color="primary"
-              onClick={login}
-            >
-              LOGIN
+              <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={login}
+              >
+                LOGIN
             </Button>
-          </>
-        )}
+            </>
+          )}
       </ButtonGroup>
     </nav>
   );
