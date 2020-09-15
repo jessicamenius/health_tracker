@@ -78,7 +78,6 @@ router.post("/login", async (req, res) => {
     });
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-    // console.log(token);
     res.json({
       token,
       user: {
@@ -101,7 +100,6 @@ router.get("/logout", (req, res) => {
 
 // delete user
 router.delete("/delete", auth, async (req, res) => {
-  // console.log(req.user);
   try {
     const deletedUser = await db.User.destroy(req.user);
     res.json(deletedUser);
