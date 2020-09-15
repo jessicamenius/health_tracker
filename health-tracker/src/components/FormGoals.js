@@ -110,6 +110,7 @@ const FormGoals = (props) => {
         bmr: bmr,
         UserId: props.userData.user.id,
       };
+      console.log(objUserStats);
       API.setStats(objUserStats);
       setAnswer(true);
       setWeight("");

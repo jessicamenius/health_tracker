@@ -3,14 +3,32 @@ import img from "../pages/img/Logo2.png";
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
+import API from "../utils/API";
+import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 
 export default function Landing(props) {
+  useEffect(() => {
+    async function getWeekLogs() {
+      let weekAgo = moment().subtract(1, "week").format("YYYY-MM-DD");
+      let weekLogs = [];
+      await API.getUserLogs(1).then((res) =>
+        res.data.map((element, index) => {
+          let separated = element.createdAt.split(" ");
+          if (separated[0] > weekAgo) {
+            weekLogs.push(element);
+          }
+        })
+      );
+      console.log("date 1 week ago:", weekAgo);
+      console.log("week Logs: ", weekLogs);
+    }
+    getWeekLogs();
+  }, []);
+
   const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
@@ -23,7 +41,7 @@ export default function Landing(props) {
 
   const useStyles = makeStyles({
     root: {
-      minWidth: 400,
+      minWidth: 275,
     },
     title: {
       fontSize: 14,
