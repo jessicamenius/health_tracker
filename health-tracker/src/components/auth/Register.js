@@ -7,8 +7,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -32,7 +30,6 @@ export default function Register() {
 
   const submit = async (e) => {
     e.preventDefault();
-
     try {
       const newUser = {
         email,
@@ -45,17 +42,20 @@ export default function Register() {
 
       console.log(newUser);
 
-      await Axios.post("http://localhost:5000/users/register", newUser);
+      const userResponse = await Axios.post("/users/register", newUser);
+
       const loginRes = await Axios.post("http://localhost:5000/users/login", {
-        email,
-        password,
+        email: userResponse.data.email,
+        password: newUser.password,
       });
+
+      console.log(loginRes.data);
+
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/usergoals");
     } catch (err) {
       console.log(err);
-      err.response.data.msg && setError(err.response.data.msg);
     }
   };
 
@@ -81,17 +81,8 @@ export default function Register() {
 
   const classes = useStyles();
 
-  function register(e) {
-    e.preventDefault();
-    console.log(firstName, lastName, userName, email, password, passwordCheck);
-  }
-
   return (
-    // <Transform
-    //   enterTransform="translateX(100px)"
-    //   exitTransform="translateX(500px)"
-    //   in
-    // >
+
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -180,8 +171,6 @@ export default function Register() {
                 autoComplete="current-password"
                 onChange={(e) => setPasswordCheck(e.target.value)}
               />
-            </Grid>
-            <Link href="/userGoals" variant="body2">
               <Button
                 fullWidth
                 variant="contained"
@@ -191,7 +180,7 @@ export default function Register() {
               >
                 REGISTER
               </Button>
-            </Link>
+            </Grid>
 
             <Grid container justify="flex-end">
               <Grid item>
@@ -206,6 +195,5 @@ export default function Register() {
 
       <Box mt={5}>{/* <Copyright /> */}</Box>
     </Container>
-    // </Transform>
   );
 }

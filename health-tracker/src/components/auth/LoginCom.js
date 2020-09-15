@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
@@ -17,13 +17,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { FadeTransform } from "react-animation-components";
 
-export default function LoginCom() {
+export default function LoginCom(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
+
+  useEffect(() => {
+    console.log(props);
+  }, []);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -35,7 +39,10 @@ export default function LoginCom() {
         loginUser
       );
 
-      setUserData({ token: loginRes.data.token, user: loginRes.data.user });
+      props.setUserData({
+        token: loginRes.data.token,
+        user: loginRes.data.user,
+      });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/dashboard");
     } catch (err) {
