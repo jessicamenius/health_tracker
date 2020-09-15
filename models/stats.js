@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const Stats = sequelize.define("Stats", {
-    height: { type: DataTypes.INTEGER, allowNull: false },
+    height: { type: DataTypes.FLOAT, allowNull: false },
     weight: { type: DataTypes.INTEGER, allowNull: false },
     gender: { type: DataTypes.STRING, allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },

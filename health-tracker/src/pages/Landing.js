@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import img from "./img/Logo2.png";
+import img from "../pages/img/Logo2.png";
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
