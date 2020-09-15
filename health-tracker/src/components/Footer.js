@@ -28,10 +28,7 @@ const Footer = () => {
     footer: {
       padding: theme.spacing(3, 2),
       marginTop: "auto",
-      backgroundColor:
-        theme.palette.type === "light"
-          ? theme.palette.grey[200]
-          : theme.palette.grey[800],
+      backgroundColor: "#3f51b6"
     },
   }));
 
@@ -45,7 +42,7 @@ const Footer = () => {
           <Typography variant="body1" style={{ textAlign: "center" }}>
             My Exercise Rest Nutrition Tracker (MERN-Tracker)
           </Typography>
-          <Typography variant="body2" color="textSecondary" align="center">
+          <Typography variant="body2" color="textPrimary" align="center">
             Developers Jessica, Philip, Mat, Steven
           </Typography>
           <Copyright />

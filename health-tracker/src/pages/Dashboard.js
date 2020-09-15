@@ -4,10 +4,15 @@ import FormSearch from '../components/FormSearch';
 import Chart from '../components/Chart'
 import TableUser from '../components/TableUser';
 import API from '../utils/API'
+import { useHistory } from "react-router-dom";
 
-const Dashboard = () => {
-
-  const useStyles = makeStyles((theme) => ({
+const Dashboard = (props) => {
+  const history = useHistory();
+  const [isUser, setIsUser] = useState("");
+  const [foodLog, setFoodLog] = useState([]);
+  const [flag, setFlag] = useState(false);
+  const user = props.userData;
+  const useStyles = makeStyles(() => ({
     root: {
       textAlign: "center",
     },
@@ -19,44 +24,48 @@ const Dashboard = () => {
     },
     right: {
       float: "right",
-      marginRight: "40px"
-
+      marginRight: "40px",
+      // height: "auto"
     },
     center: {
-      display: "inline-block",
+      display: "inline",
       flexDirection: "row",
-      marginLeft: "30px"
+      marginLeft: "30px",
+      justifyContent: "center"
     }
   }));
 
-  const [isUser, setIsUser] = useState("");
-  const [foodLog, setFoodLog] = useState([]);
-  const [flag, setFlag] = useState(false);
 
+  let idUser;
   useEffect(() => {
-    // need to get the user from the auth
-    // Cheking if the user create some data inside the foodLog
-    API.getOneUser("1").then(res => {
-      console.log(res.data)
+
+    idUser = props.userData.user.id;
+    API.getOneUser(idUser).then(res => {
       if (res.data !== null) {
         let foodLogs = res.data.FoodLogs;
         let data = res.data;
-        if (foodLogs.length > 0) {
+        if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
-          setFlag(true)
+          console.log(foodLogs);
+          setFlag(true);
+        } else {
+          let data = res.data;
+          setIsUser(data);
+          console.log(data)
+          setFlag(false);
         }
-      } else {
-        setFlag(false)
       }
     });
-  }, [])
+
+
+  }, [props.userData])
+
 
   const eventSubmitBtn = (foodName, amount, volume) => {
     API.getNutrients(foodName, amount, volume).then(res => {
-      // need to get the user id from the auth
-      if (foodLog.length > 0) {
 
+      if (foodLog.length > 0) {
         let id = + foodLog[foodLog.length - 1].id + 1;
         let objFood = {
           id: id,
@@ -65,11 +74,12 @@ const Dashboard = () => {
           protein: res.data.totalNutrients.PROCNT.quantity,
           fat: res.data.totalNutrients.FAT.quantity,
           calories: res.data.calories,
-          UserId: 1
+          UserId: props.userData.user.id
         }
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
+        console.log(foodLog);
       } else {
         let id = 1;
         let objFood = {
@@ -79,38 +89,44 @@ const Dashboard = () => {
           protein: res.data.totalNutrients.PROCNT.quantity,
           fat: res.data.totalNutrients.FAT.quantity,
           calories: res.data.calories,
-          UserId: 1
+          UserId: props.userData.user.id
         }
+        setFlag(true);
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
-
       }
-
     });
-
-    // need to find the user to get all the food log that this user has, to represent it in our table and in our chart
-
   }
+
+  const deleteFood = (idFood, idToDelete) => {
+    foodLog.splice(idToDelete, 1);
+    API.deleteLog(idFood);
+    let idUser = props.userData.user.id;
+    API.getOneUser(idUser);
+    setFoodLog([...foodLog]);
+  }
+
 
   const classes = useStyles();
 
   console.log("props.user in dashboard", props.user);
   return (
-    <div className={classes.root}>
-      <h1 style={{ textAlign: "center", color: "#3F51B5" }}>Welcome to Our Dashboard</h1>
-      <div className={classes.left}>
+    <div className={classes.center}>
+      <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
+        Welcome To Our Dashboard {isUser.userName}
+      </h1>
+      <div >
         {
-          flag ? <TableUser isUser={isUser} foodLog={foodLog} /> : null
+          flag ? <TableUser isUser={isUser} foodLog={[...foodLog]} user={user} deleteFood={deleteFood} /> : null
         }
-
       </div>
-      <div className={classes.center}>
+      <div >
         <FormSearch eventSubmitBtn={eventSubmitBtn} />
       </div>
-      <div className={classes.right}>
+      <div >
         {
-          flag ? <Chart foodLog={foodLog} isUser={isUser} /> : null
+          flag ? <Chart foodLog={[...foodLog]} isUser={isUser} /> : null
         }
       </div>
     </div>
