@@ -56,6 +56,7 @@ const TableUser = (props) => {
                 temp.push(createData(props.foodLog[i].id, props.foodLog[i].foodName, props.foodLog[i].calories, props.foodLog[i].fat, props.foodLog[i].carbs, props.foodLog[i].protein, props.isUser.Stat.weight, props.isUser.Stat.height, props.isUser.Stat.gender))
             }
             console.log(props.foodLog);
+            console.log(props.isUser.Stat.height);
             arrayForTable = (
                 temp.map((row, index) => (
                     < TableBody >

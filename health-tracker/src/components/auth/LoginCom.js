@@ -39,7 +39,7 @@ export default function LoginCom(props) {
       if (email && password) {
         const loginUser = { email, password };
         const loginRes = await Axios.post(
-          "http://localhost:5000/users/login",
+          "/users/login",
           loginUser
         );
 
@@ -153,6 +153,8 @@ export default function LoginCom(props) {
                     Return to Home Page
                   </Link>
                 </Grid>
+
+
                 <Grid item>
                   <Link href="/register" variant="body2">
                     {"Don't have an account? Sign Up"}
