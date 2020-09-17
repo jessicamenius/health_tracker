@@ -15,8 +15,7 @@ import "./App.css";
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
-    user: ""
-    ,
+    user: "",
   });
 
   useEffect(() => {
@@ -27,16 +26,15 @@ export default function App() {
         token = "";
       }
 
-      const tokenRes = await Axios.post(
-        "http://localhost:5000/users/tokenIsValid",
-        null,
-        { headers: { "x-auth-token": token } }
-      );
+      const tokenRes = await Axios.post("/users/tokenIsValid", null, {
+        headers: { "x-auth-token": token },
+      });
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:5000/users/", {
+        const userRes = await Axios.get("/users/", {
           headers: { "x-auth-token": token },
         });
         setUserData({ token, user: userRes.data });
+        console.log("app.js userdata", userData);
       }
     };
 
