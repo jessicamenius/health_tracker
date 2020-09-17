@@ -8,27 +8,8 @@ import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 
 export default function Landing(props) {
-  useEffect(() => {
-    async function getWeekLogs() {
-      let weekAgo = moment().subtract(1, "week").format("YYYY-MM-DD");
-      let weekLogs = [];
-      await API.getUserLogs(1).then((res) =>
-        res.data.map((element, index) => {
-          let separated = element.createdAt.split(" ");
-          if (separated[0] > weekAgo) {
-            weekLogs.push(element);
-          }
-        })
-      );
-      console.log("date 1 week ago:", weekAgo);
-      console.log("week Logs: ", weekLogs);
-    }
-    getWeekLogs();
-  }, []);
-
   const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("auth-token");

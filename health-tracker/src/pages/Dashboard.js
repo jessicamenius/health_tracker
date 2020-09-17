@@ -5,6 +5,8 @@ import Chart from "../components/Chart";
 import TableUser from "../components/TableUser";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
 
 const Dashboard = (props) => {
   const history = useHistory();
@@ -50,7 +52,7 @@ const Dashboard = (props) => {
         } else {
           let data = res.data;
           setIsUser(data);
-          console.log("else data:", data);
+          console.log(data);
           setFlag(false);
         }
       }
@@ -110,6 +112,14 @@ const Dashboard = (props) => {
         Welcome to your Dashboard {isUser.firstName}
       </h1>
       <div>
+        <FormSearch eventSubmitBtn={eventSubmitBtn} />
+      </div>
+      <div>
+        {flag ? <Chart foodLog={[...foodLog]} isUser={isUser} /> : null}
+      </div>
+      {/* <Card className={classes.card}> */}
+      {/* <CardContent> */}
+      <div>
         {flag ? (
           <TableUser
             isUser={isUser}
@@ -119,12 +129,8 @@ const Dashboard = (props) => {
           />
         ) : null}
       </div>
-      <div>
-        <FormSearch eventSubmitBtn={eventSubmitBtn} />
-      </div>
-      <div>
-        {flag ? <Chart foodLog={[...foodLog]} isUser={isUser} /> : null}
-      </div>
+      {/* </CardContent> */}
+      {/* </Card> */}
     </div>
   );
 };
