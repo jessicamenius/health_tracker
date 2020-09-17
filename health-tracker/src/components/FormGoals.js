@@ -61,7 +61,6 @@ const FormGoals = (props) => {
   }));
 
   useEffect(() => {
-    console.log(props.userData);
     const token = localStorage.getItem("auth-token");
     if (!token) {
       history.push("/");
@@ -70,10 +69,8 @@ const FormGoals = (props) => {
 
   const submitBMIAndBMR = (e) => {
     e.preventDefault();
-    // function that calculate the BMI of the use and keep the data
     let bmi;
     let bmr;
-
     if (
       height !== 0 &&
       weight !== 0 &&

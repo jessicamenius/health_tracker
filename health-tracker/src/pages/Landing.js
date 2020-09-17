@@ -3,8 +3,6 @@ import img from "../pages/img/Logo2.png";
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
-import API from "../utils/API";
-import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';

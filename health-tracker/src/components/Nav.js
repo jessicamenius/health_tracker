@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/styles";
 import { Link } from "react-router-dom";
 import "../App.css";
 import AuthOptions from "../components/auth/AuthOptions";
-// import UserContext from "../components/context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
