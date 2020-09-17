@@ -4,7 +4,6 @@ import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const Chart = (props) => {
-
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   const RADIAN = Math.PI / 180;
   let carbs = 0;
@@ -67,13 +66,18 @@ const Chart = (props) => {
       </PieChart>
       <div style={{ marginTop: "30px" }}>
         <List>
-          <ListItemText> <span>🟦</span> 🍞 :Carbs {carbs.toFixed(2)}</ListItemText>
           <ListItemText>
             {" "}
-            <span>🟩</span> 🥩 :Protein {protein.toFixed(2)}
+            <span>🟦:</span> 🍞 Carbs {carbs.toFixed(2)}
           </ListItemText>
-          <ListItemText> <span>🟨</span> 🥑: Fat {fat.toFixed(2)}</ListItemText>
-          <ListItemText> Total Calories : {calories.toFixed(2)}</ListItemText>
+          <ListItemText>
+            <span>🟩: </span> 🥩 Protein {protein.toFixed(2)}
+          </ListItemText>
+          <ListItemText>
+            {" "}
+            <span>🟨:</span> 🥑 Fat {fat.toFixed(2)}
+          </ListItemText>
+          <ListItemText> Total Calories: {calories.toFixed(2)}</ListItemText>
           <ListItemText> BMI: {props.isUser.Stat.bmi}</ListItemText>
           <ListItemText> BMR: {props.isUser.Stat.bmr}</ListItemText>
         </List>

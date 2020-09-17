@@ -8,7 +8,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: url("https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1231&q=80")
+<<<<<<< HEAD
+  background: url("https://images.unsplash.com/photo-1498579809087-ef1e558fd1da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60")
+=======
+  background: url("https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60")
+>>>>>>> 8b53b8f04c00faa7bbb34069b2f9a3a5406baa24
     no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -13,6 +13,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 export default function Landing(props) {
   const history = useHistory();
+
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
     if (token !== "") {
