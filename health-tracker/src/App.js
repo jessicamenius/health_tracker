@@ -34,12 +34,12 @@ export default function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({ token, user: userRes.data });
-        console.log("app.js userdata", userData);
+        // console.log("app.js userdata", userData);
       }
     };
 
     checkedLoggedIn();
-  }, []);
+  }, [userData]);
 
   return (
     <div className="App">

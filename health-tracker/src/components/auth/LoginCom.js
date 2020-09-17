@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
-import ErrorNotice from "../../misc/ErrorNotice";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,7 +14,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { FadeTransform } from "react-animation-components";
+// import { FadeTransform } from "react-animation-components";
 import AlertMessage from "../AlertMessage";
 
 export default function LoginCom(props) {
@@ -29,7 +28,7 @@ export default function LoginCom(props) {
 
   useEffect(() => {
     console.log(props.userData);
-  }, []);
+  }, [props.userData]);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -61,7 +60,7 @@ export default function LoginCom(props) {
       marginTop: theme.spacing(8),
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "right",
     },
     avatar: {
       margin: theme.spacing(1),
@@ -78,89 +77,84 @@ export default function LoginCom(props) {
   const classes = useStyles();
 
   return (
-    <FadeTransform
-      in
-      transformProps={{
-        exitTransform: "translateX(-100px)",
-      }}
-      fadeProps={{
-        enterOpacity: 0.85,
-      }}
-    >
-      <div>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            {error && (
-              <ErrorNotice
-                message={error}
-                clearError={() => setError(undefined)}
-              />
-            )}
-            <form className={classes.form} Validate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+    // <FadeTransform
+    //   in
+    //   transformProps={{
+    //     exitTransform: "translateX(-100px)",
+    //   }}
+    //   fadeProps={{
+    //     enterOpacity: 0.85,
+    //   }}
+    // >
+    <div>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
 
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={submit}
-              >
-                LOGIN
-                {status ? (
-                  <AlertMessage key={status.key} message={status.msg} />
-                ) : null}
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="/" variant="body2">
-                    Return to Home Page
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="/register" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+          <form className={classes.form} Validate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={submit}
+            >
+              LOGIN
+              {status ? (
+                <AlertMessage key={status.key} message={status.msg} />
+              ) : null}
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link href="/" variant="body2">
+                  Return to Home Page
+                </Link>
               </Grid>
-            </form>
-          </div>
-        </Container>
-      </div>{" "}
-    </FadeTransform>
+              <Grid item>
+                <Link href="/register" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+      </Container>
+    </div>
+    // </FadeTransform>
   );
 }

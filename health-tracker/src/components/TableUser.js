@@ -14,7 +14,7 @@ import moment from "moment";
 const TableUser = (props) => {
   const useStyles = makeStyles({
     table: {
-      minWidth: 650,
+      minWidth: "50%",
     },
     btn: {
       backgroundColor: "red",
@@ -69,10 +69,10 @@ const TableUser = (props) => {
             props.foodLog[i].calories,
             props.foodLog[i].fat,
             props.foodLog[i].carbs,
-            props.foodLog[i].protein,
-            props.isUser.Stat.weight,
-            props.isUser.Stat.height,
-            props.isUser.Stat.gender
+            props.foodLog[i].protein
+            // props.isUser.Stat.weight,
+            // props.isUser.Stat.height,
+            // props.isUser.Stat.gender
           )
         );
       }

@@ -7,7 +7,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import API from "../utils/API";
 import AlertMessage from "../components/AlertMessage";
 const FormSearch = (props) => {
-  const [measure, setMeasure] = useState("Pounds");
+  const [measure, setMeasure] = useState("Pound");
   const [amount, setAmount] = useState("");
   const [searchFood, setSearchFood] = useState("");
   const [arrayFood, setArrayFood] = useState([]);
@@ -81,7 +81,6 @@ const FormSearch = (props) => {
         />
         <TextField
           id="outlined-number"
-          label="Quantity"
           variant="outlined"
           value={amount}
           className="mb-4"
@@ -96,7 +95,7 @@ const FormSearch = (props) => {
           {arr}
         </Select>
         <Button onClick={submit} variant="contained" color="primary">
-          SUBMIT
+          Submit
           {flag ? <AlertMessage key={status.key} message={status.msg} /> : null}
         </Button>
       </FormControl>

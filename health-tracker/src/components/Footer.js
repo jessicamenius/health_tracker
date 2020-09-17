@@ -3,7 +3,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Link from "@material-ui/core/Link";
 
 const Footer = () => {
   function Copyright() {
@@ -28,22 +27,22 @@ const Footer = () => {
     footer: {
       padding: theme.spacing(3, 2),
       marginTop: "auto",
-      backgroundColor: "#3f51b6"
+      backgroundColor: "#3f51b6",
     },
   }));
 
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-
       <footer footer="true" className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1" style={{ textAlign: "center" }}>
-            My Exercise Rest Nutrition Tracker (MERN-Tracker)
+            MERN Health Tracker - My Exercise Rest Nutrition Health Tracker{" "}
           </Typography>
           <Typography variant="body2" color="textPrimary" align="center">
-            Developers Jessica, Philip, Mat, Steven
+            Created by Philip Kouchner, Jessica Menius, Steven Simon, Mat Wilmot
           </Typography>
           <Copyright />
         </Container>
@@ -51,4 +50,5 @@ const Footer = () => {
     </div>
   );
 };
+
 export default Footer;

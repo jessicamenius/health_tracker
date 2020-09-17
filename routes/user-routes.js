@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../config/middleware/auth");
-const { json } = require("express");
+// const { json } = require("express");
 const db = require("../models");
 const passport = require("../config/passport");
 
@@ -44,6 +44,7 @@ router.post("/register", async (req, res) => {
         .json({ msg: "Account with this email already exists" });
 
     if (!userName) userName = email;
+    if (!firstName) firstName = email;
 
     let newUser = await db.User.create({
       email,

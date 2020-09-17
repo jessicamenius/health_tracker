@@ -3,11 +3,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-import { Fade } from "react-animation-components";
+// import { Fade } from "react-animation-components";
 import API from "../utils/API";
 import AlertMessage from "../components/AlertMessage";
-import RadioGroupBtn from "./RadioGroupBtn";
+import Radio from "@material-ui/core/Radio";
+// import RadioGroupBtn from "./RadioGroupBtn";
 import CardResult from "./CardResult";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const FormGoals = (props) => {
   const [height, setHeight] = useState("");
@@ -60,17 +65,24 @@ const FormGoals = (props) => {
     },
   }));
 
-  useEffect(() => {
-    console.log(props.userData);
+  useEffect((history) => {
+    // console.log(props.userData);
     const token = localStorage.getItem("auth-token");
     if (!token) {
       history.push("/");
     }
   }, []);
 
+  const handleChange = (e) => {
+    props.setValue(e.target.value);
+  };
+  const handleChangeGender = (e) => {
+    props.setGender(e.target.value);
+  };
+
   const submitBMIAndBMR = (e) => {
     e.preventDefault();
-    // function that calculate the BMI of the use and keep the data
+    // function that calculate the BMI of the user and keep the data
     let bmi;
     let bmr;
     if (
@@ -127,90 +139,126 @@ const FormGoals = (props) => {
   if (!answer) {
     renderElement = (
       <div>
-        <Fade in>
-          <h2
-            style={{
-              textAlign: "center",
-              textDecoration: "none",
-              color: "blue",
+        {/* <Fade in> */}
+        <h2
+          style={{
+            textAlign: "center",
+            textDecoration: "none",
+            color: "blue",
+          }}
+        >
+          Let's get started!{" "}
+        </h2>
+        <h4
+          style={{
+            textAlign: "center",
+            textDecoration: "none",
+            color: "blue",
+          }}
+        >
+          Provide the below information to calculate your BMI and BMR.
+        </h4>
+        <form className={classes.form}>
+          <TextField
+            id="standard-secondary"
+            label="Enter height"
+            variant="outlined"
+            value={height}
+            style={{ marginBottom: "20px" }}
+            onChange={(e) => {
+              var hasNumber = /\d/;
+              if (e.target.value === "" || hasNumber.test(e.target.value)) {
+                setHeight(e.target.value);
+                setValidate(true);
+              } else {
+                setValidate(false);
+              }
             }}
-          >
-            Let's get started!{" "}
-          </h2>
-          <h4
-            style={{
-              textAlign: "center",
-              textDecoration: "none",
-              color: "blue",
-            }}
-          >
-            Provide the below information to calculate your BMI and BMR.
-          </h4>
-          <form className={classes.form}>
-            <TextField
-              id="standard-secondary"
-              label="Enter height"
-              variant="outlined"
-              value={height}
-              style={{ marginBottom: "20px" }}
-              onChange={(e) => {
-                var hasNumber = /\d/;
-                if (e.target.value === "" || hasNumber.test(e.target.value)) {
-                  setHeight(e.target.value);
-                  setValidate(true);
-                } else {
-                  setValidate(false);
-                }
-              }}
-            />
+          />
 
-            <TextField
-              id="filled-secondary"
-              label="Enter weight"
-              variant="outlined"
-              value={weight}
-              style={{ marginBottom: "20px" }}
-              onChange={(e) => {
-                var hasNumber = /\d/;
-                if (e.target.value === "" || hasNumber.test(e.target.value)) {
-                  setWeight(e.target.value);
-                  setValidate(true);
-                } else {
-                  setValidate(false);
-                }
-              }}
+          <TextField
+            id="filled-secondary"
+            label="Enter weight"
+            variant="outlined"
+            value={weight}
+            style={{ marginBottom: "20px" }}
+            onChange={(e) => {
+              var hasNumber = /\d/;
+              if (e.target.value === "" || hasNumber.test(e.target.value)) {
+                setWeight(e.target.value);
+                setValidate(true);
+              } else {
+                setValidate(false);
+              }
+            }}
+          />
+          <TextField
+            id="outlined-secondary"
+            label="Enter age"
+            variant="outlined"
+            value={age}
+            style={{ marginBottom: "20px" }}
+            onChange={(e) => {
+              var hasNumber = /\d/;
+              if (e.target.value === "" || hasNumber.test(e.target.value)) {
+                setAge(e.target.value);
+                setValidate(true);
+              } else {
+                setValidate(false);
+              }
+            }}
+          />
+        </form>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Unit of measurement</FormLabel>
+          <RadioGroup
+            aria-label="gender"
+            name="gender1"
+            value={props.value}
+            onChange={handleChange}
+          >
+            <FormControlLabel
+              value="Metric"
+              control={<Radio />}
+              label="Metric - Centimeters, Kilograms"
             />
-            <TextField
-              id="outlined-secondary"
-              label="Enter age"
-              variant="outlined"
-              value={age}
-              style={{ marginBottom: "20px" }}
-              onChange={(e) => {
-                var hasNumber = /\d/;
-                if (e.target.value === "" || hasNumber.test(e.target.value)) {
-                  setAge(e.target.value);
-                  setValidate(true);
-                } else {
-                  setValidate(false);
-                }
-              }}
+            <FormControlLabel
+              value="Standard"
+              control={<Radio />}
+              label="Standard - Feet+Inches, Pounds"
             />
-          </form>
-          <div className={classes.button}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={submitBMIAndBMR}
-              style={{ marginRight: "10px" }}
-            >
-              CALCULATE
-              {status ? (
-                <AlertMessage key={status.key} message={status.msg} />
-              ) : null}
-            </Button>
-          </div>
-        </Fade>
+          </RadioGroup>
+        </FormControl>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Gender</FormLabel>
+          <RadioGroup
+            aria-label="gender"
+            name="gender1"
+            value={props.gender}
+            onChange={handleChangeGender}
+          >
+            <FormControlLabel value="Male" control={<Radio />} label="Male" />
+            <FormControlLabel
+              value="Female"
+              control={<Radio />}
+              label="Female"
+            />
+          </RadioGroup>
+        </FormControl>
+        <div className={classes.button}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={submitBMIAndBMR}
+            style={{ marginRight: "10px" }}
+          >
+            CALCULATE
+            {status ? (
+              <AlertMessage key={status.key} message={status.msg} />
+            ) : null}
+          </Button>
+        </div>
+        {/* </Fade> */}
       </div>
     );
   } else {
@@ -227,16 +275,16 @@ const FormGoals = (props) => {
     <div className={classes.container}>
       <div className={classes.divOne}>{renderElement} </div>
       <div style={{ marginTop: "100px", marginLeft: "30px" }}>
-        <Fade in>
-          {!answer ? (
-            <RadioGroupBtn
-              value={value}
-              gender={gender}
-              setValue={setValue}
-              setGender={setGender}
-            />
-          ) : null}
-        </Fade>
+        {/* <Fade in> */}
+        {!answer ? (
+          <RadioGroupBtn
+            value={value}
+            gender={gender}
+            setValue={setValue}
+            setGender={setGender}
+          />
+        ) : null}
+        {/* </Fade> */}
       </div>
     </div>
   );

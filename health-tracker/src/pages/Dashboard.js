@@ -5,6 +5,7 @@ import Chart from "../components/Chart";
 import TableUser from "../components/TableUser";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
+import UserProfile from "../components/UserProfile.js";
 
 const Dashboard = (props) => {
   const history = useHistory();
@@ -107,8 +108,11 @@ const Dashboard = (props) => {
   return (
     <div className={classes.center}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
-        Welcome to your Dashboard {isUser.firstName}
+        Welcome to your MERN Health Tracker Dashboard {isUser.firstName}!
       </h1>
+      <div>
+        <UserProfile />
+      </div>
       <div>
         {flag ? (
           <TableUser

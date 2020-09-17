@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 // import { Transform } from "react-animation-components";
+import "../../App.css";
 
 export default function Register(props) {
   const [email, setEmail] = useState();
@@ -40,8 +41,8 @@ export default function Register(props) {
         lastName,
       };
 
-      console.log("new user:", newUser);
-      console.log("props.userData", props.userData);
+      // console.log("new user:", newUser);
+      // console.log("props.userData", props.userData);
 
       const userResponse = await Axios.post("/users/register", newUser);
 
@@ -83,7 +84,7 @@ export default function Register(props) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container background-color="#ff7961" component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -102,7 +103,7 @@ export default function Register(props) {
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
-                // required
+                required
                 fullWidth
                 id="firstName"
                 label="First Name"
@@ -113,7 +114,7 @@ export default function Register(props) {
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
-                // required
+                required
                 fullWidth
                 id="lastName"
                 label="Last Name"
@@ -125,7 +126,7 @@ export default function Register(props) {
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                // required
+                required
                 fullWidth
                 id="userName"
                 label="User Name"
