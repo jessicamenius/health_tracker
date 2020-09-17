@@ -11,7 +11,7 @@ The motivation is to build an easy-to-use health app that a basic person can cle
 A user must register first to use the application, when successful then user have to login to start using the app. After login the user will be redirected to the FormGoals page for BMI and BMR calculation then user will get their BMI and BMR summary.
 After getting the BMI and BMR summary the user will have an option to go to the main page ie Dashboard page where they can put their daily log meals and saved plus they will have an option to delete their log.
 
-User may signout and when login again the user will be able to continue where they left off.
+User may log out and when the user logs in again, the user will be able to continue where they left off.
 
 ## Built with
 
