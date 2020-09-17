@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import img from '../pages/img/Logo2.png';
+import img from "../pages/img/Logo2.png";
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
+import API from "../utils/API";
+import moment from "moment";
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -12,13 +14,12 @@ import CardContent from '@material-ui/core/CardContent';
 
 
 export default function Landing(props) {
-
   const history = useHistory();
   useEffect(() => {
     const token = localStorage.getItem("auth-token");
     if (token !== "") {
       localStorage.setItem("auth-token", "");
-      props.setUserData({ token: undefined, user: undefined })
+      props.setUserData({ token: undefined, user: undefined });
       history.push("/");
     }
   }, []);
@@ -26,7 +27,6 @@ export default function Landing(props) {
   const useStyles = makeStyles({
     root: {
       minWidth: 275,
-
     },
     title: {
       fontSize: 14,
@@ -35,6 +35,7 @@ export default function Landing(props) {
       marginBottom: 12,
     },
   });
+
   const classes = useStyles();
   return (
     <div
@@ -64,8 +65,8 @@ export default function Landing(props) {
               }}
             >
               <DirectionsRunIcon fontSize="large" />
-        Welcome to the MERN Health Tracker
-      </Typography>
+              Welcome to the MERN Health Tracker
+            </Typography>
             <div>
               <img
                 src={img}
@@ -92,11 +93,6 @@ export default function Landing(props) {
           </CardContent>
         </Card>
       </Fade>
-
-    </div >
+    </div>
   );
 }
-
-
-
-
