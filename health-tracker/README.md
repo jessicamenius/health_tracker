@@ -1,4 +1,4 @@
-# Introduction: MERN Health-Tracker
+# Introduction: MERN Health Tracker
 
 This is a web application which utilizes Edamam API that can be used to track daily and weekly nutritional intake along with weight goals and the progress. The application allows you to log meals you eat daily and see details information on chart and tables plus a calculated BMI based on your inputs.
 
@@ -30,10 +30,6 @@ For the Frontend packages/libraries we used
 - Material UI
 - Recharts
 - React Router Dom
-
-## Available Scripts
-
-In the project directory, you can run:
 
 ## Deploy
 

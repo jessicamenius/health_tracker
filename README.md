@@ -31,10 +31,6 @@ For the Frontend packages/libraries we used
 - Recharts
 - React Router Dom
 
-## Available Scripts
-
-In the project directory, you can run:
-
 ## Deploy
 
 Heroku: https://group4-mern-tracker.herokuapp.com/
