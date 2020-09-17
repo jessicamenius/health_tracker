@@ -40,17 +40,9 @@ export default function Register(props) {
         lastName,
       };
 
-<<<<<<< HEAD
       console.log(newUser);
       console.log(props.userData);
       const userResponse = await Axios.post("/users/register", newUser);
-=======
-      console.log("new user:", newUser);
-      console.log("props.userData", props.userData);
-
-      const userResponse = await Axios.post("/users/register", newUser);
-
->>>>>>> 398ba63f38634e4b877607433aece8a667d3f7bf
       const loginRes = await Axios.post("/users/login", {
         email: userResponse.data.email,
         password: newUser.password,

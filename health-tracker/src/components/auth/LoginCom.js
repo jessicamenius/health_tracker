@@ -37,14 +37,7 @@ export default function LoginCom(props) {
     try {
       if (email && password) {
         const loginUser = { email, password };
-<<<<<<< HEAD
-        const loginRes = await Axios.post(
-          "/users/login",
-          loginUser
-        );
-=======
         const loginRes = await Axios.post("/users/login", loginUser);
->>>>>>> 398ba63f38634e4b877607433aece8a667d3f7bf
 
         props.setUserData({
           token: loginRes.data.token,
