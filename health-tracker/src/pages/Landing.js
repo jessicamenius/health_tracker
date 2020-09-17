@@ -3,12 +3,13 @@ import img from "../pages/img/Logo2.png";
 import { Fade } from "react-animation-components";
 import DirectionsRunIcon from "@material-ui/icons/DirectionsRun";
 import Typography from "@material-ui/core/Typography";
-import API from "../utils/API";
-import moment from "moment";
 import { useHistory } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
+
+
 
 export default function Landing(props) {
   const history = useHistory();
@@ -67,11 +68,7 @@ export default function Landing(props) {
             <div>
               <img
                 src={img}
-                style={{
-                  height: "250px",
-                  width: "900px",
-                  boxShadow: " 3px -16px 50px -8px rgba(16,16,230,1)",
-                }}
+                style={{ height: "250px", width: "900px", boxShadow: " 3px -16px 50px -8px rgba(16,16,230,1)" }}
                 alt="Compnay Logo"
               />
             </div>
@@ -85,12 +82,12 @@ export default function Landing(props) {
               }}
             >
               MERN Health Tracker is a web application utilizing the Edamam API.
-              The MERN Health Tracker is used to track daily and weekly
-              nutritional intake, along with weight goals and your progress
-              towards them. Log the meals you eat to see detailed information
-              about them, such as fat, protein, and carb content, along with an
-              overall view for your intake each week.
-            </h2>
+              The MERN Health Tracker is used to track daily and weekly nutritional
+              intake, along with weight goals and your progress towards them.
+              Log the meals you eat to see detailed information about them, such as
+              fat, protein, and carb content, along with an overall view for your
+              intake each week.
+      </h2>
           </CardContent>
         </Card>
       </Fade>

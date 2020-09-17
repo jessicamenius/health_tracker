@@ -4,16 +4,15 @@ import FormSearch from "../components/FormSearch";
 import Chart from "../components/Chart";
 import TableUser from "../components/TableUser";
 import API from "../utils/API";
-import { useHistory } from "react-router-dom";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+
 
 const Dashboard = (props) => {
-  const history = useHistory();
+
   const [isUser, setIsUser] = useState("");
   const [foodLog, setFoodLog] = useState([]);
   const [flag, setFlag] = useState(false);
   const user = props.userData;
+
   const useStyles = makeStyles(() => ({
     root: {
       textAlign: "center",
@@ -26,7 +25,6 @@ const Dashboard = (props) => {
     right: {
       float: "right",
       marginRight: "40px",
-      // height: "auto"
     },
     center: {
       display: "inline",
@@ -46,13 +44,10 @@ const Dashboard = (props) => {
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
-          console.log("foodlogs:", foodLogs);
-          console.log("data:", data);
           setFlag(true);
         } else {
           let data = res.data;
           setIsUser(data);
-          console.log(data);
           setFlag(false);
         }
       }
@@ -75,7 +70,7 @@ const Dashboard = (props) => {
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
-        console.log(foodLog);
+
       } else {
         let id = 1;
         let objFood = {
@@ -104,8 +99,6 @@ const Dashboard = (props) => {
   };
 
   const classes = useStyles();
-
-  console.log("props.user in dashboard", props.user);
   return (
     <div className={classes.center}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
@@ -117,8 +110,6 @@ const Dashboard = (props) => {
       <div>
         {flag ? <Chart foodLog={[...foodLog]} isUser={isUser} /> : null}
       </div>
-      {/* <Card className={classes.card}> */}
-      {/* <CardContent> */}
       <div>
         {flag ? (
           <TableUser
@@ -129,8 +120,6 @@ const Dashboard = (props) => {
           />
         ) : null}
       </div>
-      {/* </CardContent> */}
-      {/* </Card> */}
     </div>
   );
 };

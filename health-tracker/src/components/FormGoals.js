@@ -61,7 +61,6 @@ const FormGoals = (props) => {
   }));
 
   useEffect(() => {
-    console.log(props.userData);
     const token = localStorage.getItem("auth-token");
     if (!token) {
       history.push("/");
@@ -70,7 +69,6 @@ const FormGoals = (props) => {
 
   const submitBMIAndBMR = (e) => {
     e.preventDefault();
-    // function that calculate the BMI of the use and keep the data
     let bmi;
     let bmr;
     if (
@@ -91,7 +89,8 @@ const FormGoals = (props) => {
           setResultBMR(bmr);
         }
       } else {
-        bmi = (weight / (height * 12) / (height * 12)) * 703;
+
+        bmi = ((weight / (height * 12)) / (height * 12)) * 703;
         setResultBMI(bmi);
         if (gender === "Male") {
           bmr = 66 + 6.23 * weight + 12.7 * (height * 12) - 6.8 * age;
@@ -101,6 +100,7 @@ const FormGoals = (props) => {
           setResultBMR(bmr);
         }
       }
+
       objUserStats = {
         height: height,
         weight: weight,
@@ -110,7 +110,8 @@ const FormGoals = (props) => {
         bmr: bmr,
         UserId: props.userData.user.id,
       };
-      console.log(objUserStats);
+
+
       API.setStats(objUserStats);
       setAnswer(true);
       setWeight("");
