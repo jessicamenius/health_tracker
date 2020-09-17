@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export default {
+  // Given a food, an amount, and a unit of measurement, returns detailed nutritional info
   getNutrients: (food, qty, unit) => axios.get(`/food/${food}/${qty}/${unit}`),
 
+  // Gets all users in the DB, doesn't include stats & food
   getAllUsers: () => axios.get("/users/all"),
 
+  // Get a single user, with all their stats and food logs by the user's ID
   getOneUser: (id) => axios.get("users/one/" + id),
-
-  // gets the userID and userName of the currently logged in user
-  // getCurrentUser: () => axios.get("/users/"),
 
   // obj must include 'UserId:' key
   setStats: (obj) => axios.post("stats/set", obj),
@@ -37,5 +37,6 @@ export default {
   // autocomplete route, pass in a string
   autocomplete: (str) => axios.get("/food/autocomplete/" + str),
 
+  // register a new user, passing in all required user info in an object
   register: (obj) => axios.post("users/register", obj),
 };
