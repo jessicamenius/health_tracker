@@ -24,7 +24,6 @@ export default function LoginCom(props) {
   const [error, setError] = useState("");
   const [status, setStatusBase] = useState("");
 
-
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
@@ -38,10 +37,7 @@ export default function LoginCom(props) {
     try {
       if (email && password) {
         const loginUser = { email, password };
-        const loginRes = await Axios.post(
-          "http://localhost:5000/users/login",
-          loginUser
-        );
+        const loginRes = await Axios.post("/users/login", loginUser);
 
         props.setUserData({
           token: loginRes.data.token,
@@ -50,13 +46,15 @@ export default function LoginCom(props) {
         localStorage.setItem("auth-token", loginRes.data.token);
         history.push("/dashboard");
       } else {
-        setStatusBase({ msg: "Error - Email && Password\n cannot be empty", key: Math.random() });
+        setStatusBase({
+          msg: "Error - Email && Password\n cannot be empty",
+          key: Math.random(),
+        });
       }
     } catch (err) {
       err.response.msg && setError(err.response.msg);
     }
   };
-
 
   const useStyles = makeStyles((theme) => ({
     paper: {

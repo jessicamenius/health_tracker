@@ -34,9 +34,6 @@ const Dashboard = (props) => {
       marginLeft: "30px",
       justifyContent: "center",
     },
-    card: {
-      // maxWidth: 1000,
-    },
   }));
 
   let idUser;
@@ -49,7 +46,8 @@ const Dashboard = (props) => {
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
-          console.log(foodLogs);
+          console.log("foodlogs:", foodLogs);
+          console.log("data:", data);
           setFlag(true);
         } else {
           let data = res.data;
@@ -106,12 +104,13 @@ const Dashboard = (props) => {
   };
 
   const classes = useStyles();
+
+  console.log("props.user in dashboard", props.user);
   return (
     <div className={classes.center}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
-        Welcome To Our Dashboard {isUser.userName}
+        Welcome to your Dashboard {isUser.firstName}
       </h1>
-
       <div>
         <FormSearch eventSubmitBtn={eventSubmitBtn} />
       </div>
