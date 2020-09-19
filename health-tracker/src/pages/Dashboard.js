@@ -5,9 +5,7 @@ import Chart from "../components/Chart";
 import TableUser from "../components/TableUser";
 import API from "../utils/API";
 
-
 const Dashboard = (props) => {
-
   const [isUser, setIsUser] = useState("");
   const [foodLog, setFoodLog] = useState([]);
   const [flag, setFlag] = useState(false);
@@ -70,7 +68,6 @@ const Dashboard = (props) => {
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
-
       } else {
         let id = 1;
         let objFood = {
@@ -102,7 +99,7 @@ const Dashboard = (props) => {
   return (
     <div className={classes.center}>
       <h1 style={{ textAlign: "center", color: "#3F51B5" }}>
-        Welcome to your Dashboard {isUser.firstName}
+        Welcome to your Dashboard, {isUser.firstName}
       </h1>
       <div>
         <FormSearch eventSubmitBtn={eventSubmitBtn} />
