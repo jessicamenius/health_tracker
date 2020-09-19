@@ -13,7 +13,6 @@ var ExtractJwt = passportJWT.ExtractJwt;
 var JwtStrategy = passportJWT.Strategy;
 
 require("dotenv").config();
-// this is a comment
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
