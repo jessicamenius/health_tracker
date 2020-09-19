@@ -7,7 +7,7 @@ import Container from "@material-ui/core/Container";
 const Footer = () => {
   function Copyright() {
     return (
-      <Typography variant="body2" color="textSecondary" align="center">
+      <Typography variant="body2" color="white" align="center">
         {"Copyright © "} {new Date().getFullYear()}
         {"."}
       </Typography>
@@ -18,7 +18,7 @@ const Footer = () => {
     root: {
       display: "flex",
       flexDirection: "column",
-      minHeight: "100vh",
+      minHeight: "65vh",
     },
     main: {
       marginTop: theme.spacing(8),
@@ -27,7 +27,8 @@ const Footer = () => {
     footer: {
       padding: theme.spacing(3, 2),
       marginTop: "auto",
-      backgroundColor: "#3f51b6"
+      backgroundColor: "#3f51b6",
+      color: "white",
     },
   }));
 
@@ -41,7 +42,7 @@ const Footer = () => {
           <Typography variant="body1" style={{ textAlign: "center" }}>
             My Exercise Rest Nutrition Tracker (MERN-Tracker)
           </Typography>
-          <Typography variant="body2" color="textPrimary" align="center">
+          <Typography variant="body2" align="center">
             Developers Jessica, Philip, Mat, Steven
           </Typography>
           <Copyright />
