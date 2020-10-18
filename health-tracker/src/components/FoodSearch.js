@@ -27,7 +27,6 @@ const FoodSearch = (props) => {
     if (text.length > 1) {
       API.autocomplete(text).then((res) => {
         let arrayInput = [];
-        console.log(res.data);
         arrayInput = [...res.data];
         setArrayFood([...arrayInput]);
       });

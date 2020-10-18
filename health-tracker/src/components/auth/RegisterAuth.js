@@ -42,8 +42,12 @@ export default function Register(props) {
         lastName,
       };
 
+<<<<<<< HEAD:health-tracker/src/components/auth/RegisterAuth.js
+=======
+      console.log(newUser);
+      console.log(props.userData);
+>>>>>>> d34858cc063a0f5b73fb65c17d66a4cfd635a189:health-tracker/src/components/auth/Register.js
       const userResponse = await Axios.post("/users/register", newUser);
-
       const loginRes = await Axios.post("/users/login", {
         email: userResponse.data.email,
         password: newUser.password,

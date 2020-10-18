@@ -7,7 +7,7 @@ import Container from "@material-ui/core/Container";
 const Footer = () => {
   function Copyright() {
     return (
-      <Typography variant="body2" color="textSecondary" align="center">
+      <Typography variant="body2" color="white" align="center">
         {"Copyright © "} {new Date().getFullYear()}
         {"."}
       </Typography>

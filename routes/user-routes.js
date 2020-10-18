@@ -72,7 +72,6 @@ router.post("/login", async (req, res) => {
       return res
         .status(400)
         .json({ msg: "No account with this email has been registered" });
-    console.log(user);
     const isMatch = await bcrypt.compareSync(password, user.password, () => {
       if (!isMatch)
         return res.status(400).json({ msg: "Invalid login credentials" });

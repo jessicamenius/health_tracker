@@ -10,11 +10,11 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
 const Dashboard = (props) => {
-  const history = useHistory();
   const [isUser, setIsUser] = useState("");
   const [foodLog, setFoodLog] = useState([]);
   const [flag, setFlag] = useState(false);
   const user = props.userData;
+
   const useStyles = makeStyles(() => ({
     root: {
       textAlign: "center",
@@ -27,7 +27,6 @@ const Dashboard = (props) => {
     right: {
       float: "right",
       marginRight: "40px",
-      // height: "auto"
     },
     center: {
       display: "inline",
@@ -47,13 +46,10 @@ const Dashboard = (props) => {
         if (foodLogs.length !== 0) {
           setIsUser(data);
           setFoodLog(foodLogs);
-          console.log("foodlogs:", foodLogs);
-          console.log("data:", data);
           setFlag(true);
         } else {
           let data = res.data;
           setIsUser(data);
-          console.log(data);
           setFlag(false);
         }
       }
@@ -76,7 +72,6 @@ const Dashboard = (props) => {
         API.newFoodLog(objFood);
         foodLog.push(objFood);
         setFoodLog([...foodLog]);
-        console.log(foodLog);
       } else {
         let id = 1;
         let objFood = {

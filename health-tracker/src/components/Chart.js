@@ -4,8 +4,6 @@ import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const Chart = (props) => {
-  console.log(props.foodLog);
-
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
   const RADIAN = Math.PI / 180;
   let carbs = 0;
