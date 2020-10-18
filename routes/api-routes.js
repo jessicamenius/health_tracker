@@ -36,13 +36,4 @@ router.patch("/users/update", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-// delete a user and all of their related information
-// router.delete("/users/delete", (req, res) => {
-//   db.User.destroy({
-//     where: { id: req.body.UserId },
-//   })
-//     .then(() => res.send("Success"))
-//     .catch((err) => res.send(err));
-// });
-
 module.exports = router;

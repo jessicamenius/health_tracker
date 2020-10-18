@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -10,18 +9,16 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-// import { FadeTransform } from "react-animation-components";
-import AlertMessage from "../AlertMessage";
+import ErrorNotice from "../ErrorNotice.js";
 
 export default function LoginCom(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [status, setStatusBase] = useState("");
+  const [error, setError] = useState("");
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
@@ -44,14 +41,9 @@ export default function LoginCom(props) {
         });
         localStorage.setItem("auth-token", loginRes.data.token);
         history.push("/dashboard");
-      } else {
-        setStatusBase({
-          msg: "Error - Email && Password\n cannot be empty",
-          key: Math.random(),
-        });
       }
     } catch (err) {
-      err.response.msg && setError(err.response.msg);
+      console.log(err);
     }
   };
 
@@ -77,24 +69,20 @@ export default function LoginCom(props) {
   const classes = useStyles();
 
   return (
-    // <FadeTransform
-    //   in
-    //   transformProps={{
-    //     exitTransform: "translateX(-100px)",
-    //   }}
-    //   fadeProps={{
-    //     enterOpacity: 0.85,
-    //   }}
-    // >
     <div>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
+          </Typography>
+          <Typography>
+            {error && (
+              <ErrorNotice
+                message={error}
+                clearError={() => setError(undefined)}
+              />
+            )}
           </Typography>
 
           <form className={classes.form} Validate>
@@ -135,9 +123,6 @@ export default function LoginCom(props) {
               onClick={submit}
             >
               LOGIN
-              {status ? (
-                <AlertMessage key={status.key} message={status.msg} />
-              ) : null}
             </Button>
             <Grid container>
               <Grid item xs>
@@ -155,6 +140,5 @@ export default function LoginCom(props) {
         </div>
       </Container>
     </div>
-    // </FadeTransform>
   );
 }

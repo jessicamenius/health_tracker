@@ -9,7 +9,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import WcIcon from "@material-ui/icons/Wc";
 import Icon from "@material-ui/core/Icon";
-import moment from "moment";
 
 const TableUser = (props) => {
   const useStyles = makeStyles({
@@ -36,18 +35,8 @@ const TableUser = (props) => {
     },
   }))(TableCell);
   const classes = useStyles();
-  function createData(
-    id,
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    weight,
-    height,
-    gender
-  ) {
-    return { id, name, calories, fat, carbs, protein, weight, height, gender };
+  function createData(id, name, calories, fat, carbs, protein) {
+    return { id, name, calories, fat, carbs, protein };
   }
 
   let temp = [];
@@ -81,16 +70,6 @@ const TableUser = (props) => {
         <TableBody>
           <TableRow key={index} id={row.id}>
             <StyledTableCell component="th" scope="row">
-              <button
-                className={classes.btn}
-                onClick={click}
-                id={row.id}
-                data-tag={index}
-              >
-                Delete
-              </button>
-            </StyledTableCell>
-            <StyledTableCell component="th" scope="row">
               {row.name}
             </StyledTableCell>
             <StyledTableCell align="right">
@@ -105,9 +84,16 @@ const TableUser = (props) => {
             <StyledTableCell align="right">
               {row.protein.toFixed(2)}
             </StyledTableCell>
-            <StyledTableCell align="right">{row.height}</StyledTableCell>
-            <StyledTableCell align="right">{row.weight}</StyledTableCell>
-            <StyledTableCell align="right">{row.gender}</StyledTableCell>
+            <StyledTableCell component="th" scope="row">
+              <button
+                className={classes.btn}
+                onClick={click}
+                id={row.id}
+                data-tag={index}
+              >
+                DELETE
+              </button>
+            </StyledTableCell>
           </TableRow>
         </TableBody>
       ));

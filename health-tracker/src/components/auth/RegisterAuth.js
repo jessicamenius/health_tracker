@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
-import ErrorNotice from "../../misc/ErrorNotice";
+import ErrorNotice from "../ErrorNotice.js";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -31,6 +31,7 @@ export default function Register(props) {
 
   const submit = async (e) => {
     e.preventDefault();
+
     try {
       const newUser = {
         email,
@@ -41,9 +42,6 @@ export default function Register(props) {
         lastName,
       };
 
-      // console.log("new user:", newUser);
-      // console.log("props.userData", props.userData);
-
       const userResponse = await Axios.post("/users/register", newUser);
 
       const loginRes = await Axios.post("/users/login", {
@@ -51,13 +49,13 @@ export default function Register(props) {
         password: newUser.password,
       });
 
-      // console.log(loginRes.data);
-
       setUserData({ token: loginRes.data.token, user: loginRes.data.user });
+
       localStorage.setItem("auth-token", loginRes.data.token);
+
       history.push("/usergoals");
     } catch (err) {
-      console.log(err);
+      err.response.data.msg && setError(err.response.data.msg);
     }
   };
 
@@ -87,9 +85,9 @@ export default function Register(props) {
     <Container background-color="#ff7961" component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        {/* <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
-        </Avatar>
+        </Avatar> */}
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>

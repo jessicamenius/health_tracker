@@ -1,13 +1,12 @@
 import React from "react";
-import LoginCom from "../components/auth/LoginCom";
+import LoginAuth from "../components/auth/LoginAuth";
 
 const Login = (props) => {
   return (
     <div>
-      <LoginCom userData={props.userData} setUserData={props.setUserData} />
+      <LoginAuth userData={props.userData} setUserData={props.setUserData} />
     </div>
   );
 };
 
 export default Login;
-

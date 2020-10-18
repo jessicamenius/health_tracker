@@ -5,9 +5,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { Button, Select } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import API from "../utils/API";
-import AlertMessage from "../components/AlertMessage";
-const FormSearch = (props) => {
-  const [measure, setMeasure] = useState("Pound");
+
+const FoodSearch = (props) => {
+  const [measure, setMeasure] = useState("Pounds");
   const [amount, setAmount] = useState("");
   const [searchFood, setSearchFood] = useState("");
   const [arrayFood, setArrayFood] = useState([]);
@@ -82,6 +82,7 @@ const FormSearch = (props) => {
         <TextField
           id="outlined-number"
           variant="outlined"
+          label="Enter total weight/volume of food in either metric or standard units of measurement"
           value={amount}
           className="mb-4"
           onChange={numInput}
@@ -95,12 +96,11 @@ const FormSearch = (props) => {
           {arr}
         </Select>
         <Button onClick={submit} variant="contained" color="primary">
-          Submit
-          {flag ? <AlertMessage key={status.key} message={status.msg} /> : null}
+          SEARCH
         </Button>
       </FormControl>
     </div>
   );
 };
 
-export default FormSearch;
+export default FoodSearch;

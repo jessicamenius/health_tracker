@@ -3,18 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
-// import { Fade } from "react-animation-components";
 import API from "../utils/API";
-import AlertMessage from "../components/AlertMessage";
-import Radio from "@material-ui/core/Radio";
-// import RadioGroupBtn from "./RadioGroupBtn";
 import CardResult from "./CardResult";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
+import RadioGroupBtn from "../components/RadioGroupBtn";
 
-const FormGoals = (props) => {
+const BuildProfile = (props) => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [age, setAge] = useState("");
@@ -66,23 +59,14 @@ const FormGoals = (props) => {
   }));
 
   useEffect((history) => {
-    // console.log(props.userData);
     const token = localStorage.getItem("auth-token");
     if (!token) {
       history.push("/");
     }
   }, []);
 
-  const handleChange = (e) => {
-    props.setValue(e.target.value);
-  };
-  const handleChangeGender = (e) => {
-    props.setGender(e.target.value);
-  };
-
   const submitBMIAndBMR = (e) => {
     e.preventDefault();
-    // function that calculate the BMI of the user and keep the data
     let bmi;
     let bmr;
     if (
@@ -113,6 +97,7 @@ const FormGoals = (props) => {
           setResultBMR(bmr);
         }
       }
+
       objUserStats = {
         height: height,
         weight: weight,
@@ -122,7 +107,7 @@ const FormGoals = (props) => {
         bmr: bmr,
         UserId: props.userData.user.id,
       };
-      console.log(objUserStats);
+
       API.setStats(objUserStats);
       setAnswer(true);
       setWeight("");
@@ -134,26 +119,35 @@ const FormGoals = (props) => {
     }
   };
 
+  const handleChange = (event) => {
+    props.setValue(event.target.value);
+  };
+
+  const handleChangeGender = (event) => {
+    props.setGender(event.target.value);
+  };
+
   const classes = useStyles();
   let renderElement;
+
   if (!answer) {
     renderElement = (
       <div>
-        {/* <Fade in> */}
         <h2
           style={{
             textAlign: "center",
             textDecoration: "none",
-            color: "blue",
+            color: "#3F51B5",
           }}
         >
-          Let's get started!{" "}
+          Let's get started!
         </h2>
+        <RadioGroupBtn />
         <h4
           style={{
             textAlign: "center",
             textDecoration: "none",
-            color: "blue",
+            color: "3F51B5",
           }}
         >
           Provide the below information to calculate your BMI and BMR.
@@ -175,7 +169,6 @@ const FormGoals = (props) => {
               }
             }}
           />
-
           <TextField
             id="filled-secondary"
             label="Enter weight"
@@ -209,42 +202,6 @@ const FormGoals = (props) => {
             }}
           />
         </form>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Unit of measurement</FormLabel>
-          <RadioGroup
-            aria-label="gender"
-            name="gender1"
-            value={props.value}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="Metric"
-              control={<Radio />}
-              label="Metric - Centimeters, Kilograms"
-            />
-            <FormControlLabel
-              value="Standard"
-              control={<Radio />}
-              label="Standard - Feet+Inches, Pounds"
-            />
-          </RadioGroup>
-        </FormControl>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Gender</FormLabel>
-          <RadioGroup
-            aria-label="gender"
-            name="gender1"
-            value={props.gender}
-            onChange={handleChangeGender}
-          >
-            <FormControlLabel value="Male" control={<Radio />} label="Male" />
-            <FormControlLabel
-              value="Female"
-              control={<Radio />}
-              label="Female"
-            />
-          </RadioGroup>
-        </FormControl>
         <div className={classes.button}>
           <Button
             variant="contained"
@@ -253,12 +210,8 @@ const FormGoals = (props) => {
             style={{ marginRight: "10px" }}
           >
             CALCULATE
-            {status ? (
-              <AlertMessage key={status.key} message={status.msg} />
-            ) : null}
           </Button>
         </div>
-        {/* </Fade> */}
       </div>
     );
   } else {
@@ -274,26 +227,8 @@ const FormGoals = (props) => {
   return (
     <div className={classes.container}>
       <div className={classes.divOne}>{renderElement} </div>
-      <div style={{ marginTop: "100px", marginLeft: "30px" }}>
-        {/* <Fade in> */}
-        {!answer ? (
-          <RadioGroupBtn
-            value={value}
-            gender={gender}
-            setValue={setValue}
-            setGender={setGender}
-          />
-        ) : null}
-        {/* </Fade> */}
-      </div>
+      <div style={{ marginTop: "100px", marginLeft: "30px" }}>) : null}</div>
     </div>
   );
 };
-export default FormGoals;
-
-//  Metric BMR Formula Women: BMR = 655 + (9.6 x weight in kg) + (1.8 x height in cm) - (4.7 x age in years)
-// Men: BMR = 66 + (13.7 x weight in kg) + (5 x height in cm) - (6.8 x age in years)
-// Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
-// Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
-// [weight (lb) / height (in) / height (in)] x 703
-//  [weight (kg) / height (cm) / height (cm)] x 10,000
+export default BuildProfile;

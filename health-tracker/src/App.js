@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Axios from "axios";
 import Nav from "./components/Nav";
-import Landing from "./pages/Landing";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import RegisterPage from "./pages/RegisterPage";
+import Register from "./pages/Register";
 import { Box } from "@material-ui/core";
 import Dashboard from "./pages/Dashboard";
-import UserGoals from "./pages/UserGoals";
+import BuildProfile from "./pages/UserGoals";
 import UserContext from "./context/UserContext";
 import "./App.css";
 
@@ -34,7 +34,6 @@ export default function App() {
           headers: { "x-auth-token": token },
         });
         setUserData({ token, user: userRes.data });
-        // console.log("app.js userdata", userData);
       }
     };
 
@@ -49,10 +48,10 @@ export default function App() {
             <Nav />
             <Switch>
               <Route exact path="/">
-                <Landing userData={userData} setUserData={setUserData} />
+                <Home userData={userData} setUserData={setUserData} />
               </Route>
               <Route path="/register">
-                <RegisterPage userData={userData} />
+                <Register userData={userData} />
               </Route>
               <Route path="/login">
                 <Login userData={userData} setUserData={setUserData} />
@@ -60,8 +59,8 @@ export default function App() {
               <Route path="/dashboard">
                 <Dashboard userData={userData} />
               </Route>
-              <Route path="/usergoals">
-                <UserGoals userData={userData} />
+              <Route path="/buildprofile">
+                <BuildProfile userData={userData} />
               </Route>
             </Switch>
             <Footer />

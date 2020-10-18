@@ -1,10 +1,10 @@
 import React from "react";
-import FormGoals from "../components/FormGoals";
+import BuildProfile from "../components/BuildProfile";
 
 const UserGoals = (props) => {
   return (
     <div>
-      <FormGoals userData={props.userData} />
+      <BuildProfile userData={props.userData} />
     </div>
   );
 };

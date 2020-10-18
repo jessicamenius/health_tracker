@@ -7,8 +7,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import WcIcon from "@material-ui/icons/Wc";
-import Icon from "@material-ui/core/Icon";
 import Container from "@material-ui/core/Container";
 
 const UserProfile = (props) => {

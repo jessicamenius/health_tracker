@@ -68,9 +68,9 @@ const Chart = (props) => {
       </PieChart>
       <div style={{ marginTop: "30px" }}>
         <List>
-          <ListItemText> Blue: Carbs {carbs.toFixed(2)}</ListItemText>
-          <ListItemText> Green: Protein {protein.toFixed(2)}</ListItemText>
-          <ListItemText> Yellow: Fat {fat.toFixed(2)}</ListItemText>
+          <ListItemText> 🟦: Carbs {carbs.toFixed(2)}</ListItemText>
+          <ListItemText> 🟩: Protein {protein.toFixed(2)}</ListItemText>
+          <ListItemText> 🟨: Fat {fat.toFixed(2)}</ListItemText>
           <ListItemText> Total Calories: {calories.toFixed(2)}</ListItemText>
           {/* <ListItemText> BMI: {props.isUser.Stat.bmi}</ListItemText>
           <ListItemText> BMR: {props.isUser.Stat.bmr}</ListItemText> */}

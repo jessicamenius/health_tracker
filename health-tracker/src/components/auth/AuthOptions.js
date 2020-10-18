@@ -4,7 +4,7 @@ import UserContext from "../../context/UserContext";
 import Button from "@material-ui/core/Button";
 import { ButtonGroup } from "@material-ui/core";
 
-export default function AuthOptions() {
+export default function AuthOptions(props) {
   const { userData, setUserData } = useContext(UserContext);
 
   const history = useHistory();
@@ -14,7 +14,7 @@ export default function AuthOptions() {
   const logout = () => {
     setUserData({ token: undefined, user: undefined });
     localStorage.setItem("auth-token", "");
-    history.push("/")
+    history.push("/");
   };
 
   return (
@@ -24,31 +24,34 @@ export default function AuthOptions() {
           <Button
             fullWidth
             variant="contained"
-            color="primary"
+            color="#3f51b6"
             onClick={logout}
           >
             LOGOUT
           </Button>
         ) : (
-            <>
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                onClick={register}
-              >
-                REGISTER
+          <>
+            <Button
+              mr="10rem"
+              fullWidth
+              variant="contained"
+              color="#3f51b6"
+              onClick={register}
+            >
+              REGISTER
             </Button>
-              <Button
-                fullWidth
-                variant="contained"
-                color="primary"
-                onClick={login}
-              >
-                LOGIN
+            &nbsp; &nbsp;
+            <Button
+              mr="10rem"
+              fullWidth
+              variant="contained"
+              color="#3f51b6"
+              onClick={login}
+            >
+              LOGIN
             </Button>
-            </>
-          )}
+          </>
+        )}
       </ButtonGroup>
     </nav>
   );
