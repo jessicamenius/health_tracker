@@ -72,7 +72,7 @@ export default function Home(props) {
             <br />
             <br />
             By providing your weight, height, age, and gender, the tracker
-            calculates your BMR.
+            calculates your BMR and BMI providing target calorie and other health metric goals.
             <br />
             <br />
             Log the food you eat to see detailed nutritional information, such
