@@ -89,11 +89,8 @@ export default function Register(props) {
     <Container background-color="#ff7961" component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar> */}
         <Typography component="h1" variant="h5">
-          Sign up
+          Register
         </Typography>
         {error && (
           <ErrorNotice message={error} clearError={() => setError(undefined)} />
